@@ -5,15 +5,17 @@ using UnityEngine;
 public class papercode : MonoBehaviour
 {
     public float scaleFactor = 5f;
-    public bool paperpickedup;
+    public Vector3 originalScale;
     private Vector3 pos;
     private Quaternion rot;
     private SpriteRenderer spriteRenderer;
     private bool isRightMouseDown = false;
+    
     // Start is called before the first frame update
     void Start()
     {
-        paperpickedup = false;
+        originalScale = transform.localScale;
+        paperpickedupinstance.instance.paperpickedup = false;
 
         float randomRot = Random.Range(0, 360);
         float randomPosx = Random.Range(-8, 8);
@@ -33,16 +35,24 @@ public class papercode : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
-            if(hit.collider != null && paperpickedup == false)
+            if(hit.collider != null && paperpickedupinstance.instance.paperpickedup == false)
             {
                 if(hit.collider.gameObject == gameObject)
                 {
                     transform.position = Vector3.zero;
                     transform.rotation = Quaternion.identity;
                     transform.localScale = transform.localScale * scaleFactor;
-                    paperpickedup = true;
+                    paperpickedupinstance.instance.paperpickedup = true;
                 }
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            transform.position = pos;
+            transform.rotation = rot;
+            transform.localScale = originalScale;
+            paperpickedupinstance.instance.paperpickedup = false;
         }
 
         if (Input.GetMouseButtonDown(1))
@@ -59,7 +69,7 @@ public class papercode : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
-            if (hit.collider != null && paperpickedup == false)
+            if (hit.collider != null && paperpickedupinstance.instance.paperpickedup == false)
             {
                 if (hit.collider.gameObject == gameObject)
                 {
@@ -73,12 +83,5 @@ public class papercode : MonoBehaviour
             
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            transform.position = pos;
-            transform.rotation = rot;
-            transform.localScale = transform.localScale / scaleFactor;
-            paperpickedup = false;
-        }
     }
 }
