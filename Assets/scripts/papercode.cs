@@ -39,14 +39,14 @@ public class papercode : MonoBehaviour
             {
                 if(hit.collider.gameObject == gameObject)
                 {
-                    if (!paperPickedUp) 
+                    if (!paperpickedupinstance.instance.paperpickedup) 
                     {
                         transform.position = Vector3.zero;
                         transform.rotation = Quaternion.identity;
                         transform.localScale = transform.localScale * scaleFactor;
                         paperpickedupinstance.instance.paperpickedup = true;
                     }
-                    else if (paperPickedUp) 
+                    else if (paperpickedupinstance.instance.paperpickedup) 
                     {
                         transform.position = pos;
                         transform.rotation = rot;
