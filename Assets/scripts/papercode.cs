@@ -37,32 +37,6 @@ public class papercode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
-            if(hit.collider != null)
-            {
-                if(hit.collider.gameObject == gameObject)
-                {
-                    if (!paperpickedupinstance.instance.paperpickedup) 
-                    {
-                        transform.position = Vector3.zero;
-                        transform.rotation = Quaternion.identity;
-                        transform.localScale = transform.localScale * scaleFactor;
-                        paperpickedupinstance.instance.paperpickedup = true;
-                    }
-                    else if (paperpickedupinstance.instance.paperpickedup) 
-                    {
-                        transform.position = pos;
-                        transform.rotation = rot;
-                        transform.localScale = originalScale;
-                        paperpickedupinstance.instance.paperpickedup = false;
-                    }
-                }
-            }
-        }
-
         if (Input.GetMouseButtonDown(1))
         {
             slowToStop = false;
@@ -73,6 +47,7 @@ public class papercode : MonoBehaviour
                 if (hit.collider.gameObject == gameObject)
                 {
                     isRightMouseDown = true;
+                    transform.localScale = transform.localScale * 1.05f;
                 }
             }
         }
@@ -83,6 +58,7 @@ public class papercode : MonoBehaviour
             if (hit.collider.gameObject == gameObject) 
             {
                 slowToStop = true;
+                transform.localScale = originalScale;
             }
             mousePositionSlow = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
