@@ -10,7 +10,13 @@ public class papercode : MonoBehaviour
     private Quaternion rot;
     private SpriteRenderer spriteRenderer;
     private bool isRightMouseDown = false;
-    
+    public float maxPaperFollowSpeed = 20;
+    public float smoothTime = 0.5f;
+    public bool slowToStop = false;
+    private Vector2 mousePositionSlow;
+    private RaycastHit2D hit;
+
+    Vector2 currentVelocity;
     // Start is called before the first frame update
     void Start()
     {
@@ -59,31 +65,37 @@ public class papercode : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-            isRightMouseDown = true;
+            slowToStop = false;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            hit = Physics2D.Raycast(ray.origin, ray.direction);
+            if (!paperpickedupinstance.instance.paperpickedup && hit.collider != null)
+            {
+                if (hit.collider.gameObject == gameObject)
+                {
+                    isRightMouseDown = true;
+                }
+            }
         }
 
         if (Input.GetMouseButtonUp(1))
         {
             isRightMouseDown = false;
+            if (hit.collider.gameObject == gameObject) 
+            {
+                slowToStop = true;
+            }
+            mousePositionSlow = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
-
         if (isRightMouseDown)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
-            if (hit.collider != null && !paperpickedupinstance.instance.paperpickedup)
-            {
-                if (hit.collider.gameObject == gameObject)
-                {
-                    Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    mousePosition.z = 0;
-                    transform.position = Vector3.MoveTowards(transform.position, mousePosition, Time.deltaTime * 1000);
-                    pos = transform.position;
-                    rot = transform.rotation;
-                }
-            }
-            
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            transform.position = Vector2.SmoothDamp(transform.position, mousePosition, ref currentVelocity, smoothTime, maxPaperFollowSpeed);
+            pos = transform.position;
+            rot = transform.rotation;
         }
-
+        if (slowToStop) 
+        {
+            transform.position = Vector2.SmoothDamp(transform.position, mousePositionSlow, ref currentVelocity, smoothTime, maxPaperFollowSpeed);
+        }
     }
 }
