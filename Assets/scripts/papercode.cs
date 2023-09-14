@@ -37,7 +37,7 @@ public class papercode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(0))
         {
             slowToStop = false;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -52,7 +52,7 @@ public class papercode : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonUp(1))
+        if (Input.GetMouseButtonUp(0))
         {
             isRightMouseDown = false;
             if (hit.collider.gameObject == gameObject) 
