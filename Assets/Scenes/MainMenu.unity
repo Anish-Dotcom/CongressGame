@@ -1075,6 +1075,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1859356682}
   - component: {fileID: 1859356681}
+  - component: {fileID: 1859356683}
   m_Layer: 0
   m_Name: Light 2D
   m_TagString: Untagged
@@ -1169,13 +1170,30 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1859356680}
   m_LocalRotation: {x: 0, y: 0, z: -0.0030444495, w: 0.99999535}
-  m_LocalPosition: {x: -0.5, y: -7.49, z: 90}
+  m_LocalPosition: {x: 2, y: -7.5, z: 90}
   m_LocalScale: {x: 0.019455252, y: 0.019455252, z: 0.019455252}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -359.928}
+--- !u!114 &1859356683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859356680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cd8b4c10fdbec84bad7dbe96c5ce677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 1859356680}
+  pos: {x: 0, y: 0, z: 0}
+  xaxis: 0
+  increasing: 0
+  decreasing: 0
 --- !u!1 &1982588311
 GameObject:
   m_ObjectHideFlags: 0
