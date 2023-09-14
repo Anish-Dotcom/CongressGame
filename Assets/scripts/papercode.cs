@@ -35,24 +35,26 @@ public class papercode : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
-            if(hit.collider != null && paperpickedupinstance.instance.paperpickedup == false)
+            if(hit.collider != null)
             {
                 if(hit.collider.gameObject == gameObject)
                 {
-                    transform.position = Vector3.zero;
-                    transform.rotation = Quaternion.identity;
-                    transform.localScale = transform.localScale * scaleFactor;
-                    paperpickedupinstance.instance.paperpickedup = true;
+                    if (!paperPickedUp) 
+                    {
+                        transform.position = Vector3.zero;
+                        transform.rotation = Quaternion.identity;
+                        transform.localScale = transform.localScale * scaleFactor;
+                        paperpickedupinstance.instance.paperpickedup = true;
+                    }
+                    else if (paperPickedUp) 
+                    {
+                        transform.position = pos;
+                        transform.rotation = rot;
+                        transform.localScale = originalScale;
+                        paperpickedupinstance.instance.paperpickedup = false;
+                    }
                 }
             }
-        }
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            transform.position = pos;
-            transform.rotation = rot;
-            transform.localScale = originalScale;
-            paperpickedupinstance.instance.paperpickedup = false;
         }
 
         if (Input.GetMouseButtonDown(1))
@@ -69,7 +71,7 @@ public class papercode : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
-            if (hit.collider != null && paperpickedupinstance.instance.paperpickedup == false)
+            if (hit.collider != null && !paperpickedupinstance.instance.paperpickedup)
             {
                 if (hit.collider.gameObject == gameObject)
                 {
