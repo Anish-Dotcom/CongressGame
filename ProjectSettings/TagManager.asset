@@ -41,3 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: paper
+    uniqueID: 2244806449
+    locked: 0
