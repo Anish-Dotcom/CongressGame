@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,8 @@ public class Stamp : MonoBehaviour
     public bool slowToStop = false;
     private Vector2 mousePositionSlow;
     private RaycastHit2D hit;
+    public GameObject Stampdown;
+    public bool Stamppicked = false;
 
     Vector2 currentVelocity;
     // Start is called before the first frame update
@@ -23,15 +26,7 @@ public class Stamp : MonoBehaviour
         originalScale = transform.localScale;
         paperpickedupinstance.instance.paperpickedup = false;
 
-        float randomRot = Random.Range(0, 360);
-        float randomPosx = Random.Range(-8, 8);
-        float randomPosy = Random.Range(-4, 4);
-
-        Vector3 randomPos = new Vector3(randomPosx, randomPosy, 0f);
-        transform.position = randomPos;
-        transform.rotation = Quaternion.Euler(0f, 0f, randomRot);
-        pos = transform.position;
-        rot = transform.rotation;
+        
     }
 
     // Update is called once per frame
@@ -39,6 +34,7 @@ public class Stamp : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            Stamppicked = true;
             slowToStop = false;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             hit = Physics2D.Raycast(ray.origin, ray.direction);
@@ -47,13 +43,15 @@ public class Stamp : MonoBehaviour
                 if (hit.collider.gameObject == gameObject)
                 {
                     isRightMouseDown = true;
-                    transform.localScale = transform.localScale * 1.05f;
+                    transform.localScale = transform.localScale * 1.3f;
                 }
             }
         }
 
         if (Input.GetMouseButtonUp(0))
         {
+
+            Stamppicked = false;
             isRightMouseDown = false;
             if (hit.collider.gameObject == gameObject)
             {
@@ -73,5 +71,14 @@ public class Stamp : MonoBehaviour
         {
             transform.position = Vector2.SmoothDamp(transform.position, mousePositionSlow, ref currentVelocity, smoothTime, maxPaperFollowSpeed);
         }
+        if(Input.GetMouseButtonDown(1) && Stamppicked)
+        {
+            Instantiate(Stampdown, new Vector3(transform.position.x, transform.position.y, 1f), Quaternion.identity);
+        }
+    }
+
+    private void Instantiate(GameObject stampdown, Vector3 vector3)
+    {
+        throw new NotImplementedException();
     }
 }
