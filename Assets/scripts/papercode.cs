@@ -16,6 +16,8 @@ public class papercode : MonoBehaviour
     private Vector2 mousePositionSlow;
     private RaycastHit2D hit;
 
+    public GameObject paperShadow;
+
     Vector2 currentVelocity;
     // Start is called before the first frame update
     void Start()
@@ -48,6 +50,7 @@ public class papercode : MonoBehaviour
                 {
                     isRightMouseDown = true;
                     transform.localScale = transform.localScale * 1.05f;
+                    paperShadow.SetActive(true);
                 }
             }
         }
@@ -59,6 +62,7 @@ public class papercode : MonoBehaviour
             {
                 slowToStop = true;
                 transform.localScale = originalScale;
+                paperShadow.SetActive(false);
             }
             mousePositionSlow = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
