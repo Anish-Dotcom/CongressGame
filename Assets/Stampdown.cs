@@ -12,13 +12,5 @@ public class Stampdown : MonoBehaviour
             Debug.Log("Tp");
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.tag == "Paper")
-        {
-            bool istouchingpaper = true;
-
-            Debug.Log("Tz");
-        }
-    }
+    
 }

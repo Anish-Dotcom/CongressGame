@@ -15,6 +15,8 @@ public class papercode : MonoBehaviour
     public bool slowToStop = false;
     private Vector2 mousePositionSlow;
     private RaycastHit2D hit;
+    public bool istouchingpaper = false;
+    public Collider2D colliders;
 
     Vector2 currentVelocity;
     // Start is called before the first frame update
@@ -72,6 +74,17 @@ public class papercode : MonoBehaviour
         if (slowToStop) 
         {
             transform.position = Vector2.SmoothDamp(transform.position, mousePositionSlow, ref currentVelocity, smoothTime, maxPaperFollowSpeed);
+        }
+    }
+    
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        Debug.Log("Tr");
+        if (col.gameObject.tag == "Paper")
+        {
+            istouchingpaper = true;
+
+            Debug.Log("Tz");
         }
     }
 }

@@ -302,6 +302,7 @@ MonoBehaviour:
   maxPaperFollowSpeed: 20
   smoothTime: 0.5
   slowToStop: 0
+  istouchingpaper: 0
 --- !u!60 &227273099
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -694,6 +695,7 @@ MonoBehaviour:
   maxPaperFollowSpeed: 20
   smoothTime: 0.5
   slowToStop: 0
+  istouchingpaper: 0
 --- !u!212 &787744496
 SpriteRenderer:
   m_ObjectHideFlags: 0
