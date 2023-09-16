@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 1478864280185781251}
   - component: {fileID: 964602718385025680}
   - component: {fileID: -8769505489409341022}
-  - component: {fileID: -3246359562763709982}
+  - component: {fileID: 577548524062402026}
   m_Layer: 0
   m_Name: Stampdown
-  m_TagString: Untagged
+  m_TagString: Paper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   istouchingpaper: 0
---- !u!60 &-3246359562763709982
-PolygonCollider2D:
+--- !u!58 &577548524062402026
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -109,53 +109,9 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.37, y: 2.12}
-    newSize: {x: 2.37, y: 2.12}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.875, y: -0.53}
-      - {x: 0.935, y: -0.42}
-      - {x: 1.135, y: -0.22}
-      - {x: 1.175, y: -0.08}
-      - {x: 1.175, y: 0.03}
-      - {x: 1.155, y: 0.099999994}
-      - {x: 1.105, y: 0.17999999}
-      - {x: 0.97499996, y: 0.32}
-      - {x: 0.655, y: 0.78}
-      - {x: 0.505, y: 0.91999996}
-      - {x: 0.33499998, y: 1}
-      - {x: 0.255, y: 1.02}
-      - {x: 0.105, y: 1.05}
-      - {x: -0.125, y: 1.05}
-      - {x: -0.255, y: 1.04}
-      - {x: -0.505, y: 0.95}
-      - {x: -0.635, y: 0.89}
-      - {x: -0.715, y: 0.84}
-      - {x: -0.84499997, y: 0.71999997}
-      - {x: -0.895, y: 0.65}
-      - {x: -1.145, y: 0.11}
-      - {x: -1.175, y: 0.01}
-      - {x: -1.175, y: -0.24}
-      - {x: -1.0749999, y: -0.41}
-      - {x: -0.84499997, y: -0.69}
-      - {x: -0.775, y: -0.78999996}
-      - {x: -0.635, y: -0.91999996}
-      - {x: -0.53499997, y: -0.98999995}
-      - {x: -0.375, y: -1.04}
-      - {x: 0.024999999, y: -1.04}
-      - {x: 0.265, y: -1.05}
-      - {x: 0.515, y: -1.05}
-      - {x: 0.575, y: -1.04}
-      - {x: 0.695, y: -0.96}
-      - {x: 0.78499997, y: -0.81}
+  m_Offset: {x: -0.07177162, y: -0.047914147}
+  serializedVersion: 2
+  m_Radius: 1.0530306
