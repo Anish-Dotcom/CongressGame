@@ -25,8 +25,6 @@ public class Stamp : MonoBehaviour
     {
         originalScale = transform.localScale;
         paperpickedupinstance.instance.paperpickedup = false;
-
-        
     }
 
     // Update is called once per frame
@@ -73,7 +71,13 @@ public class Stamp : MonoBehaviour
         }
         if(Input.GetMouseButtonDown(1) && Stamppicked)
         {
-            Instantiate(Stampdown, new Vector3(transform.position.x, transform.position.y, 1f), Quaternion.identity);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            hit = Physics2D.Raycast(ray.origin, ray.direction);
+            if (hit.collider.CompareTag("Player")) 
+            {
+                GameObject Stamp = Instantiate(Stampdown, new Vector3(transform.position.x, transform.position.y, 1f), Quaternion.identity, hit.transform);
+                Stamp.transform.localScale = new Vector3(1f, 1f, 1f);
+            }
         }
     }
 
