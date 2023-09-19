@@ -22,6 +22,7 @@ public class lightmoving : MonoBehaviour
         xLocation = 2f;
         pos = new Vector3(xLocation, -7.5f, 90);
         StartCoroutine(posChangedecrease());
+        StartCoroutine(posChangedecrease());
     }
 
     // Update is called once per frame
@@ -36,7 +37,7 @@ public class lightmoving : MonoBehaviour
     {
         yield return new WaitForSeconds(posChangeSpeed);
         xLocation = xLocation - 0.25f;
-        if (xLocation == minpos)
+        if (xLocation == minpos || xLocation < minpos)
         {
             StartCoroutine(posChangeincrease());
         }
@@ -49,7 +50,7 @@ public class lightmoving : MonoBehaviour
     {
         yield return new WaitForSeconds(posChangeSpeed);
         xLocation = xLocation + 0.25f;
-        if (xLocation == maxpos)
+        if (xLocation == maxpos || xLocation > maxpos)
         {
             StartCoroutine(posChangedecrease());
         }
@@ -67,6 +68,8 @@ public class lightmoving : MonoBehaviour
         intensityamount = intensityamount - 0.01f;
         if (intensityamount == minintensity || intensityamount < minintensity)
         {
+            intensityChangeSpeed = Random.Range(0.01f, 0.07f);
+            maxintensity = Random.Range(0.76f, 1.01f);
             StartCoroutine(intensityChangeincrease());
         }
         else
@@ -80,6 +83,8 @@ public class lightmoving : MonoBehaviour
         intensityamount = intensityamount + 0.01f;
         if (intensityamount == maxintensity || intensityamount > maxintensity)
         {
+            intensityChangeSpeed = Random.Range(0.01f, 0.07f);
+            minintensity = Random.Range(0.59f, 0.75f);
             StartCoroutine(intensityChangedecrease());
         }
         else
