@@ -1148,8 +1148,8 @@ MonoBehaviour:
   m_LocalBounds:
     m_Center: {x: 0, y: -0.00000011920929, z: 0}
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
-  m_PointLightInnerAngle: 179.89
-  m_PointLightOuterAngle: 179.89
+  m_PointLightInnerAngle: 180
+  m_PointLightOuterAngle: 180
   m_PointLightInnerRadius: 0
   m_PointLightOuterRadius: 13.271633
   m_ShapeLightParametricSides: 5
@@ -1189,7 +1189,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cd8b4c10fdbec84bad7dbe96c5ce677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intensityChangeSpeed: 0.2
+  intensityChangeSpeed: 0.02
+  posChangeSpeed: 0.2
+  intensityamount: 1
+  maxintensity: 1.01
+  minintensity: 0.59
+  maxpos: 2.25
+  minpos: 0
   pos: {x: 0, y: 0, z: 0}
   xLocation: 2
   spotlight: {fileID: 1859356681}

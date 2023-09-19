@@ -5,6 +5,12 @@ using UnityEngine;
 public class lightmoving : MonoBehaviour
 {
     public float intensityChangeSpeed = 0.2f;
+    public float posChangeSpeed = 0.2f;
+    public float intensityamount;
+    public float maxintensity;
+    public float minintensity;
+    public float maxpos;
+    public float minpos;
     public Vector3 pos;
     public float xLocation;
     public UnityEngine.Rendering.Universal.Light2D spotlight;
@@ -12,10 +18,10 @@ public class lightmoving : MonoBehaviour
     void Start()
     {
         spotlight.intensity = 1f;
-        StartCoroutine(Pause1());
+        StartCoroutine(intensityChangedecrease());
         xLocation = 2f;
         pos = new Vector3(xLocation, -7.5f, 90);
-        StartCoroutine(posChange1());
+        StartCoroutine(posChangedecrease());
     }
 
     // Update is called once per frame
@@ -23,67 +29,62 @@ public class lightmoving : MonoBehaviour
     {
         pos = new Vector3(xLocation, -7.5f, 90);
         transform.position = pos;
+        spotlight.intensity = intensityamount;
     }
 
-    IEnumerator posChange1()
+    IEnumerator posChangedecrease()
     {
-        yield return new WaitForSeconds(intensityChangeSpeed);
-        xLocation = 1.75f;
-        yield return new WaitForSeconds(intensityChangeSpeed);
-        xLocation = 1.5f;
-        yield return new WaitForSeconds(intensityChangeSpeed);
-        xLocation = 1.25f;
-        yield return new WaitForSeconds(intensityChangeSpeed);
-        xLocation = 1f;
-        yield return new WaitForSeconds(intensityChangeSpeed);
-        xLocation = 0.75f;
-        yield return new WaitForSeconds(intensityChangeSpeed);
-        xLocation = 0.5f;
-        yield return new WaitForSeconds(intensityChangeSpeed);
-        xLocation = 0.25f;
-        StartCoroutine(posChange2());
+        yield return new WaitForSeconds(posChangeSpeed);
+        xLocation = xLocation - 0.25f;
+        if (xLocation == minpos)
+        {
+            StartCoroutine(posChangeincrease());
+        }
+        else
+        {
+            StartCoroutine(posChangedecrease());
+        }
     }
-    IEnumerator posChange2()
+    IEnumerator posChangeincrease()
     {
-        yield return new WaitForSeconds(intensityChangeSpeed);
-        xLocation = 0.5f;
-        yield return new WaitForSeconds(intensityChangeSpeed);
-        xLocation = 0.75f;
-        yield return new WaitForSeconds(intensityChangeSpeed);
-        xLocation = 1f;
-        yield return new WaitForSeconds(intensityChangeSpeed);
-        xLocation = 1.25f;
-        yield return new WaitForSeconds(intensityChangeSpeed);
-        xLocation = 1.5f;
-        yield return new WaitForSeconds(intensityChangeSpeed);
-        xLocation = 1.75f;
-        yield return new WaitForSeconds(intensityChangeSpeed);
-        xLocation = 2f;
-        StartCoroutine(posChange1());
+        yield return new WaitForSeconds(posChangeSpeed);
+        xLocation = xLocation + 0.25f;
+        if (xLocation == maxpos)
+        {
+            StartCoroutine(posChangedecrease());
+        }
+        else
+        {
+            StartCoroutine(posChangeincrease());
+        }
     }
 
-    IEnumerator Pause1()
+
+
+    IEnumerator intensityChangedecrease()
     {
         yield return new WaitForSeconds(intensityChangeSpeed);
-        spotlight.intensity = 0.9f;
-        yield return new WaitForSeconds(intensityChangeSpeed);
-        spotlight.intensity = 0.8f;
-        yield return new WaitForSeconds(intensityChangeSpeed);
-        spotlight.intensity = 0.7f;
-        yield return new WaitForSeconds(intensityChangeSpeed);
-        spotlight.intensity = 0.6f;
-        StartCoroutine(Pause2());
+        intensityamount = intensityamount - 0.01f;
+        if (intensityamount == minintensity || intensityamount < minintensity)
+        {
+            StartCoroutine(intensityChangeincrease());
+        }
+        else
+        {
+            StartCoroutine(intensityChangedecrease());
+        }
     }
-    IEnumerator Pause2()
+    IEnumerator intensityChangeincrease()
     {
         yield return new WaitForSeconds(intensityChangeSpeed);
-        spotlight.intensity = 0.7f;
-        yield return new WaitForSeconds(intensityChangeSpeed);
-        spotlight.intensity = 0.8f;
-        yield return new WaitForSeconds(intensityChangeSpeed);
-        spotlight.intensity = 0.9f;
-        yield return new WaitForSeconds(intensityChangeSpeed);
-        spotlight.intensity = 1f;
-        StartCoroutine(Pause1());
+        intensityamount = intensityamount + 0.01f;
+        if (intensityamount == maxintensity || intensityamount > maxintensity)
+        {
+            StartCoroutine(intensityChangedecrease());
+        }
+        else
+        {
+            StartCoroutine(intensityChangeincrease());
+        }
     }
 }
