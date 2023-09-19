@@ -4,59 +4,86 @@ using UnityEngine;
 
 public class lightmoving : MonoBehaviour
 {
-    public GameObject light;
+    public float intensityChangeSpeed = 0.2f;
     public Vector3 pos;
-    public float xaxis;
-
-    public bool increasing;
-    public bool decreasing;
+    public float xLocation;
+    public UnityEngine.Rendering.Universal.Light2D spotlight;
     // Start is called before the first frame update
     void Start()
     {
-        pos = transform.position;
-        xaxis = transform.position.x;
+        spotlight.intensity = 1f;
+        StartCoroutine(Pause1());
+        xLocation = 2f;
+        pos = new Vector3(xLocation, -7.5f, 90);
+        StartCoroutine(posChange1());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(xaxis == -2)
-        {
-            increasing = true;
-            while (increasing == true)
-            {
-                StartCoroutine(Pause());
-                pos = new Vector3(xaxis, -7.5f, 0f);
-                transform.position = pos;
-                xaxis++;
-                if (xaxis == 2){
-                    increasing = false;
-                    decreasing = true;
-                }
-            }
-        }
-
-        if(xaxis == 2)
-        {
-            decreasing = true;
-            while (decreasing == true)
-            {
-                StartCoroutine(Pause());
-                pos = new Vector3(xaxis, -7.5f, 0f);
-                transform.position = pos;
-                xaxis--;
-                if (xaxis == -2)
-                {
-                    decreasing = false;
-                }
-            }
-        }
-
-        
+        pos = new Vector3(xLocation, -7.5f, 90);
+        transform.position = pos;
     }
 
-    IEnumerator Pause()
+    IEnumerator posChange1()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(intensityChangeSpeed);
+        xLocation = 1.75f;
+        yield return new WaitForSeconds(intensityChangeSpeed);
+        xLocation = 1.5f;
+        yield return new WaitForSeconds(intensityChangeSpeed);
+        xLocation = 1.25f;
+        yield return new WaitForSeconds(intensityChangeSpeed);
+        xLocation = 1f;
+        yield return new WaitForSeconds(intensityChangeSpeed);
+        xLocation = 0.75f;
+        yield return new WaitForSeconds(intensityChangeSpeed);
+        xLocation = 0.5f;
+        yield return new WaitForSeconds(intensityChangeSpeed);
+        xLocation = 0.25f;
+        StartCoroutine(posChange2());
+    }
+    IEnumerator posChange2()
+    {
+        yield return new WaitForSeconds(intensityChangeSpeed);
+        xLocation = 0.5f;
+        yield return new WaitForSeconds(intensityChangeSpeed);
+        xLocation = 0.75f;
+        yield return new WaitForSeconds(intensityChangeSpeed);
+        xLocation = 1f;
+        yield return new WaitForSeconds(intensityChangeSpeed);
+        xLocation = 1.25f;
+        yield return new WaitForSeconds(intensityChangeSpeed);
+        xLocation = 1.5f;
+        yield return new WaitForSeconds(intensityChangeSpeed);
+        xLocation = 1.75f;
+        yield return new WaitForSeconds(intensityChangeSpeed);
+        xLocation = 2f;
+        StartCoroutine(posChange1());
+    }
+
+    IEnumerator Pause1()
+    {
+        yield return new WaitForSeconds(intensityChangeSpeed);
+        spotlight.intensity = 0.9f;
+        yield return new WaitForSeconds(intensityChangeSpeed);
+        spotlight.intensity = 0.8f;
+        yield return new WaitForSeconds(intensityChangeSpeed);
+        spotlight.intensity = 0.7f;
+        yield return new WaitForSeconds(intensityChangeSpeed);
+        spotlight.intensity = 0.6f;
+        StartCoroutine(Pause2());
+    }
+    IEnumerator Pause2()
+    {
+        yield return new WaitForSeconds(intensityChangeSpeed);
+        spotlight.intensity = 0.7f;
+        yield return new WaitForSeconds(intensityChangeSpeed);
+        spotlight.intensity = 0.8f;
+        yield return new WaitForSeconds(intensityChangeSpeed);
+        spotlight.intensity = 0.9f;
+        yield return new WaitForSeconds(intensityChangeSpeed);
+        spotlight.intensity = 1f;
+        StartCoroutine(Pause1());
     }
 }

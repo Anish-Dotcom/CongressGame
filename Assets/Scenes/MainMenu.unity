@@ -1189,11 +1189,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cd8b4c10fdbec84bad7dbe96c5ce677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  light: {fileID: 1859356680}
+  intensityChangeSpeed: 0.2
   pos: {x: 0, y: 0, z: 0}
-  xaxis: 0
-  increasing: 0
-  decreasing: 0
+  xLocation: 2
+  spotlight: {fileID: 1859356681}
 --- !u!1 &1982588311
 GameObject:
   m_ObjectHideFlags: 0
