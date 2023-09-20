@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Paper
+  - StampCheck
   layers:
   - Default
   - TransparentFX
