@@ -48,3 +48,9 @@ TagManager:
   - name: Stamp
     uniqueID: 3542969997
     locked: 0
+  - name: shadow
+    uniqueID: 1415207391
+    locked: 0
+  - name: above all
+    uniqueID: 3926001355
+    locked: 0

@@ -17,13 +17,18 @@ public class papercode : MonoBehaviour
     private RaycastHit2D hit;
     public bool istouchingpaper = false;
     public Collider2D colliders;
-
+    public float shadowX;
+    public float shadowY;
     public GameObject paperShadow;
+    public string paperpickedupsortinglayer = "above all";
+    public string paperputdownsortinglayer = "paper";
+    public Renderer renderer;
 
     Vector2 currentVelocity;
     // Start is called before the first frame update
     void Start()
     {
+        Renderer renderer = gameObject.GetComponent<Renderer>();
         originalScale = transform.localScale;
         paperpickedupinstance.instance.paperpickedup = false;
 
@@ -36,11 +41,18 @@ public class papercode : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, randomRot);
         pos = transform.position;
         rot = transform.rotation;
+        shadowX = pos.x;
+        shadowY = pos.y;
+        Vector3 shadowPosition = paperShadow.transform.position;
+        shadowPosition.x = shadowX - 0.5f;
+        shadowPosition.y = shadowY + 0.25f;
+        paperShadow.transform.position = shadowPosition;
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetMouseButtonDown(0))
         {
             slowToStop = false;
@@ -53,6 +65,7 @@ public class papercode : MonoBehaviour
                     isRightMouseDown = true;
                     transform.localScale = transform.localScale * 1.05f;
                     paperShadow.SetActive(true);
+                    renderer.sortingLayerName = paperpickedupsortinglayer;
                 }
             }
         }
@@ -65,6 +78,7 @@ public class papercode : MonoBehaviour
                 slowToStop = true;
                 transform.localScale = originalScale;
                 paperShadow.SetActive(false);
+                renderer.sortingLayerName = paperputdownsortinglayer;
             }
             mousePositionSlow = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
