@@ -19,6 +19,9 @@ public class Stamp : MonoBehaviour
     public GameObject Stampdown;
     public bool Stamppicked = false;
     public LayerMask StampLayer;
+    static public bool OverPaper;
+
+    private GameObject PaperObject;
 
     Vector2 currentVelocity;
     // Start is called before the first frame update
@@ -41,7 +44,7 @@ public class Stamp : MonoBehaviour
                 if (hit.collider.gameObject == gameObject)
                 {
                     isRightMouseDown = true;
-                    transform.localScale = transform.localScale * 1.3f;
+                    transform.localScale = transform.localScale * 1.1f;
                 }
             }
         }
@@ -71,13 +74,27 @@ public class Stamp : MonoBehaviour
         }
         if(Input.GetMouseButtonDown(1) && Stamppicked)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            hit = Physics2D.Raycast(ray.origin, ray.direction, ~StampLayer);
-            if (hit.collider.CompareTag("Player"))
+            if (OverPaper && !PaperObject.GetComponent<isStamped>().objIsStamped)
             {
-                GameObject Stamp = Instantiate(Stampdown, new Vector3(transform.position.x, transform.position.y, 1f), Quaternion.identity, hit.transform);
+                GameObject Stamp = Instantiate(Stampdown, new Vector3(transform.position.x, transform.position.y, 1f), Quaternion.identity, PaperObject.transform);
                 Stamp.transform.localScale = new Vector3(1f, 1f, 1f);
+                PaperObject.GetComponent<isStamped>().objIsStamped = true;
             }
+        }
+    }
+    public void OnTriggerEnter2D(Collider2D col) 
+    {
+        if (col.gameObject.CompareTag("StampCheck")) 
+        {
+            PaperObject = col.gameObject;
+            OverPaper = true;
+        }
+    }
+    public void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("StampCheck"))
+        {
+            OverPaper = false;
         }
     }
 }

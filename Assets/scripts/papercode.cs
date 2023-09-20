@@ -23,7 +23,6 @@ public class papercode : MonoBehaviour
     public string paperpickedupsortinglayer = "above all";
     public string paperputdownsortinglayer = "paper";
     public Renderer renderer;
-
     Vector2 currentVelocity;
     // Start is called before the first frame update
     void Start()
@@ -92,17 +91,6 @@ public class papercode : MonoBehaviour
         if (slowToStop) 
         {
             transform.position = Vector2.SmoothDamp(transform.position, mousePositionSlow, ref currentVelocity, smoothTime, maxPaperFollowSpeed);
-        }
-    }
-    
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        Debug.Log("Tr");
-        if (col.gameObject.tag == "Paper")
-        {
-            istouchingpaper = true;
-
-            Debug.Log("Tz");
         }
     }
 }
