@@ -304,6 +304,7 @@ MonoBehaviour:
   slowToStop: 0
   istouchingpaper: 0
   colliders: {fileID: 0}
+  paperShadow: {fileID: 0}
 --- !u!60 &227273099
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -732,6 +733,7 @@ MonoBehaviour:
   slowToStop: 0
   istouchingpaper: 0
   colliders: {fileID: 0}
+  paperShadow: {fileID: 0}
 --- !u!212 &787744496
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1009,3 +1011,6 @@ MonoBehaviour:
   slowToStop: 0
   Stampdown: {fileID: 5826759091899464823, guid: ff9ed78f44ea4ab4ba0b0845246f6639, type: 3}
   Stamppicked: 0
+  StampLayer:
+    serializedVersion: 2
+    m_Bits: 0

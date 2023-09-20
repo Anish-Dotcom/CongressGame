@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
-    public int volume;
+    public static int volume;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,8 +16,8 @@ public class MenuManager : MonoBehaviour
     {
         
     }
-    void volumeup()
+    void volumeup(float slidervalue)
     {
-        volume++;
+      mixer.Setfloat("Volume", Mathf.Log10 (slidervalue) *20 )
     }
 }
