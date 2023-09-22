@@ -396,6 +396,7 @@ MonoBehaviour:
   paperpickedupsortinglayer: above all
   paperputdownsortinglayer: paper
   renderer: {fileID: 227273096}
+  isStampedObj: {fileID: 1988272107}
 --- !u!60 &227273099
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -598,6 +599,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objIsStamped: 0
+  stampRenderer: {fileID: 0}
 --- !u!1 &516374360
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,6 +875,7 @@ MonoBehaviour:
   paperpickedupsortinglayer: above all
   paperputdownsortinglayer: paper
   renderer: {fileID: 787744496}
+  isStampedObj: {fileID: 304200025}
 --- !u!212 &787744496
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1514,6 +1517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objIsStamped: 0
+  stampRenderer: {fileID: 0}
 --- !u!1 &2081812345
 GameObject:
   m_ObjectHideFlags: 0
@@ -1548,10 +1552,10 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.604
   m_Color: {r: 0.85882354, g: 0.6039216, b: 0.21960784, a: 1}
-  m_Intensity: 1
-  m_LightVolumeIntensity: 1
+  m_Intensity: 1.1
+  m_LightVolumeIntensity: 0
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 000000003107cd858d6e2dd3df595a54cb0602ea
+  m_ApplyToSortingLayers: 000000003107cd858d6e2dd3df595a54cb0602eab97e10ed
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0

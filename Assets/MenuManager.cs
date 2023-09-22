@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class MenuManager : MonoBehaviour
 {
-    public static int volume;
+    public static float volumeSlider;
+    public static AudioMixer mixer;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,8 +18,9 @@ public class MenuManager : MonoBehaviour
     {
         
     }
-    void volumeup(float slidervalue)
+    void volumeup(float sliderValue)
     {
-      mixer.Setfloat("Volume", Mathf.Log10 (slidervalue) *20 )
+        volumeSlider = Mathf.Log10(sliderValue) * 20;
+        mixer.SetFloat("Volume", volumeSlider);
     }
 }

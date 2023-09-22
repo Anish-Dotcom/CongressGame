@@ -20,7 +20,6 @@ public class Stamp : MonoBehaviour
     public bool Stamppicked = false;
     public LayerMask StampLayer;
     static public bool OverPaper;
-
     private GameObject PaperObject;
 
     Vector2 currentVelocity;
@@ -78,6 +77,7 @@ public class Stamp : MonoBehaviour
             {
                 GameObject Stamp = Instantiate(Stampdown, new Vector3(transform.position.x, transform.position.y, 1f), Quaternion.identity, PaperObject.transform);
                 Stamp.transform.localScale = new Vector3(1f, 1f, 1f);
+                PaperObject.GetComponent<isStamped>().stampRenderer = Stamp.GetComponent<Renderer>();
                 PaperObject.GetComponent<isStamped>().objIsStamped = true;
             }
         }

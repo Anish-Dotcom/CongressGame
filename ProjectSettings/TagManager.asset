@@ -55,3 +55,6 @@ TagManager:
   - name: above all
     uniqueID: 3926001355
     locked: 0
+  - name: StampUp
+    uniqueID: 3977281209
+    locked: 0

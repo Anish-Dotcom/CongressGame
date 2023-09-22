@@ -24,8 +24,9 @@ public class papercode : MonoBehaviour
     public string paperputdownsortinglayer = "paper";
     public Renderer renderer;
     Vector2 currentVelocity;
+    public GameObject isStampedObj;
     // Start is called before the first frame update
-    void Start()
+    void Start()//--------------------------------------Note for later - make paper rougly straight up when you pick it up and make each paper on start have a slightly different color so they stand out from one another when they are overlapping, currently cant pick up paper where stamps are
     {
         Renderer renderer = gameObject.GetComponent<Renderer>();
         originalScale = transform.localScale;
@@ -65,6 +66,10 @@ public class papercode : MonoBehaviour
                     transform.localScale = transform.localScale * 1.05f;
                     paperShadow.SetActive(true);
                     renderer.sortingLayerName = paperpickedupsortinglayer;
+                    if (isStampedObj.GetComponent<isStamped>().stampRenderer != null)
+                    {
+                        isStampedObj.GetComponent<isStamped>().stampRenderer.GetComponent<Renderer>().sortingLayerName = "StampUp";
+                    }
                 }
             }
         }
@@ -78,6 +83,10 @@ public class papercode : MonoBehaviour
                 transform.localScale = originalScale;
                 paperShadow.SetActive(false);
                 renderer.sortingLayerName = paperputdownsortinglayer;
+                if (isStampedObj.GetComponent<isStamped>().stampRenderer != null) 
+                {
+                    isStampedObj.GetComponent<isStamped>().stampRenderer.GetComponent<Renderer>().sortingLayerName = "Stamp";
+                }
             }
             mousePositionSlow = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
