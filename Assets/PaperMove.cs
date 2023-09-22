@@ -22,6 +22,7 @@ public class PaperMove : MonoBehaviour
     public string paperputdownsortinglayer = "paper";
     public Renderer renderer;
     Vector2 currentVelocity;
+    Vector3 shadowPosition;
     void Start()
     {
         originalScale = transform.localScale;
@@ -38,14 +39,19 @@ public class PaperMove : MonoBehaviour
         rot = transform.rotation;
         shadowX = pos.x;
         shadowY = pos.y;
-        Vector3 shadowPosition = paperShadow.transform.position;
+        shadowPosition = paperShadow.transform.position;
         shadowPosition.x = shadowX - 0.5f;
         shadowPosition.y = shadowY + 0.25f;
         paperShadow.transform.position = shadowPosition;
     }
     void Update()
     {
-
+        shadowX = pos.x;
+        shadowY = pos.y;
+        shadowPosition = paperShadow.transform.position;
+        shadowPosition.x = shadowX - 0.5f;
+        shadowPosition.y = shadowY + 0.25f;
+        paperShadow.transform.position = shadowPosition;
         if (Input.GetMouseButtonDown(0))
         {
             slowToStop = false;

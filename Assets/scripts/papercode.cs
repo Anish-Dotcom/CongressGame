@@ -25,6 +25,7 @@ public class papercode : MonoBehaviour
     public Renderer renderer;
     Vector2 currentVelocity;
     public GameObject isStampedObj;
+    public Vector3 shadowPosition;
     // Start is called before the first frame update
     void Start()//--------------------------------------Note for later - make paper rougly straight up when you pick it up and make each paper on start have a slightly different color so they stand out from one another when they are overlapping(or some other way like having the paper on top a have a diff color), currently cant pick up paper where stamps are
     {
@@ -43,7 +44,7 @@ public class papercode : MonoBehaviour
         rot = transform.rotation;
         shadowX = pos.x;
         shadowY = pos.y;
-        Vector3 shadowPosition = paperShadow.transform.position;
+        shadowPosition = paperShadow.transform.position;
         shadowPosition.x = shadowX - 0.5f;
         shadowPosition.y = shadowY + 0.25f;
         paperShadow.transform.position = shadowPosition;
@@ -52,7 +53,14 @@ public class papercode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        pos = transform.position;
+        rot = transform.rotation;
+        shadowX = pos.x;
+        shadowY = pos.y;
+        shadowPosition = paperShadow.transform.position;
+        shadowPosition.x = shadowX - 0.5f;
+        shadowPosition.y = shadowY + 0.25f;
+        paperShadow.transform.position = shadowPosition;
         if (Input.GetMouseButtonDown(0))
         {
             slowToStop = false;
