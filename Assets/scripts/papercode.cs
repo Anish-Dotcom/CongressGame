@@ -32,7 +32,7 @@ public class papercode : MonoBehaviour
         originalScale = transform.localScale;
         paperpickedupinstance.instance.paperpickedup = false;
 
-        float randomRot = Random.Range(0, 360);
+        float randomRot = Random.Range(-90, 90);
         float randomPosx = Random.Range(-8, 8);
         float randomPosy = Random.Range(-4, 4);
 
