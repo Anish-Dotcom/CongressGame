@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using UnityEngine;
 
 public class PaperMove : MonoBehaviour
@@ -23,6 +25,12 @@ public class PaperMove : MonoBehaviour
     public Renderer renderer;
     Vector2 currentVelocity;
     Vector3 shadowPosition;
+
+    public GameObject Paper;
+    public static GameObject[] prevPapers;
+    public static int[] currentSortingOrder;
+    public static int currentTop;
+    public static bool[] firstChange;
     void Start()
     {
         originalScale = transform.localScale;
@@ -43,6 +51,16 @@ public class PaperMove : MonoBehaviour
         shadowPosition.x = shadowX - 0.5f;
         shadowPosition.y = shadowY + 0.25f;
         paperShadow.transform.position = shadowPosition;
+
+        prevPapers = GameObject.FindGameObjectsWithTag("Paper");
+        currentSortingOrder = new int[prevPapers.Length];
+        firstChange = new bool[prevPapers.Length];
+        for (int i = 0; i < prevPapers.Length; i++) 
+        {
+            firstChange[i] = true;
+            currentSortingOrder[i] = i;
+            prevPapers[i].GetComponent<Renderer>().sortingOrder = currentSortingOrder[i];
+        }
     }
     void Update()
     {
@@ -84,6 +102,10 @@ public class PaperMove : MonoBehaviour
                 transform.localScale = originalScale;
                 paperShadow.SetActive(false);
                 renderer.sortingLayerName = paperputdownsortinglayer;
+                for (int i = 0; i < prevPapers.Length; i++)
+                {
+                    firstChange[i] = true;
+                }
                 if (isStampedObj.GetComponent<isStamped>().stampRenderer != null)
                 {
                     isStampedObj.GetComponent<isStamped>().stampRenderer.GetComponent<Renderer>().sortingLayerName = "Stamp";
@@ -97,6 +119,24 @@ public class PaperMove : MonoBehaviour
             transform.position = Vector2.SmoothDamp(transform.position, mousePosition, ref currentVelocity, smoothTime, maxPaperFollowSpeed);
             pos = transform.position;
             rot = transform.rotation;
+            for (int i = 0; i < prevPapers.Length; i++)
+            {
+                if (firstChange[i]) 
+                {
+                    if (prevPapers[i] == Paper)//set the paper you are picking up to the highest paper
+                    {
+                        currentTop = i;
+                        currentSortingOrder[i] = prevPapers.Length - 1;
+                        prevPapers[i].GetComponent<Renderer>().sortingOrder = currentSortingOrder[i];
+                    }
+                    if (prevPapers[i] != Paper && currentSortingOrder[i] > currentTop)
+                    {
+                        currentSortingOrder[i] -= 1;
+                        prevPapers[i].GetComponent<Renderer>().sortingOrder = currentSortingOrder[i];
+                    }
+                    firstChange[i] = false;
+                }
+            }
         }
         if (slowToStop)
         {

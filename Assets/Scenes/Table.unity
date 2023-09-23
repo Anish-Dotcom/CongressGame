@@ -1231,6 +1231,7 @@ MonoBehaviour:
   paperpickedupsortinglayer: above all
   paperputdownsortinglayer: paper
   renderer: {fileID: 202732086}
+  Paper: {fileID: 202732085}
 --- !u!60 &1201464664
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1403,6 +1404,7 @@ MonoBehaviour:
   paperpickedupsortinglayer: above all
   paperputdownsortinglayer: paper
   renderer: {fileID: 227273096}
+  Paper: {fileID: 227273095}
 --- !u!60 &1952965461
 PolygonCollider2D:
   m_ObjectHideFlags: 0
