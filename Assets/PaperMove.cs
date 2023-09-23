@@ -31,6 +31,8 @@ public class PaperMove : MonoBehaviour
     public static int[] currentSortingOrder;
     public static int currentTop;
     public static bool[] firstChange;
+
+    private float colorInt;
     void Start()
     {
         originalScale = transform.localScale;
@@ -60,6 +62,7 @@ public class PaperMove : MonoBehaviour
             firstChange[i] = true;
             currentSortingOrder[i] = i;
             prevPapers[i].GetComponent<Renderer>().sortingOrder = currentSortingOrder[i];
+            changePaperColor();
         }
     }
     void Update()
@@ -131,11 +134,13 @@ public class PaperMove : MonoBehaviour
                         currentTop = i;
                         currentSortingOrder[i] = prevPapers.Length - 1;
                         prevPapers[i].GetComponent<Renderer>().sortingOrder = currentSortingOrder[i];
+                        changePaperColor();
                     }
                     if (prevPapers[i] != Paper && currentSortingOrder[i] > currentTop)
                     {
                         currentSortingOrder[i] -= 1;
                         prevPapers[i].GetComponent<Renderer>().sortingOrder = currentSortingOrder[i];
+                        changePaperColor();
                     }
                     firstChange[i] = false;
                 }
@@ -144,6 +149,15 @@ public class PaperMove : MonoBehaviour
         if (slowToStop)
         {
             transform.position = Vector2.SmoothDamp(transform.position, mousePositionSlow, ref currentVelocity, smoothTime, maxPaperFollowSpeed);
+        }
+    }
+    private void changePaperColor() 
+    {
+        for (int i = 0; i < prevPapers.Length; i++) 
+        {
+            colorInt = 0.9f - (0.1f / prevPapers.Length) / (currentSortingOrder[i] + 1);
+            UnityEngine.Debug.Log(colorInt);
+            prevPapers[i].GetComponent<SpriteRenderer>().color = new Color(colorInt+ (0.025f / prevPapers.Length) * (currentSortingOrder[i] + 1), colorInt, colorInt + (0.05f / prevPapers.Length) / (currentSortingOrder[i] + 1), 1f);
         }
     }
 }
