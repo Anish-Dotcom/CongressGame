@@ -36,7 +36,7 @@ public class PaperMove : MonoBehaviour
         originalScale = transform.localScale;
         paperpickedupinstance.instance.paperpickedup = false;
 
-        float randomRot = Random.Range(0, 360);
+        float randomRot = Random.Range(-90, 90);
         float randomPosx = Random.Range(-8, 8);
         float randomPosy = Random.Range(-4, 4);
 
@@ -96,19 +96,22 @@ public class PaperMove : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             isRightMouseDown = false;
-            if (hit.collider.gameObject == gameObject)
+            if (hit.collider != null) 
             {
-                slowToStop = true;
-                transform.localScale = originalScale;
-                paperShadow.SetActive(false);
-                renderer.sortingLayerName = paperputdownsortinglayer;
-                for (int i = 0; i < prevPapers.Length; i++)
+                if (hit.collider.gameObject == gameObject)
                 {
-                    firstChange[i] = true;
-                }
-                if (isStampedObj.GetComponent<isStamped>().stampRenderer != null)
-                {
-                    isStampedObj.GetComponent<isStamped>().stampRenderer.GetComponent<Renderer>().sortingLayerName = "Stamp";
+                    slowToStop = true;
+                    transform.localScale = originalScale;
+                    paperShadow.SetActive(false);
+                    renderer.sortingLayerName = paperputdownsortinglayer;
+                    for (int i = 0; i < prevPapers.Length; i++)
+                    {
+                        firstChange[i] = true;
+                    }
+                    if (isStampedObj.GetComponent<isStamped>().stampRenderer != null)
+                    {
+                        isStampedObj.GetComponent<isStamped>().stampRenderer.GetComponent<Renderer>().sortingLayerName = "Stamp";
+                    }
                 }
             }
             mousePositionSlow = Camera.main.ScreenToWorldPoint(Input.mousePosition);

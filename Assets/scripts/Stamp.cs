@@ -53,10 +53,13 @@ public class Stamp : MonoBehaviour
 
             Stamppicked = false;
             isRightMouseDown = false;
-            if (hit.collider.gameObject == gameObject)
+            if (hit.collider != null)
             {
-                slowToStop = true;
-                transform.localScale = originalScale;
+                if (hit.collider.gameObject == gameObject)
+                {
+                    slowToStop = true;
+                    transform.localScale = originalScale;
+                }
             }
             mousePositionSlow = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
