@@ -5,5 +5,5 @@ using UnityEngine;
 public class isStamped : MonoBehaviour
 {
     public bool objIsStamped = false;
-    public Renderer stampRenderer;
+    public GameObject paperControllerObject;
 }

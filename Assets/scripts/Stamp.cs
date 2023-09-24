@@ -83,11 +83,10 @@ public class Stamp : MonoBehaviour
                 GameObject Stamp = Instantiate(Stampdown, new Vector3(transform.position.x, transform.position.y, 1f), Quaternion.identity, PaperObject.transform);
                 Stamp.transform.localScale = new Vector3(1f, 1f, 1f);
                 Stamp.GetComponent<Renderer>().sortingOrder = ParentRender.sortingOrder + 1;
-                PaperObject.GetComponent<isStamped>().stampRenderer = Stamp.GetComponent<Renderer>();
                 PaperObject.GetComponent<isStamped>().objIsStamped = true;
                 for (int i = 0; i < PaperMove.prevPapers.Length; i++) 
                 {
-                    if (PaperMove.paperControllerObjects[i] == PaperObject)
+                    if (PaperMove.paperControllerObjects[i] == PaperObject.GetComponent<isStamped>().paperControllerObject)//working
                     {
                         UnityEngine.Debug.Log("Here");
                         PaperMove.stampObjects[i] = Stamp;

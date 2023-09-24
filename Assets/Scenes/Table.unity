@@ -917,7 +917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objIsStamped: 0
-  stampRenderer: {fileID: 0}
+  paperControllerObject: {fileID: 1201464661}
 --- !u!61 &893225627
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1685,7 +1685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objIsStamped: 0
-  stampRenderer: {fileID: 0}
+  paperControllerObject: {fileID: 1952965459}
 --- !u!1 &2081812345
 GameObject:
   m_ObjectHideFlags: 0

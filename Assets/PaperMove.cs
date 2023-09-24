@@ -89,13 +89,9 @@ public class PaperMove : MonoBehaviour
                     isRightMouseDown = true;
                     transform.localScale = transform.localScale * 1.05f;
                     float randomRot = Random.Range(-5, 5);
-                    transform.rotation = Quaternion.Euler(0f, 0f, randomRot);//Make ease to position instead of this
+                    transform.rotation = Quaternion.Euler(0f, 0f, randomRot);
                     paperShadow.SetActive(true);
                     renderer.sortingLayerName = paperpickedupsortinglayer;
-                    if (isStampedObj.GetComponent<isStamped>().stampRenderer != null)
-                    {
-                        isStampedObj.GetComponent<isStamped>().stampRenderer.GetComponent<Renderer>().sortingLayerName = "StampUp";
-                    }
                 }
             }
         }
@@ -119,7 +115,7 @@ public class PaperMove : MonoBehaviour
                     {
                         if (stampObjects[i] != null)
                         {
-                            isStampedObj.GetComponent<isStamped>().stampRenderer.GetComponent<Renderer>().sortingLayerName = paperputdownsortinglayer;
+                            stampObjects[i].GetComponent<Renderer>().sortingLayerName = paperputdownsortinglayer;
                             stampObjects[i].GetComponent<Renderer>().sortingOrder = prevPapers[i].GetComponent<Renderer>().sortingOrder + 1;
                         }
                     }
@@ -142,6 +138,7 @@ public class PaperMove : MonoBehaviour
                         currentTop = i;
                         currentSortingOrder[i] = prevPapers.Length - 1;
                         prevPapers[i].GetComponent<Renderer>().sortingOrder = currentSortingOrder[i] * 2;// * 2 so we have spaces for the stamp layer
+                        changeStampLayer();
                         changePaperColor();
                     }
                     if (prevPapers[i] != Paper && currentSortingOrder[i] > currentTop)
@@ -166,6 +163,21 @@ public class PaperMove : MonoBehaviour
             colorInt = 0.9f - (0.08f / prevPapers.Length) / (currentSortingOrder[i] + 1);
             UnityEngine.Debug.Log(colorInt);
             prevPapers[i].GetComponent<SpriteRenderer>().color = new Color(colorInt+ (0.025f / prevPapers.Length) * (currentSortingOrder[i] + 1), colorInt, colorInt + (0.025f / prevPapers.Length) / (currentSortingOrder[i] + 1), 1f);
+        }
+    }
+    private void changeStampLayer() 
+    {
+        for (int i = 0; i < prevPapers.Length; i++)
+        {
+            if (stampObjects[i] != null && i == currentTop)
+            {
+                stampObjects[i].GetComponent<Renderer>().sortingLayerName = "StampUp";
+                stampObjects[i].GetComponent<Renderer>().sortingOrder = prevPapers[i].GetComponent<Renderer>().sortingOrder + 1;
+            }
+            else if (stampObjects[i] != null)
+            {
+                stampObjects[i].GetComponent<Renderer>().sortingOrder = prevPapers[i].GetComponent<Renderer>().sortingOrder + 1;
+            }
         }
     }
 }
