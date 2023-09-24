@@ -28,6 +28,8 @@ public class PaperMove : MonoBehaviour
 
     public GameObject Paper;
     public static GameObject[] prevPapers;
+    public static GameObject[] stampObjects;
+    public static GameObject[] paperControllerObjects;
     public static int[] currentSortingOrder;
     public static int currentTop;
     public static bool[] firstChange;
@@ -55,8 +57,10 @@ public class PaperMove : MonoBehaviour
         paperShadow.transform.position = shadowPosition;
 
         prevPapers = GameObject.FindGameObjectsWithTag("Paper");
+        paperControllerObjects = GameObject.FindGameObjectsWithTag("PaperController");
         currentSortingOrder = new int[prevPapers.Length];
         firstChange = new bool[prevPapers.Length];
+        stampObjects = new GameObject[prevPapers.Length];
         for (int i = 0; i < prevPapers.Length; i++) 
         {
             firstChange[i] = true;
@@ -111,9 +115,13 @@ public class PaperMove : MonoBehaviour
                     {
                         firstChange[i] = true;
                     }
-                    if (isStampedObj.GetComponent<isStamped>().stampRenderer != null)
+                    for (int i = 0; i < prevPapers.Length; i++)
                     {
-                        isStampedObj.GetComponent<isStamped>().stampRenderer.GetComponent<Renderer>().sortingLayerName = "Stamp";
+                        if (stampObjects[i] != null)
+                        {
+                            isStampedObj.GetComponent<isStamped>().stampRenderer.GetComponent<Renderer>().sortingLayerName = paperputdownsortinglayer;
+                            stampObjects[i].GetComponent<Renderer>().sortingOrder = prevPapers[i].GetComponent<Renderer>().sortingOrder + 1;
+                        }
                     }
                 }
             }
@@ -133,13 +141,13 @@ public class PaperMove : MonoBehaviour
                     {
                         currentTop = i;
                         currentSortingOrder[i] = prevPapers.Length - 1;
-                        prevPapers[i].GetComponent<Renderer>().sortingOrder = currentSortingOrder[i];
+                        prevPapers[i].GetComponent<Renderer>().sortingOrder = currentSortingOrder[i] * 2;// * 2 so we have spaces for the stamp layer
                         changePaperColor();
                     }
                     if (prevPapers[i] != Paper && currentSortingOrder[i] > currentTop)
                     {
                         currentSortingOrder[i] -= 1;
-                        prevPapers[i].GetComponent<Renderer>().sortingOrder = currentSortingOrder[i];
+                        prevPapers[i].GetComponent<Renderer>().sortingOrder = currentSortingOrder[i] * 2;
                         changePaperColor();
                     }
                     firstChange[i] = false;
@@ -155,9 +163,9 @@ public class PaperMove : MonoBehaviour
     {
         for (int i = 0; i < prevPapers.Length; i++) 
         {
-            colorInt = 0.9f - (0.1f / prevPapers.Length) / (currentSortingOrder[i] + 1);
+            colorInt = 0.9f - (0.08f / prevPapers.Length) / (currentSortingOrder[i] + 1);
             UnityEngine.Debug.Log(colorInt);
-            prevPapers[i].GetComponent<SpriteRenderer>().color = new Color(colorInt+ (0.025f / prevPapers.Length) * (currentSortingOrder[i] + 1), colorInt, colorInt + (0.05f / prevPapers.Length) / (currentSortingOrder[i] + 1), 1f);
+            prevPapers[i].GetComponent<SpriteRenderer>().color = new Color(colorInt+ (0.025f / prevPapers.Length) * (currentSortingOrder[i] + 1), colorInt, colorInt + (0.025f / prevPapers.Length) / (currentSortingOrder[i] + 1), 1f);
         }
     }
 }

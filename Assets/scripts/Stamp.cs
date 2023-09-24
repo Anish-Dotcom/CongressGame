@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class Stamp : MonoBehaviour
@@ -21,6 +22,7 @@ public class Stamp : MonoBehaviour
     public LayerMask StampLayer;
     static public bool OverPaper;
     private GameObject PaperObject;
+    private Renderer ParentRender;
 
     Vector2 currentVelocity;
     // Start is called before the first frame update
@@ -80,8 +82,17 @@ public class Stamp : MonoBehaviour
             {
                 GameObject Stamp = Instantiate(Stampdown, new Vector3(transform.position.x, transform.position.y, 1f), Quaternion.identity, PaperObject.transform);
                 Stamp.transform.localScale = new Vector3(1f, 1f, 1f);
+                Stamp.GetComponent<Renderer>().sortingOrder = ParentRender.sortingOrder + 1;
                 PaperObject.GetComponent<isStamped>().stampRenderer = Stamp.GetComponent<Renderer>();
                 PaperObject.GetComponent<isStamped>().objIsStamped = true;
+                for (int i = 0; i < PaperMove.prevPapers.Length; i++) 
+                {
+                    if (PaperMove.paperControllerObjects[i] == PaperObject)
+                    {
+                        UnityEngine.Debug.Log("Here");
+                        PaperMove.stampObjects[i] = Stamp;
+                    }
+                }
             }
         }
     }
@@ -90,6 +101,7 @@ public class Stamp : MonoBehaviour
         if (col.gameObject.CompareTag("StampCheck")) 
         {
             PaperObject = col.gameObject;
+            ParentRender = PaperObject.GetComponentInParent<Renderer>();
             OverPaper = true;
         }
     }

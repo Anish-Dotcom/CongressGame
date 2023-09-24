@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Paper
   - StampCheck
+  - PaperController
   layers:
   - Default
   - TransparentFX
