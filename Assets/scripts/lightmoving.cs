@@ -9,6 +9,9 @@ public class lightmoving : MonoBehaviour
     public float intensityamount;
     public float maxintensity;
     public float minintensity;
+    public float maxintensityused;
+    public float minintensityused;
+    public float uncertainty;
     public float maxpos;
     public float minpos;
     public Vector3 pos;
@@ -24,6 +27,9 @@ public class lightmoving : MonoBehaviour
         pos = new Vector3(xLocation, yLocation, zLocation);
         StartCoroutine(posChangedecrease());
         StartCoroutine(posChangedecrease());
+        uncertainty = (maxintensity - minintensity) / 2;
+        maxintensityused = maxintensity;
+        minintensityused = minintensity;
     }
 
     // Update is called once per frame
@@ -37,7 +43,7 @@ public class lightmoving : MonoBehaviour
     IEnumerator posChangedecrease()
     {
         yield return new WaitForSeconds(posChangeSpeed);
-        xLocation = xLocation - 0.25f;
+        xLocation = xLocation - 0.025f;
         if (xLocation == minpos || xLocation < minpos)
         {
             StartCoroutine(posChangeincrease());
@@ -50,7 +56,7 @@ public class lightmoving : MonoBehaviour
     IEnumerator posChangeincrease()
     {
         yield return new WaitForSeconds(posChangeSpeed);
-        xLocation = xLocation + 0.25f;
+        xLocation = xLocation + 0.025f;
         if (xLocation == maxpos || xLocation > maxpos)
         {
             StartCoroutine(posChangedecrease());
@@ -67,10 +73,10 @@ public class lightmoving : MonoBehaviour
     {
         yield return new WaitForSeconds(intensityChangeSpeed);
         intensityamount = intensityamount - 0.01f;
-        if (intensityamount == minintensity || intensityamount < minintensity)
+        if (intensityamount == minintensityused || intensityamount < minintensityused)
         {
             intensityChangeSpeed = Random.Range(0.01f, 0.07f);
-            maxintensity = Random.Range(0.76f, 1.01f);
+            maxintensityused = Random.Range(maxintensity-uncertainty+0.1f, maxintensity+0.1f);
             StartCoroutine(intensityChangeincrease());
         }
         else
@@ -82,10 +88,10 @@ public class lightmoving : MonoBehaviour
     {
         yield return new WaitForSeconds(intensityChangeSpeed);
         intensityamount = intensityamount + 0.01f;
-        if (intensityamount == maxintensity || intensityamount > maxintensity)
+        if (intensityamount == maxintensityused || intensityamount > maxintensityused)
         {
             intensityChangeSpeed = Random.Range(0.01f, 0.07f);
-            minintensity = Random.Range(0.59f, 0.75f);
+            minintensityused = Random.Range(minintensity-0.1f, minintensity+uncertainty-0.1f);
             StartCoroutine(intensityChangedecrease());
         }
         else
