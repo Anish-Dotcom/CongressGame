@@ -13,14 +13,15 @@ public class lightmoving : MonoBehaviour
     public float minpos;
     public Vector3 pos;
     public float xLocation;
+    public float yLocation;
+    public float zLocation;
     public UnityEngine.Rendering.Universal.Light2D spotlight;
     // Start is called before the first frame update
     void Start()
     {
         spotlight.intensity = 1f;
         StartCoroutine(intensityChangedecrease());
-        xLocation = 2f;
-        pos = new Vector3(xLocation, -7.5f, 90);
+        pos = new Vector3(xLocation, yLocation, zLocation);
         StartCoroutine(posChangedecrease());
         StartCoroutine(posChangedecrease());
     }
@@ -28,7 +29,7 @@ public class lightmoving : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        pos = new Vector3(xLocation, -7.5f, 90);
+        pos = new Vector3(xLocation, yLocation, zLocation);
         transform.position = pos;
         spotlight.intensity = intensityamount;
     }
