@@ -5,13 +5,13 @@ using UnityEngine;
 public class DayController : MonoBehaviour
 {
     public static int dayNum = 0;
-    public static GameObject[] paperObjectsForNext;
+    public static GameObject[] paperObjectsForNext;//turn these into sprite arrays
     public GameObject[] allPaperObjects;
     public static int[] approvalPercentageDemographics = new int[7];//The 1%, Middle class, Impoverished, Progressive, Conservative, Federalist, Anti-Federalist
 
     void Start()
     {
-        Instantiate(allPaperObjects[0], new Vector3(0f, 0f, 0f), Quaternion.identity);//tutorial/intro paper
+        
     }
     void Update()
     {
