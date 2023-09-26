@@ -5,19 +5,23 @@ using UnityEngine;
 public class DayController : MonoBehaviour
 {
     public static int dayNum = 0;
-    public static GameObject[] paperObjectsForNext;//turn these into sprite arrays
-    public GameObject[] allPaperObjects;
+    public static Sprite[] paperObjectsForNext;//turn these into sprite arrays
+    public Sprite[] allPaperObjects;
     public static int[] approvalPercentageDemographics = new int[7];//The 1%, Middle class, Impoverished, Progressive, Conservative, Federalist, Anti-Federalist
+    public GameObject paperPrefab;
 
     void Start()
     {
-        
+        paperObjectsForNext = new Sprite[allPaperObjects.Length];
+        paperObjectsForNext[0] = allPaperObjects[0];
+        PaperMove.prevPapers = GameObject.FindGameObjectsWithTag("Paper");
+        NewDay();
     }
     void Update()
     {
         
     }
-    public void NewDay() 
+    public static void NewDay() 
     {
         for (int i = 0; i < approvalPercentageDemographics.Length; i++) 
         {
@@ -28,7 +32,7 @@ public class DayController : MonoBehaviour
         }
         for (int i = 0; i < paperObjectsForNext.Length; i++) 
         {
-            Instantiate (paperObjectsForNext[i], new Vector3(0f, 0f, 0f), Quaternion.identity);
+            PaperMove.prevPapers[i].GetComponent<SpriteRenderer>().sprite = paperObjectsForNext[i];
         }
     }
 }
