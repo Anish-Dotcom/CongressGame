@@ -70,6 +70,10 @@ public class PaperMove : MonoBehaviour
     }
     void Update()
     {
+        if (transform.position.x < -11f || transform.position.x > 11f || transform.position.y < -8f || transform.position.y > 8f)
+        {
+            transform.position = new Vector3(0f, 0f, 0f);
+        }
         shadowX = pos.x;
         shadowY = pos.y;
         shadowPosition = paperShadow.transform.position;
@@ -118,6 +122,7 @@ public class PaperMove : MonoBehaviour
                             stampObjects[i].GetComponent<Renderer>().sortingOrder = prevPapers[i].GetComponent<Renderer>().sortingOrder + 1;
                         }
                     }
+                    
                 }
             }
             mousePositionSlow = Camera.main.ScreenToWorldPoint(Input.mousePosition);

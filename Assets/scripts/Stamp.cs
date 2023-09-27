@@ -37,6 +37,10 @@ public class Stamp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (transform.position.x < -9.5f || transform.position.x > 9.5f || transform.position.y < -5.5f || transform.position.y > 5.5f)
+        {
+            transform.position = new Vector3(0f, 0f, 0f);
+        }
         if (Input.GetMouseButtonDown(0))
         {
             Stamppicked = true;
