@@ -23,6 +23,9 @@ public class Stamp : MonoBehaviour
     static public bool OverPaper;
     private GameObject PaperObject;
     private Renderer ParentRender;
+    public Renderer renderer;
+    public string stamppickedupsortinglayer = "above all";
+    public string stampputdownsortinglayer = "Stamp";
 
     Vector2 currentVelocity;
     // Start is called before the first frame update
@@ -46,6 +49,7 @@ public class Stamp : MonoBehaviour
                 {
                     isRightMouseDown = true;
                     transform.localScale = transform.localScale * 1.1f;
+                    renderer.sortingLayerName = stamppickedupsortinglayer;
                 }
             }
         }
@@ -61,6 +65,7 @@ public class Stamp : MonoBehaviour
                 {
                     slowToStop = true;
                     transform.localScale = originalScale;
+                    renderer.sortingLayerName = stampputdownsortinglayer;
                 }
             }
             mousePositionSlow = Camera.main.ScreenToWorldPoint(Input.mousePosition);
