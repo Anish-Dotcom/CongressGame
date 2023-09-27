@@ -93,6 +93,9 @@ public class Stamp : MonoBehaviour
                 Stamp.transform.localScale = new Vector3(1f, 1f, 1f);
                 Stamp.GetComponent<Renderer>().sortingOrder = ParentRender.sortingOrder + 1;
                 PaperObject.GetComponent<isStamped>().objIsStamped = true;
+                // Vector3 stampdownPosition = Stampdown.transform.position;                       I thought these 3 lines of code would fix the stamp to not be showing up directly on our cursor but it didnt work
+                // stampdownPosition.y = PaperObject.transform.position.y - 0.4f;
+                // Stampdown.transform.position = stampdownPosition;
                 for (int i = 0; i < PaperMove.prevPapers.Length; i++) 
                 {
                     if (PaperMove.paperControllerObjects[i] == PaperObject.GetComponent<isStamped>().paperControllerObject)//working
@@ -101,6 +104,8 @@ public class Stamp : MonoBehaviour
                         PaperMove.stampObjects[i] = Stamp;
                     }
                 }
+                transform.localScale = originalScale;
+                StartCoroutine(pauseBetweenStampPutDownAndUp());
             }
         }
     }
@@ -119,5 +124,11 @@ public class Stamp : MonoBehaviour
         {
             OverPaper = false;
         }
+    }
+
+    IEnumerator pauseBetweenStampPutDownAndUp()
+    {
+        yield return new WaitForSeconds(0.2f);
+        transform.localScale = transform.localScale * 1.1f;
     }
 }
