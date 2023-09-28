@@ -20,7 +20,7 @@ public class Stamp : MonoBehaviour
     public GameObject Stampdown;
     public bool Stamppicked = false;
     public LayerMask StampLayer;
-    static public bool OverPaper;
+    public bool OverPaper;
     private GameObject PaperObject;
     private Renderer ParentRender;
     public Renderer renderer;
@@ -81,6 +81,7 @@ public class Stamp : MonoBehaviour
         if (isRightMouseDown)
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePosition = new Vector2(mousePosition.x, mousePosition.y - 1f);
             transform.position = Vector2.SmoothDamp(transform.position, mousePosition, ref currentVelocity, smoothTime, maxPaperFollowSpeed);
             pos = transform.position;
             rot = transform.rotation;
@@ -93,13 +94,10 @@ public class Stamp : MonoBehaviour
         {
             if (OverPaper && !PaperObject.GetComponent<isStamped>().objIsStamped)
             {
-                GameObject Stamp = Instantiate(Stampdown, new Vector3(transform.position.x, transform.position.y, 1f), Quaternion.identity, PaperObject.transform);
+                GameObject Stamp = Instantiate(Stampdown, new Vector3(transform.position.x, transform.position.y - 0.5f, 1f), Quaternion.identity, PaperObject.transform);
                 Stamp.transform.localScale = new Vector3(1f, 1f, 1f);
                 Stamp.GetComponent<Renderer>().sortingOrder = ParentRender.sortingOrder + 1;
                 PaperObject.GetComponent<isStamped>().objIsStamped = true;
-                // Vector3 stampdownPosition = Stampdown.transform.position;                       I thought these 3 lines of code would fix the stamp to not be showing up directly on our cursor but it didnt work
-                // stampdownPosition.y = PaperObject.transform.position.y - 0.4f;
-                // Stampdown.transform.position = stampdownPosition;
                 for (int i = 0; i < PaperMove.prevPapers.Length; i++) 
                 {
                     if (PaperMove.paperControllerObjects[i] == PaperObject.GetComponent<isStamped>().paperControllerObject)//working
