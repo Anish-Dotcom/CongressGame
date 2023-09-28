@@ -26,11 +26,15 @@ public class Stamp : MonoBehaviour
     public Renderer renderer;
     public string stamppickedupsortinglayer = "above all";
     public string stampputdownsortinglayer = "Stamp";
+    public Vector3 returnPos;
+    public float returnPosX;
+    public float returnPosY;
 
     Vector2 currentVelocity;
     // Start is called before the first frame update
     void Start()
     {
+        returnPos = new Vector3(returnPosX, returnPosY, 0f);
         originalScale = transform.localScale;
     }
 
@@ -67,9 +71,9 @@ public class Stamp : MonoBehaviour
             {
                 if (hit.collider.gameObject == gameObject)
                 {
-                    slowToStop = true;
                     transform.localScale = originalScale;
                     renderer.sortingLayerName = stampputdownsortinglayer;
+                    transform.position = returnPos;
                 }
             }
             mousePositionSlow = Camera.main.ScreenToWorldPoint(Input.mousePosition);
