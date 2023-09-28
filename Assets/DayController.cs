@@ -5,7 +5,7 @@ using UnityEngine;
 public class DayController : MonoBehaviour
 {
     public static int dayNum = 0;
-    public static Sprite[] paperObjectsForNext;//turn these into sprite arrays
+    public static Sprite[] paperObjectsForNext;
     public Sprite[] allPaperObjects;
     public static int[] approvalPercentageDemographics = new int[7];//The 1%, Middle class, Impoverished, Progressive, Conservative, Federalist, Anti-Federalist
     public GameObject paperPrefab;
@@ -34,5 +34,9 @@ public class DayController : MonoBehaviour
         {
             PaperMove.prevPapers[i].GetComponent<SpriteRenderer>().sprite = paperObjectsForNext[i];
         }
+    }
+    public static void RandomPapersForNext() 
+    { //randomize a number from 2-3, for i amount of randnum, randomize a num in a range, set allPaperObjects[randNumInRange] (range from where random papers are to end of rand papers), call newday
+        NewDay();   
     }
 }
