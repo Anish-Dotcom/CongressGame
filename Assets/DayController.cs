@@ -13,6 +13,9 @@ public class DayController : MonoBehaviour
     public static int[] approvalPercentageDemographics = new int[7];//The 1%, Middle class, Impoverished, Progressive, Conservative, Federalist, Anti-Federalist
     public GameObject paperPrefab;
     public static GameObject staticPaperPrefab;
+    public GameObject bellunpushed;
+    public GameObject bellpushed;
+    public static bool bellIsPushed;
 
     void Start()
     {
@@ -32,7 +35,10 @@ public class DayController : MonoBehaviour
     }
     void Update()
     {
-        
+        if (bellIsPushed == true)
+        {
+            StartCoroutine(PushBell());
+        }
     }
     public static void NewDay()
     {
@@ -54,6 +60,7 @@ public class DayController : MonoBehaviour
     }
     public static void PapersForNext()
     {
+        bellIsPushed = true;
         if (dayNum == 0) 
         {
             NewDay();
@@ -88,5 +95,15 @@ public class DayController : MonoBehaviour
             }
             NewDay();
         }
+    }
+
+    IEnumerator PushBell()
+    {
+        bellunpushed.SetActive(false);
+        bellpushed.SetActive(true);
+        yield return new WaitForSeconds(0.15f);
+        bellunpushed.SetActive(true);
+        bellpushed.SetActive(false);
+        bellIsPushed = false;
     }
 }
