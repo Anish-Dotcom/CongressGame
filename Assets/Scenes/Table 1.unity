@@ -1119,6 +1119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.4
   fullText: 'Goat '
+  startText: 0
 --- !u!114 &1090510261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1152,7 +1153,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Hello
 --- !u!222 &1090510262
 CanvasRenderer:
   m_ObjectHideFlags: 0

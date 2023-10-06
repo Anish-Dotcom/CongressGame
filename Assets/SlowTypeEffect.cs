@@ -8,10 +8,14 @@ public class SlowTypeEffect : MonoBehaviour
     public float speed = 0.1f;
     public string fullText;
     private string currentText = "";
+    public bool startText = false;
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(ShowText());
+        if (startText)
+        {
+            StartCoroutine(ShowText());
+        }
     }
 
     IEnumerator ShowText()
