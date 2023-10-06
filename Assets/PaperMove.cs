@@ -55,7 +55,6 @@ public class PaperMove : MonoBehaviour
         shadowPosition.x = shadowX - 0.5f;
         shadowPosition.y = shadowY + 0.25f;
         paperShadow.transform.position = shadowPosition;
-
         paperControllerObjects = GameObject.FindGameObjectsWithTag("PaperController");
         currentSortingOrder = new int[prevPapers.Length];
         firstChange = new bool[prevPapers.Length];
@@ -91,7 +90,7 @@ public class PaperMove : MonoBehaviour
                 {
                     isRightMouseDown = true;
                     transform.localScale = transform.localScale * 1.1f;
-                    float randomRot = Random.Range(-5, 5);
+                    float randomRot = Random.Range(-3, 3);
                     transform.rotation = Quaternion.Euler(0f, 0f, randomRot);
                     paperShadow.SetActive(true);
                     renderer.sortingLayerName = paperpickedupsortinglayer;
