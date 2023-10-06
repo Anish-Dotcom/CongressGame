@@ -10,7 +10,7 @@ public class SlowTypeEffect : MonoBehaviour
     private string currentText = "";
     public bool startText = false;
     // Start is called before the first frame update
-    void Start()
+    void Update()
     {
         if (startText)
         {
