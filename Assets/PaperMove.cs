@@ -56,6 +56,7 @@ public class PaperMove : MonoBehaviour
         shadowPosition.y = shadowY + 0.25f;
         paperShadow.transform.position = shadowPosition;
         paperControllerObjects = GameObject.FindGameObjectsWithTag("PaperController");
+        prevPapers = GameObject.FindGameObjectsWithTag("Paper");
         currentSortingOrder = new int[prevPapers.Length];
         firstChange = new bool[prevPapers.Length];
         stampObjects = new GameObject[prevPapers.Length];
