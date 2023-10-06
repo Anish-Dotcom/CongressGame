@@ -55,7 +55,7 @@ public class DayController : MonoBehaviour
         {
             if (paperObjectsForNext[i] !=  null)
             {
-                PaperMove.prevPapers[i].GetComponent<SpriteRenderer>().sprite = paperObjectsForNext[i];//order of things happening is wrong which causes this not to work
+                PaperMove.prevPapers[i].GetComponent<SpriteRenderer>().sprite = paperObjectsForNext[i];
             }
         }
         dayNum++;
@@ -69,35 +69,54 @@ public class DayController : MonoBehaviour
         }
         else
         {
-            if (dayNum >= 3)//makes algorithm more efficient :)
-            { 
-                if (dayNum == 3)
-                {
-                    paperObjectsForNext[15] = staticAllPaperObjects[15];
-                }
-                if (dayNum == 4)
-                {
-                    paperObjectsForNext[16] = staticAllPaperObjects[16];
-                }
-                if (dayNum == 5)
-                {
-                    paperObjectsForNext[17] = staticAllPaperObjects[17];
-                }
+            if (dayNum == 3)
+            {
+                paperObjectsForNext[0] = staticAllPaperObjects[15];
+                Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+            }
+            if (dayNum == 4)
+            {
+                paperObjectsForNext[0] = staticAllPaperObjects[16];
+                Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+            }
+            if (dayNum == 5)
+            {
+                paperObjectsForNext[0] = staticAllPaperObjects[17];
                 Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
             }
             int numberOfPapers = UnityEngine.Random.Range(2, 4);
-            for (int i = 0; i < numberOfPapers; i++)
+            if (dayNum >= 3) 
             {
-                int numberOfRandomPaper = UnityEngine.Random.Range(1, 15);
-                if (!isUsedPaper[numberOfRandomPaper])
+                for (int i = 0; i < numberOfPapers; i++)
                 {
-                    paperObjectsForNext[i] = staticAllPaperObjects[numberOfRandomPaper];
-                    isUsedPaper[numberOfRandomPaper] = true;
-                    Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+                    int numberOfRandomPaper = UnityEngine.Random.Range(1, 15);
+                    if (!isUsedPaper[numberOfRandomPaper])
+                    {
+                        paperObjectsForNext[i+1] = staticAllPaperObjects[numberOfRandomPaper];
+                        isUsedPaper[numberOfRandomPaper] = true;
+                        Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+                    }
+                    else
+                    {
+                        i = i - 1;
+                    }
                 }
-                else 
+            }
+            else
+            {
+                for (int i = 0; i < numberOfPapers; i++)
                 {
-                    i = i - 1;
+                    int numberOfRandomPaper = UnityEngine.Random.Range(1, 15);
+                    if (!isUsedPaper[numberOfRandomPaper])
+                    {
+                        paperObjectsForNext[i] = staticAllPaperObjects[numberOfRandomPaper];
+                        isUsedPaper[numberOfRandomPaper] = true;
+                        Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+                    }
+                    else
+                    {
+                        i = i - 1;
+                    }
                 }
             }
             NewDay();
