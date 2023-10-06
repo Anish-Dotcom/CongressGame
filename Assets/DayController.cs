@@ -16,6 +16,7 @@ public class DayController : MonoBehaviour
     public GameObject bellunpushed;
     public GameObject bellpushed;
     public static bool bellIsPushed;
+    public static int bellInt = 0;
 
     void Start()
     {
@@ -58,7 +59,7 @@ public class DayController : MonoBehaviour
         }
         dayNum++;
     }
-    public static void PapersForNext()
+    public static void PapersForNext()//call this after inbetween day
     {
         bellIsPushed = true;
         if (dayNum == 0) 
@@ -90,13 +91,37 @@ public class DayController : MonoBehaviour
                 if (!isUsedPaper[numberOfRandomPaper])
                 {
                     paperObjectsForNext[i] = staticAllPaperObjects[numberOfRandomPaper];
+                    isUsedPaper[numberOfRandomPaper] = true;
                     Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
                 }
             }
-            NewDay();
+        }
+        NewDay();
+    }
+    public static void InBetweenDay() //remove all papers and then summon news paper and madlibs politcal campain
+    {
+        GameObject[] PrevPapers = GameObject.FindGameObjectsWithTag("PaperController");
+        for (int i = 0; i < PrevPapers.Length; i++) 
+        {
+            if (PrevPapers[i] != null) 
+            {
+                Destroy(PrevPapers[i]);
+            }
         }
     }
-
+    public static void BellPush()
+    { 
+        if (bellInt == 0) 
+        {
+            InBetweenDay();
+            bellInt = 1;
+        }
+        else if (bellInt == 1) 
+        {
+            PapersForNext();
+            bellInt = 0;
+        }
+    }
     IEnumerator PushBell()
     {
         bellunpushed.SetActive(false);

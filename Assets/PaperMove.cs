@@ -73,12 +73,19 @@ public class PaperMove : MonoBehaviour
         {
             transform.position = new Vector3(0f, 0f, 0f);
         }
-        shadowX = pos.x;
-        shadowY = pos.y;
-        shadowPosition = paperShadow.transform.position;
-        shadowPosition.x = shadowX - 0.5f;
-        shadowPosition.y = shadowY + 0.25f;
-        paperShadow.transform.position = shadowPosition;
+        if (paperShadow != null)
+        {
+            shadowX = pos.x;
+            shadowY = pos.y;
+            shadowPosition = paperShadow.transform.position;
+            shadowPosition.x = shadowX - 0.5f;
+            shadowPosition.y = shadowY + 0.25f;
+            paperShadow.transform.position = shadowPosition;
+        }
+        else 
+        {
+            Destroy(this);
+        }
         if (Input.GetMouseButtonDown(0))
         {
             slowToStop = false;
