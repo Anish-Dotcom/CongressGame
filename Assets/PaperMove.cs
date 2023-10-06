@@ -34,6 +34,9 @@ public class PaperMove : MonoBehaviour
     public static int currentTop;
     public static bool[] firstChange;
 
+    public int stampedType = 0;
+    public int paperNumber;
+
     private float colorInt;
     void Start()
     {
@@ -144,7 +147,7 @@ public class PaperMove : MonoBehaviour
             {
                 if (firstChange[i]) 
                 {
-                    if (prevPapers[i] == Paper)//set the paper you are picking up to the highest paper
+                    if (prevPapers[i] == Paper)
                     {
                         currentTop = i;
                         currentSortingOrder[i] = prevPapers.Length - 1;

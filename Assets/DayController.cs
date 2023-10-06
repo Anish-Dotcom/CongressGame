@@ -30,7 +30,8 @@ public class DayController : MonoBehaviour
             staticAllPaperObjects[i] = allPaperObjects[i];
         }
         paperObjectsForNext[0] = allPaperObjects[0];//Tutorial doc
-        Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+        GameObject Paper = Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+        Paper.GetComponent<PaperMove>().paperNumber = 0;
         PaperMove.prevPapers = GameObject.FindGameObjectsWithTag("Paper");
         PapersForNext();
     }
@@ -62,6 +63,152 @@ public class DayController : MonoBehaviour
     }
     public static void PapersForNext()//call this after inbetween day
     {
+        GameObject[] paperConObj = GameObject.FindGameObjectsWithTag("PaperController");
+        for (int i = 0; i < paperConObj.Length; i++) 
+        {
+            if (paperConObj[i].GetComponent<PaperMove>().stampedType == 1)//decclined -----------------------------------------------------------------------------------------------
+            {
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 1)//Federal sales tax
+                { 
+                
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 2)//Nuclear power investments
+                {
+
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 3)//taxing business expences and ghost bills
+                {
+
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 4)//fossil fuel investments
+                {
+
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 5)//Increase minimum wage
+                {
+
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 6)//Increase gun regulation
+                {
+
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 7)//decrease gun reg
+                {
+
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 8)//decrease drug abuse sentence
+                {
+
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 9)//alcohol ban
+                {
+
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 10)//ruduce police funding
+                {
+
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 11)//reduce homlessness
+                {
+
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 12)//material help for staved citizens
+                {
+
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 13)//funding for education
+                {
+
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 14)//Ban insider trading by gov officials
+                {
+
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 15)//enactment of media controls
+                {
+
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 16)//right to propose laws
+                {
+
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 17)//Force reinstatement
+                {
+
+                }
+            }
+            if (paperConObj[i].GetComponent<PaperMove>().stampedType == 2) //accepted --------------------------------------------------------------------------------------------------
+            {
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 1)//Federal sales tax
+                {
+
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 2)//Nuclear power investments
+                {
+
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 3)//taxing business expences and ghost bills
+                {
+
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 4)//fossil fuel investments
+                {
+
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 5)//Increase minimum wage
+                {
+
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 6)//Increase gun regulation
+                {
+
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 7)//decrease gun reg
+                {
+
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 8)//decrease drug abuse sentence
+                {
+
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 9)//alcohol ban
+                {
+
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 10)//ruduce police funding
+                {
+
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 11)//reduce homlessness
+                {
+
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 12)//material help for staved citizens
+                {
+
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 13)//funding for education
+                {
+
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 14)//Ban insider trading by gov officials
+                {
+
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 15)//enactment of media controls
+                {
+
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 16)//right to propose laws
+                {
+
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 17)//Force reinstatement
+                {
+
+                }
+            }
+        }
         bellIsPushed = true;
         if (dayNum == 0) 
         {
@@ -72,17 +219,20 @@ public class DayController : MonoBehaviour
             if (dayNum == 3)
             {
                 paperObjectsForNext[0] = staticAllPaperObjects[15];
-                Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+                GameObject Paper = Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+                Paper.GetComponent<PaperMove>().paperNumber = 15;
             }
             if (dayNum == 4)
             {
                 paperObjectsForNext[0] = staticAllPaperObjects[16];
-                Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+                GameObject Paper = Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+                Paper.GetComponent<PaperMove>().paperNumber = 16;
             }
             if (dayNum == 5)
             {
                 paperObjectsForNext[0] = staticAllPaperObjects[17];
-                Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+                GameObject Paper = Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+                Paper.GetComponent<PaperMove>().paperNumber = 17;
             }
             int numberOfPapers = UnityEngine.Random.Range(2, 4);
             if (dayNum >= 3) 
@@ -94,7 +244,8 @@ public class DayController : MonoBehaviour
                     {
                         paperObjectsForNext[i+1] = staticAllPaperObjects[numberOfRandomPaper];
                         isUsedPaper[numberOfRandomPaper] = true;
-                        Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+                        GameObject Paper = Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+                        Paper.GetComponent<PaperMove>().paperNumber = numberOfRandomPaper;
                     }
                     else
                     {

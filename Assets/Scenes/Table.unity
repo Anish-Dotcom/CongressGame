@@ -953,6 +953,7 @@ MonoBehaviour:
   returnPos: {x: 0, y: 0, z: 0}
   returnPosX: 4.71
   returnPosY: -3.7
+  stampType: 1
 --- !u!212 &888953739
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1330,6 +1331,7 @@ MonoBehaviour:
   returnPos: {x: 0, y: 0, z: 0}
   returnPosX: 7.09
   returnPosY: -3.7
+  stampType: 2
 --- !u!212 &1192462229
 SpriteRenderer:
   m_ObjectHideFlags: 0

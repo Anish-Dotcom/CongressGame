@@ -22,6 +22,7 @@ public class Stamp : MonoBehaviour
     public LayerMask StampLayer;
     public bool OverPaper;
     private GameObject PaperObject;
+    private GameObject controllerOfPaperObj;
     private Renderer ParentRender;
     public Renderer renderer;
     public string stamppickedupsortinglayer = "above all";
@@ -29,6 +30,7 @@ public class Stamp : MonoBehaviour
     public Vector3 returnPos;
     public float returnPosX;
     public float returnPosY;
+    public int stampType;
 
     Vector2 currentVelocity;
     // Start is called before the first frame update
@@ -98,6 +100,7 @@ public class Stamp : MonoBehaviour
                 Stamp.transform.localScale = new Vector3(1f, 1f, 1f);
                 Stamp.GetComponent<Renderer>().sortingOrder = ParentRender.sortingOrder + 1;
                 PaperObject.GetComponent<isStamped>().objIsStamped = true;
+                controllerOfPaperObj.GetComponent<PaperMove>().stampedType = stampType;
                 for (int i = 0; i < PaperMove.prevPapers.Length; i++) 
                 {
                     if (PaperMove.paperControllerObjects[i] == PaperObject.GetComponent<isStamped>().paperControllerObject)//working
@@ -118,6 +121,10 @@ public class Stamp : MonoBehaviour
             PaperObject = col.gameObject;
             ParentRender = PaperObject.GetComponentInParent<Renderer>();
             OverPaper = true;
+        }
+        if (col.gameObject.CompareTag("PaperController")) 
+        {
+            controllerOfPaperObj = col.gameObject;
         }
     }
     public void OnTriggerExit2D(Collider2D col)
