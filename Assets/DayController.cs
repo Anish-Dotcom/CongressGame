@@ -43,6 +43,7 @@ public class DayController : MonoBehaviour
     }
     public static void NewDay()
     {
+        PaperMove.prevPapers = GameObject.FindGameObjectsWithTag("Paper");
         for (int i = 0; i < approvalPercentageDemographics.Length; i++) 
         {
             if (approvalPercentageDemographics[i] > 100) 
@@ -94,9 +95,13 @@ public class DayController : MonoBehaviour
                     isUsedPaper[numberOfRandomPaper] = true;
                     Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
                 }
+                else 
+                {
+                    i = i - 1;
+                }
             }
+            NewDay();
         }
-        NewDay();
     }
     public static void InBetweenDay() //remove all papers and then summon news paper and madlibs politcal campain
     {
@@ -107,6 +112,10 @@ public class DayController : MonoBehaviour
             {
                 Destroy(PrevPapers[i]);
             }
+        }
+        for (int i = 0; i < paperObjectsForNext.Length; i++) 
+        {
+            paperObjectsForNext[i] = null;
         }
     }
     public static void BellPush()
