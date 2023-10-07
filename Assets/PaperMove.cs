@@ -97,7 +97,7 @@ public class PaperMove : MonoBehaviour
             hit = Physics2D.Raycast(ray.origin, ray.direction);
             if (!paperpickedupinstance.instance.paperpickedup && hit.collider != null)
             {
-                if (hit.collider.gameObject == gameObject)
+                if (hit.collider.gameObject == gameObject || hit.collider.gameObject.CompareTag("StampCheck"))
                 {
                     isRightMouseDown = true;
                     transform.localScale = transform.localScale * 1.1f;
@@ -114,7 +114,7 @@ public class PaperMove : MonoBehaviour
             isRightMouseDown = false;
             if (hit.collider != null) 
             {
-                if (hit.collider.gameObject == gameObject)
+                if (hit.collider.gameObject == gameObject || hit.collider.gameObject.CompareTag("StampCheck"))
                 {
                     slowToStop = true;
                     transform.localScale = originalScale;
