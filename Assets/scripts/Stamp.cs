@@ -49,7 +49,6 @@ public class Stamp : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0))
         {
-            Stamppicked = true;
             slowToStop = false;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             hit = Physics2D.Raycast(ray.origin, ray.direction);
@@ -57,6 +56,7 @@ public class Stamp : MonoBehaviour
             {
                 if (hit.collider.gameObject == gameObject)
                 {
+                    Stamppicked = true;
                     isRightMouseDown = true;
                     transform.localScale = transform.localScale * 1.1f;
                     renderer.sortingLayerName = stamppickedupsortinglayer;
@@ -66,13 +66,12 @@ public class Stamp : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-
-            Stamppicked = false;
             isRightMouseDown = false;
             if (hit.collider != null)
             {
                 if (hit.collider.gameObject == gameObject)
                 {
+                    Stamppicked = false;
                     transform.localScale = originalScale;
                     renderer.sortingLayerName = stampputdownsortinglayer;
                     transform.position = returnPos;
@@ -94,7 +93,7 @@ public class Stamp : MonoBehaviour
         }
         if(Input.GetMouseButtonDown(1) && Stamppicked)
         {
-            if (OverPaper && !PaperObject.GetComponent<isStamped>().objIsStamped)
+            if (OverPaper && !PaperObject.GetComponent<isStamped>().objIsStamped && Stamppicked)
             {
                 GameObject Stamp = Instantiate(Stampdown, new Vector3(transform.position.x, transform.position.y - 0.5f, 1f), Quaternion.identity, PaperObject.transform);
                 Stamp.transform.localScale = new Vector3(1f, 1f, 1f);
@@ -103,9 +102,8 @@ public class Stamp : MonoBehaviour
                 controllerOfPaperObj.GetComponent<PaperMove>().stampedType = stampType;
                 for (int i = 0; i < PaperMove.prevPapers.Length; i++) 
                 {
-                    if (PaperMove.paperControllerObjects[i] == PaperObject.GetComponent<isStamped>().paperControllerObject)//working
+                    if (PaperMove.paperControllerObjects[i] == PaperObject.GetComponent<isStamped>().paperControllerObject)
                     {
-                        UnityEngine.Debug.Log("Here");
                         PaperMove.stampObjects[i] = Stamp;
                     }
                 }

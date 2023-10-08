@@ -155,7 +155,7 @@ public class PaperMove : MonoBehaviour
                         changeStampLayer();
                         changePaperColor();
                     }
-                    if (prevPapers[i] != Paper && currentSortingOrder[i] > currentTop)
+                    if (prevPapers[i] != Paper && currentSortingOrder[i] >= currentTop && currentSortingOrder[i] > 0)
                     {
                         currentSortingOrder[i] -= 1;
                         prevPapers[i].GetComponent<Renderer>().sortingOrder = currentSortingOrder[i] * 2;
