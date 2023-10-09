@@ -6,6 +6,7 @@ using UnityEngine;
 public class DayController : MonoBehaviour
 {
     public static int dayNum = 0;
+    public int daynum1 = 0;
     public static Sprite[] paperObjectsForNext;
     public Sprite[] allPaperObjects;//0 = tutorial doc, 1-14 = random docs, 15 = media control, 16 = create laws, 17 = force reinstatement
     public static Sprite[] staticAllPaperObjects;
@@ -17,9 +18,12 @@ public class DayController : MonoBehaviour
     public GameObject bellpushed;
     public static bool bellIsPushed;
     public static int bellInt = 0;
+    public LightsTransition lt;
+    public LightsTransition lt1;
 
     void Start()
     {
+        
         staticPaperPrefab = paperPrefab;
         isUsedPaper = new bool[allPaperObjects.Length];
         staticAllPaperObjects = new Sprite[allPaperObjects.Length];
@@ -37,9 +41,15 @@ public class DayController : MonoBehaviour
     }
     void Update()
     {
+        daynum1 = dayNum;
         if (bellIsPushed == true)
         {
             StartCoroutine(PushBell());
+        }
+        if(dayNum>1)
+        {
+            lt1.transition1 = true;
+            lt.transition = true;
         }
     }
     public static void NewDay()
@@ -275,6 +285,7 @@ public class DayController : MonoBehaviour
     }
     public static void InBetweenDay() //remove all papers and then summon news paper and madlibs politcal campain
     {
+        
         GameObject[] PrevPapers = GameObject.FindGameObjectsWithTag("PaperController");
         for (int i = 0; i < PrevPapers.Length; i++) 
         {
@@ -310,4 +321,10 @@ public class DayController : MonoBehaviour
         bellpushed.SetActive(false);
         bellIsPushed = false;
     }
+    IEnumerator transition()
+    {
+        lt.transition = true;
+        yield return new WaitForSeconds(0); 
+    }
+   
 }
