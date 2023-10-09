@@ -59,3 +59,6 @@ TagManager:
   - name: StampUp
     uniqueID: 3977281209
     locked: 0
+  - name: righthand
+    uniqueID: 1710311459
+    locked: 0

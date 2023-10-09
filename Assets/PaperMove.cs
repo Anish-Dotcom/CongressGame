@@ -34,6 +34,8 @@ public class PaperMove : MonoBehaviour
     public static int currentTop;
     public static bool[] firstChange;
 
+    public GameObject hand;
+
     public int stampedType = 0;
     public int paperNumber;
 
@@ -99,6 +101,8 @@ public class PaperMove : MonoBehaviour
             {
                 if (hit.collider.gameObject == gameObject || hit.collider.gameObject.CompareTag("StampCheck") && hit.collider.gameObject == isStampedObj)
                 {
+                    hand.SetActive(true);
+                    paperpickedupinstance.instance.paperpickedup = true;
                     isRightMouseDown = true;
                     transform.localScale = transform.localScale * 1.1f;
                     float randomRot = Random.Range(-3, 3);
@@ -116,6 +120,8 @@ public class PaperMove : MonoBehaviour
             {
                 if (hit.collider.gameObject == gameObject || hit.collider.gameObject.CompareTag("StampCheck") && hit.collider.gameObject == isStampedObj)
                 {
+                    hand.SetActive(false);
+                    paperpickedupinstance.instance.paperpickedup = false;
                     slowToStop = true;
                     transform.localScale = originalScale;
                     paperShadow.SetActive(false);
