@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Array2DEditor;
 
 namespace Array2DEditor
 {
@@ -84,73 +85,16 @@ namespace Array2DEditor
             {
                 if (paperConObj[i].GetComponent<PaperMove>().stampedType == 1)//decclined -----------------------------------------------------------------------------------------------
                 {
-                    if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 1)//Federal sales tax
+                    for (int b = 0; b < 7; b++)
                     {
-
+                        approvalPercentageDemographics[b] += demographicChangeDec.GetCell(paperConObj[i].GetComponent<PaperMove>().paperNumber, b);
                     }
-                    if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 2)//Nuclear power investments
+                }
+                if (paperConObj[i].GetComponent<PaperMove>().stampedType == 2) //accepted --------------------------------------------------------------------------------------------------
+                {
+                    for (int b = 0; b < 7; b++)
                     {
-
-                    }
-                    if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 3)//taxing business expences and ghost bills
-                    {
-
-                    }
-                    if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 4)//fossil fuel investments
-                    {
-
-                    }
-                    if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 5)//Increase minimum wage
-                    {
-
-                    }
-                    if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 6)//Increase gun regulation
-                    {
-
-                    }
-                    if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 7)//decrease gun reg
-                    {
-
-                    }
-                    if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 8)//decrease drug abuse sentence
-                    {
-
-                    }
-                    if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 9)//alcohol ban
-                    {
-
-                    }
-                    if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 10)//ruduce police funding
-                    {
-
-                    }
-                    if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 11)//reduce homlessness
-                    {
-
-                    }
-                    if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 12)//material help for staved citizens
-                    {
-
-                    }
-                    if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 13)//funding for education
-                    {
-
-                    }
-                    if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 14)//Ban insider trading by gov officials
-                    {
-
-                    }
-                    if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 15)//enactment of media controls
-                    {
-
-                    }
-                    if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 16)//right to propose laws
-                    {
-
-                    }
-                    if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 17)//Force reinstatement
-                    {
-
+                        approvalPercentageDemographics[b] += demographicChangeAcc.GetCell(paperConObj[i].GetComponent<PaperMove>().paperNumber, b);
                     }
                 }
                 if (paperConObj[i].GetComponent<PaperMove>().stampedType == 2) //accepted --------------------------------------------------------------------------------------------------
