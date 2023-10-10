@@ -12,6 +12,8 @@ public class DayController : MonoBehaviour
     public static Sprite[] staticAllPaperObjects;
     public static bool[] isUsedPaper;
     public static int[] approvalPercentageDemographics = new int[7];//The 1%, Middle class, Impoverished, Progressive, Conservative, Federalist, Anti-Federalist
+    public int[,] demographicChangeAcc;
+    public int[,] demographicChangeDec;
     public GameObject paperPrefab;
     public static GameObject staticPaperPrefab;
     public GameObject bellunpushed;
@@ -80,7 +82,7 @@ public class DayController : MonoBehaviour
             {
                 if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 1)//Federal sales tax
                 { 
-                
+                    
                 }
                 if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 2)//Nuclear power investments
                 {

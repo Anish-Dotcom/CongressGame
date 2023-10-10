@@ -2043,6 +2043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05233b683d37f234d991c9972da60ba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  daynum1: 0
   allPaperObjects:
   - {fileID: 21300000, guid: 4e4cf8487fccd2248bf0e18b502d1ca5, type: 3}
   - {fileID: 21300000, guid: 69ec55a885dbe6541b2620419a9ddb6b, type: 3}
@@ -2065,6 +2066,8 @@ MonoBehaviour:
   paperPrefab: {fileID: 1125693796087309910, guid: 803b5ef0cd1fdfc4b94667053368339a, type: 3}
   bellunpushed: {fileID: 1752079504}
   bellpushed: {fileID: 1360897848}
+  lt: {fileID: 0}
+  lt1: {fileID: 0}
 --- !u!114 &1926890181
 MonoBehaviour:
   m_ObjectHideFlags: 0
