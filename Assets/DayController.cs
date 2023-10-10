@@ -27,10 +27,11 @@ namespace Array2DEditor
         public static int bellInt = 0;
         public LightsTransition lt;
         public LightsTransition lt1;
+        public static GameObject DayConObj;
 
         void Start()
         {
-
+            DayConObj = GameObject.FindGameObjectWithTag("DayCon");
             staticPaperPrefab = paperPrefab;
             isUsedPaper = new bool[allPaperObjects.Length];
             staticAllPaperObjects = new Sprite[allPaperObjects.Length];
@@ -87,14 +88,14 @@ namespace Array2DEditor
                 {
                     for (int b = 0; b < 7; b++)
                     {
-                        approvalPercentageDemographics[b] += demographicChangeDec.GetCell(paperConObj[i].GetComponent<PaperMove>().paperNumber, b);
+                        approvalPercentageDemographics[b] += DayConObj.GetComponent<DayController>().demographicChangeDec.GetCell(paperConObj[i].GetComponent<PaperMove>().paperNumber, b);
                     }
                 }
                 if (paperConObj[i].GetComponent<PaperMove>().stampedType == 2) //accepted --------------------------------------------------------------------------------------------------
                 {
                     for (int b = 0; b < 7; b++)
                     {
-                        approvalPercentageDemographics[b] += demographicChangeAcc.GetCell(paperConObj[i].GetComponent<PaperMove>().paperNumber, b);
+                        approvalPercentageDemographics[b] += DayConObj.GetComponent<DayController>().demographicChangeAcc.GetCell(paperConObj[i].GetComponent<PaperMove>().paperNumber, b);
                     }
                 }
                 if (paperConObj[i].GetComponent<PaperMove>().stampedType == 2) //accepted --------------------------------------------------------------------------------------------------
