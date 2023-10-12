@@ -8,6 +8,7 @@ TagManager:
   - StampCheck
   - PaperController
   - DayCon
+  - AgentText
   layers:
   - Default
   - TransparentFX

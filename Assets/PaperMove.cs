@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using UnityEngine;
+using TMPro;
 
 public class PaperMove : MonoBehaviour
 {
@@ -35,9 +35,9 @@ public class PaperMove : MonoBehaviour
     public static bool[] firstChange;
 
     public GameObject hand;
-
     public int stampedType = 0;
     public int paperNumber;
+    public static TMP_Text AgentText;
 
     private float colorInt;
     void Start()
@@ -60,6 +60,7 @@ public class PaperMove : MonoBehaviour
         shadowPosition.x = shadowX - 0.5f;
         shadowPosition.y = shadowY + 0.25f;
         paperShadow.transform.position = shadowPosition;
+        AgentText = GameObject.FindGameObjectWithTag("AgentText").GetComponent<TMP_Text>();
         paperControllerObjects = GameObject.FindGameObjectsWithTag("PaperController");
         prevPapers = GameObject.FindGameObjectsWithTag("Paper");
         currentSortingOrder = new int[prevPapers.Length];
@@ -109,6 +110,14 @@ public class PaperMove : MonoBehaviour
                     transform.rotation = Quaternion.Euler(0f, 0f, randomRot);
                     paperShadow.SetActive(true);
                     renderer.sortingLayerName = paperpickedupsortinglayer;
+                    if (hit.collider.gameObject.CompareTag("StampCheck")) 
+                    {
+                        AgentText.text = DayController.DayConObj.GetComponent<DayController>().AgentTextOnPickup[hit.collider.gameObject.GetComponent<isStamped>().paperControllerObject.GetComponent<PaperMove>().paperNumber];
+                    }
+                    else 
+                    {
+                        AgentText.text = DayController.DayConObj.GetComponent<DayController>().AgentTextOnPickup[hit.collider.gameObject.GetComponent<PaperMove>().paperNumber];
+                    }
                 }
             }
         }

@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Array2DEditor;
 
-namespace Array2DEditor
-{
     public class DayController : MonoBehaviour
     {
         public static int dayNum = 0;
@@ -28,6 +26,7 @@ namespace Array2DEditor
         public LightsTransition lt;
         public LightsTransition lt1;
         public static GameObject DayConObj;
+        public string[] AgentTextOnPickup;
 
         void Start()
         {
@@ -208,4 +207,3 @@ namespace Array2DEditor
         }
 
     }
-}
