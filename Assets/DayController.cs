@@ -27,6 +27,7 @@ using Array2DEditor;
         public LightsTransition lt1;
         public static GameObject DayConObj;
         public string[] AgentTextOnPickup;
+        public string[] AgentTextOnStamp;
 
         void Start()
         {

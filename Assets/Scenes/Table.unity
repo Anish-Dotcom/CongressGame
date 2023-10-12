@@ -2268,6 +2268,26 @@ MonoBehaviour:
   - 
   - 
   - 
+  AgentTextOnStamp:
+  - Nice Job, you just stamped your first paper, you will be doing a lot more of
+    this. Press the bell to finish the day.
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
 --- !u!114 &1926890181
 MonoBehaviour:
   m_ObjectHideFlags: 0
