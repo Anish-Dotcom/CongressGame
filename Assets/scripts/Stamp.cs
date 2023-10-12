@@ -100,7 +100,14 @@ public class Stamp : MonoBehaviour
                 Stamp.GetComponent<Renderer>().sortingOrder = ParentRender.sortingOrder + 1;
                 PaperObject.GetComponent<isStamped>().objIsStamped = true;
                 controllerOfPaperObj.GetComponent<PaperMove>().stampedType = stampType;
-                PaperMove.AgentText.text = DayController.DayConObj.GetComponent<DayController>().AgentTextOnStamp[controllerOfPaperObj.GetComponent<PaperMove>().paperNumber];
+                if (stampType == 2)
+                {
+                    PaperMove.AgentText.text = DayController.DayConObj.GetComponent<DayController>().AgentTextOnStampDec[controllerOfPaperObj.GetComponent<PaperMove>().paperNumber];
+                }
+                else 
+                {
+                    PaperMove.AgentText.text = DayController.DayConObj.GetComponent<DayController>().AgentTextOnStampAcc[controllerOfPaperObj.GetComponent<PaperMove>().paperNumber];
+                }
                 for (int i = 0; i < PaperMove.prevPapers.Length; i++) 
                 {
                     if (PaperMove.paperControllerObjects[i] == PaperObject.GetComponent<isStamped>().paperControllerObject)
