@@ -32,6 +32,7 @@ public class Stamp : MonoBehaviour
     public float returnPosY;
     public int stampType;
 
+    public GameObject hand;
     Vector2 currentVelocity;
     // Start is called before the first frame update
     void Start()
@@ -56,6 +57,8 @@ public class Stamp : MonoBehaviour
             {
                 if (hit.collider.gameObject == gameObject)
                 {
+                    hand.SetActive(true);
+                    paperpickedupinstance.instance.paperpickedup = true;
                     Stamppicked = true;
                     isRightMouseDown = true;
                     transform.localScale = transform.localScale * 1.1f;
@@ -71,6 +74,8 @@ public class Stamp : MonoBehaviour
             {
                 if (hit.collider.gameObject == gameObject)
                 {
+                    hand.SetActive(false);
+                    paperpickedupinstance.instance.paperpickedup = false;
                     Stamppicked = false;
                     transform.localScale = originalScale;
                     renderer.sortingLayerName = stampputdownsortinglayer;
