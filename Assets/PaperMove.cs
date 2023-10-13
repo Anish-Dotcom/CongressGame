@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class PaperMove : MonoBehaviour
 {
@@ -33,7 +34,10 @@ public class PaperMove : MonoBehaviour
     public static int[] currentSortingOrder;
     public static int currentTop;
     public static bool[] firstChange;
-
+    public float speed = 0.1f;
+    public string fullText;
+    private string currentText = "";
+    public bool startText = true;
     public GameObject hand;
     public int stampedType = 0;
     public int paperNumber;
@@ -54,6 +58,7 @@ public class PaperMove : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, randomRot);
         pos = transform.position;
         rot = transform.rotation;
+
         shadowX = pos.x;
         shadowY = pos.y;
         shadowPosition = paperShadow.transform.position;
@@ -112,11 +117,13 @@ public class PaperMove : MonoBehaviour
                     renderer.sortingLayerName = paperpickedupsortinglayer;
                     if (hit.collider.gameObject.CompareTag("StampCheck")) 
                     {
-                        AgentText.text = DayController.DayConObj.GetComponent<DayController>().AgentTextOnPickup[hit.collider.gameObject.GetComponent<isStamped>().paperControllerObject.GetComponent<PaperMove>().paperNumber];
+                        
+                        StartCoroutine(ShowText());
                     }
                     else 
                     {
-                        AgentText.text = DayController.DayConObj.GetComponent<DayController>().AgentTextOnPickup[hit.collider.gameObject.GetComponent<PaperMove>().paperNumber];
+                        
+                        StartCoroutine(ShowText());
                     }
                 }
             }
@@ -208,5 +215,21 @@ public class PaperMove : MonoBehaviour
                 stampObjects[i].GetComponent<Renderer>().sortingOrder = prevPapers[i].GetComponent<Renderer>().sortingOrder + 1;
             }
         }
+    }
+    IEnumerator ShowText()
+    {
+        fullText = DayController.DayConObj.GetComponent<DayController>().AgentTextOnPickup[hit.collider.gameObject.GetComponent<isStamped>().paperControllerObject.GetComponent<PaperMove>().paperNumber];
+        UnityEngine.Debug.Log('l');
+        startText = false;
+        for (int i = 0; i < fullText.Length; i++)
+        {
+            UnityEngine.Debug.Log('z');
+            currentText = fullText.Substring(0, i);
+            AgentText.text = currentText;
+
+            
+            yield return new WaitForSeconds(speed);
+        }
+
     }
 }
