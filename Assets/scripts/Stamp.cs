@@ -107,11 +107,13 @@ public class Stamp : MonoBehaviour
                 controllerOfPaperObj.GetComponent<PaperMove>().stampedType = stampType;
                 if (stampType == 2)
                 {
-                    PaperMove.AgentText.text = DayController.DayConObj.GetComponent<DayController>().AgentTextOnStampDec[controllerOfPaperObj.GetComponent<PaperMove>().paperNumber];
+                    DayController.DayConObj.GetComponent<DayController>().preFullText = DayController.DayConObj.GetComponent<DayController>().AgentTextOnStampDec[controllerOfPaperObj.GetComponent<PaperMove>().paperNumber];
+                    DayController.DayConObj.GetComponent<DayController>().showTextCall();
                 }
                 else 
                 {
-                    PaperMove.AgentText.text = DayController.DayConObj.GetComponent<DayController>().AgentTextOnStampAcc[controllerOfPaperObj.GetComponent<PaperMove>().paperNumber];
+                    DayController.DayConObj.GetComponent<DayController>().preFullText = DayController.DayConObj.GetComponent<DayController>().AgentTextOnStampAcc[controllerOfPaperObj.GetComponent<PaperMove>().paperNumber];
+                    DayController.DayConObj.GetComponent<DayController>().showTextCall();
                 }
                 for (int i = 0; i < PaperMove.prevPapers.Length; i++) 
                 {

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using Array2DEditor;
 
 public class DayController : MonoBehaviour
@@ -30,8 +31,18 @@ public class DayController : MonoBehaviour
     public string[] AgentTextOnStampAcc;
     public string[] AgentTextOnStampDec;
 
+    public float speed = 1f;
+    public string preFullText;
+    public string fullText;
+    private string currentText = "";
+    public bool startText = true;
+    public static bool textWriting = false;
+    public static bool textWasInterupted = false;
+    public static TMP_Text AgentText;
+
     void Start()
     {
+        AgentText = GameObject.FindGameObjectWithTag("AgentText").GetComponent<TMP_Text>();
         DayConObj = GameObject.FindGameObjectWithTag("DayCon");
         staticPaperPrefab = paperPrefab;
         isUsedPaper = new bool[allPaperObjects.Length];
@@ -209,8 +220,53 @@ public class DayController : MonoBehaviour
         lt.transition = true;
         yield return new WaitForSeconds(0);
     }
+    public void showTextCall() 
+    {
+        StartCoroutine(ShowText());
+    }
+    IEnumerator ShowText()
+    {
+        if (currentText == fullText || textWasInterupted)
+        {
+            textWriting = false;
+        }
+        else
+        {
+            textWriting = true;
+        }
+        if (!textWriting)
+        {
+            fullText = preFullText;
+        }
+        else
+        {
+            fullText = currentText + "—";
+        }
+        startText = false;
+        if (!textWriting)
+        {
+            textWriting = true;
+            textWasInterupted = false;
+            for (int i = 0; i < fullText.Length + 1; i++)
+            {
+
+                currentText = fullText.Substring(0, i);
+                AgentText.text = currentText;
+                yield return new WaitForSeconds(speed);
+                if (i < fullText.Length + 1 && currentText == fullText && fullText != preFullText)
+                {
+                    fullText = preFullText;
+                    textWriting = false;
+                    textWasInterupted = true;
+                    StartCoroutine(ShowText());
+                    break;
+                }
+            }
+        }
+    }
     public static void RemoveText() 
     {
-        PaperMove.AgentText.text = " ";
+        DayController.DayConObj.GetComponent<DayController>().preFullText = " ";
+        DayController.DayConObj.GetComponent<DayController>().showTextCall();
     }
 }

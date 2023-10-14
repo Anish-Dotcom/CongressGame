@@ -37,17 +37,10 @@ public class PaperMove : MonoBehaviour
     public static int[] currentSortingOrder;
     public static int currentTop;
     public static bool[] firstChange;
-    public float speed = 0.1f;
-    public string preFullText;
-    public string fullText;
-    private string currentText = "";
-    public bool startText = true;
-    public static bool textWriting = false;
-    public static bool textWasInterupted = false;
+
     public GameObject hand;
     public int stampedType = 0;
     public int paperNumber;
-    public static TMP_Text AgentText;
 
     private float colorInt;
     void Start()
@@ -71,7 +64,6 @@ public class PaperMove : MonoBehaviour
         shadowPosition.x = shadowX - 0.5f;
         shadowPosition.y = shadowY + 0.25f;
         paperShadow.transform.position = shadowPosition;
-        AgentText = GameObject.FindGameObjectWithTag("AgentText").GetComponent<TMP_Text>();
         paperControllerObjects = GameObject.FindGameObjectsWithTag("PaperController");
         prevPapers = GameObject.FindGameObjectsWithTag("Paper");
         currentSortingOrder = new int[prevPapers.Length];
@@ -124,13 +116,13 @@ public class PaperMove : MonoBehaviour
                     renderer.sortingLayerName = paperpickedupsortinglayer;
                     if (hit.collider.gameObject.CompareTag("StampCheck")) 
                     {
-                        preFullText = DayController.DayConObj.GetComponent<DayController>().AgentTextOnPickup[hit.collider.gameObject.GetComponent<isStamped>().paperControllerObject.GetComponent<PaperMove>().paperNumber];
-                        StartCoroutine(ShowText());
+                        DayController.DayConObj.GetComponent<DayController>().preFullText = DayController.DayConObj.GetComponent<DayController>().AgentTextOnPickup[hit.collider.gameObject.GetComponent<isStamped>().paperControllerObject.GetComponent<PaperMove>().paperNumber];
+                        DayController.DayConObj.GetComponent<DayController>().showTextCall();
                     }
                     else 
                     {
-                        preFullText = DayController.DayConObj.GetComponent<DayController>().AgentTextOnPickup[hit.collider.gameObject.GetComponent<PaperMove>().paperNumber];
-                        StartCoroutine(ShowText());
+                        DayController.DayConObj.GetComponent<DayController>().preFullText = DayController.DayConObj.GetComponent<DayController>().AgentTextOnPickup[hit.collider.gameObject.GetComponent<PaperMove>().paperNumber];
+                        DayController.DayConObj.GetComponent<DayController>().showTextCall();
                     }
                 }
             }
@@ -221,46 +213,6 @@ public class PaperMove : MonoBehaviour
             else if (stampObjects[i] != null)
             {
                 stampObjects[i].GetComponent<Renderer>().sortingOrder = prevPapers[i].GetComponent<Renderer>().sortingOrder + 1;
-            }
-        }
-    }
-    IEnumerator ShowText()
-    {
-        if (currentText == fullText || textWasInterupted)
-        {
-            textWriting = false;
-        }
-        else 
-        { 
-            textWriting = true;
-        }
-        if (!textWriting)
-        {
-            fullText = preFullText;
-        }
-        else 
-        {
-            fullText = currentText + "--";
-        }
-        startText = false;
-        if (!textWriting) 
-        {
-            textWriting = true;
-            textWasInterupted = false;
-            for (int i = 0; i < fullText.Length + 1; i++)
-            {
-
-                currentText = fullText.Substring(0, i);
-                AgentText.text = currentText;
-                yield return new WaitForSeconds(speed);
-                if (i < fullText.Length + 1 && currentText == fullText && fullText != preFullText)
-                {
-                    fullText = preFullText;
-                    textWriting = false;
-                    textWasInterupted = true;
-                    StartCoroutine(ShowText());
-                    break;
-                }
             }
         }
     }
