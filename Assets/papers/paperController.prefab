@@ -95,9 +95,6 @@ MonoBehaviour:
   paperputdownsortinglayer: paper
   renderer: {fileID: 1125693797272464525}
   Paper: {fileID: 1125693797272464514}
-  speed: 0.1
-  fullText: 
-  startText: 1
   hand: {fileID: 9030472859285486780}
   stampedType: 0
   paperNumber: 0

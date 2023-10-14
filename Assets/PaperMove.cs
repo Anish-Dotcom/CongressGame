@@ -37,7 +37,7 @@ public class PaperMove : MonoBehaviour
     public static int[] currentSortingOrder;
     public static int currentTop;
     public static bool[] firstChange;
-
+    public float subFromX;
     public GameObject hand;
     public int stampedType = 0;
     public int paperNumber;
@@ -61,7 +61,6 @@ public class PaperMove : MonoBehaviour
         shadowX = pos.x;
         shadowY = pos.y;
         shadowPosition = paperShadow.transform.position;
-        shadowPosition.x = shadowX - 0.5f;
         shadowPosition.y = shadowY + 0.25f;
         paperShadow.transform.position = shadowPosition;
         paperControllerObjects = GameObject.FindGameObjectsWithTag("PaperController");
@@ -88,7 +87,8 @@ public class PaperMove : MonoBehaviour
             shadowX = pos.x;
             shadowY = pos.y;
             shadowPosition = paperShadow.transform.position;
-            shadowPosition.x = shadowX - 0.5f;
+            subFromX = (shadowX - 0) / 5;
+            shadowPosition.x = shadowX + subFromX;
             shadowPosition.y = shadowY + 0.25f;
             paperShadow.transform.position = shadowPosition;
         }
