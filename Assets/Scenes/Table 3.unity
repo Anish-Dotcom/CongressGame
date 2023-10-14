@@ -130,6 +130,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 75915114}
     m_Modifications:
+    - target: {fileID: 1109356584118064044, guid: 37b2e4b06a2e2cf4d992e581a5fad78c, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 51.6294
+      objectReference: {fileID: 0}
+    - target: {fileID: 1109356584118064044, guid: 37b2e4b06a2e2cf4d992e581a5fad78c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1109356584118064044, guid: 37b2e4b06a2e2cf4d992e581a5fad78c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1109356584118064045, guid: 37b2e4b06a2e2cf4d992e581a5fad78c, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1109356584118064045, guid: 37b2e4b06a2e2cf4d992e581a5fad78c, type: 3}
+      propertyPath: m_fontSize
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1109356584118064045, guid: 37b2e4b06a2e2cf4d992e581a5fad78c, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1109356584118064045, guid: 37b2e4b06a2e2cf4d992e581a5fad78c, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1109356584118064045, guid: 37b2e4b06a2e2cf4d992e581a5fad78c, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1109356584613103089, guid: 37b2e4b06a2e2cf4d992e581a5fad78c, type: 3}
       propertyPath: m_Name
       value: aboveAll
@@ -1837,8 +1869,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.1
-  fullText: 
+  fullText: 'Day 1 '
   startText: 0
+  lta: {fileID: 1938244165}
+  ltb: {fileID: 1938244165}
 --- !u!1 &1638308443
 GameObject:
   m_ObjectHideFlags: 0
@@ -2049,10 +2083,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transition: 0
   transition1: 0
+  transitionback: 0
+  transitionback1: 0
   decayspeed: 0.0025
   Mainlight: {fileID: 1126830429}
   Offlight: {fileID: 1816910140}
-  Slow: {fileID: 0}
+  Slow: {fileID: 1435733354}
   light: {fileID: 1816910143}
 --- !u!114 &1816910143
 MonoBehaviour:
@@ -2429,8 +2465,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transition: 0
   transition1: 0
+  transitionback: 0
+  transitionback1: 0
   decayspeed: 0.001
   Mainlight: {fileID: 1126830429}
   Offlight: {fileID: 1816910140}
-  Slow: {fileID: 0}
+  Slow: {fileID: 1435733354}
   light: {fileID: 1938244164}
