@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 using UnityEngine.Audio;
 
 public class PaperMove : MonoBehaviour
@@ -39,9 +38,12 @@ public class PaperMove : MonoBehaviour
     public static int currentTop;
     public static bool[] firstChange;
     public float speed = 0.1f;
+    public string preFullText;
     public string fullText;
     private string currentText = "";
     public bool startText = true;
+    public static bool textWriting = false;
+    public static bool textWasInterupted = false;
     public GameObject hand;
     public int stampedType = 0;
     public int paperNumber;
@@ -122,12 +124,12 @@ public class PaperMove : MonoBehaviour
                     renderer.sortingLayerName = paperpickedupsortinglayer;
                     if (hit.collider.gameObject.CompareTag("StampCheck")) 
                     {
-                        
+                        preFullText = DayController.DayConObj.GetComponent<DayController>().AgentTextOnPickup[hit.collider.gameObject.GetComponent<isStamped>().paperControllerObject.GetComponent<PaperMove>().paperNumber];
                         StartCoroutine(ShowText());
                     }
                     else 
                     {
-                        
+                        preFullText = DayController.DayConObj.GetComponent<DayController>().AgentTextOnPickup[hit.collider.gameObject.GetComponent<PaperMove>().paperNumber];
                         StartCoroutine(ShowText());
                     }
                 }
@@ -224,18 +226,42 @@ public class PaperMove : MonoBehaviour
     }
     IEnumerator ShowText()
     {
-        fullText = DayController.DayConObj.GetComponent<DayController>().AgentTextOnPickup[hit.collider.gameObject.GetComponent<isStamped>().paperControllerObject.GetComponent<PaperMove>().paperNumber];
-        
-        startText = false;
-        for (int i = 0; i < fullText.Length; i++)
+        if (currentText == fullText || textWasInterupted)
         {
-            
-            currentText = fullText.Substring(0, i);
-            AgentText.text = currentText;
-
-            
-            yield return new WaitForSeconds(speed);
+            textWriting = false;
         }
+        else 
+        { 
+            textWriting = true;
+        }
+        if (!textWriting)
+        {
+            fullText = preFullText;
+        }
+        else 
+        {
+            fullText = currentText + "--";
+        }
+        startText = false;
+        if (!textWriting) 
+        {
+            textWriting = true;
+            textWasInterupted = false;
+            for (int i = 0; i < fullText.Length + 1; i++)
+            {
 
+                currentText = fullText.Substring(0, i);
+                AgentText.text = currentText;
+                yield return new WaitForSeconds(speed);
+                if (i < fullText.Length + 1 && currentText == fullText && fullText != preFullText)
+                {
+                    fullText = preFullText;
+                    textWriting = false;
+                    textWasInterupted = true;
+                    StartCoroutine(ShowText());
+                    break;
+                }
+            }
+        }
     }
 }
