@@ -10,6 +10,8 @@ public class SlowTypeEffect : MonoBehaviour
     public string fullText;
     private string currentText = "";
     public bool startText = false;
+    public LightsTransition lta;
+    public LightsTransition ltb;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,8 @@ public class SlowTypeEffect : MonoBehaviour
 
         if (startText)
         {
+            StopAllCoroutines();
+
             StartCoroutine(ShowText());
         }
     }
@@ -33,7 +37,10 @@ public class SlowTypeEffect : MonoBehaviour
             this.GetComponent<TMP_Text>().text = currentText;
             yield return new WaitForSeconds(speed);
         }
-
+        yield return new WaitForSeconds(1);
+        this.GetComponent<TMP_Text>().text = "";
+        lta.transitionback= true;
+        lta.transitionback = true;
     }
 }
 

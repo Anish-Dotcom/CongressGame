@@ -225,11 +225,11 @@ public class PaperMove : MonoBehaviour
     IEnumerator ShowText()
     {
         fullText = DayController.DayConObj.GetComponent<DayController>().AgentTextOnPickup[hit.collider.gameObject.GetComponent<isStamped>().paperControllerObject.GetComponent<PaperMove>().paperNumber];
-        UnityEngine.Debug.Log('l');
+        
         startText = false;
         for (int i = 0; i < fullText.Length; i++)
         {
-            UnityEngine.Debug.Log('z');
+            
             currentText = fullText.Substring(0, i);
             AgentText.text = currentText;
 

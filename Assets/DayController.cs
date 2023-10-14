@@ -54,12 +54,14 @@ public class DayController : MonoBehaviour
         if (bellIsPushed == true)
         {
             StartCoroutine(PushBell());
+            if (dayNum > 1)
+            {
+
+                lt1.transition1 = true;
+                lt.transition = true;
+            }
         }
-        if (dayNum > 1)
-        {
-            lt1.transition1 = true;
-            lt.transition = true;
-        }
+        
     }
     public static void NewDay()
     {
