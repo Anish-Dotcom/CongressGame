@@ -4,9 +4,13 @@ using System.Diagnostics;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class PaperMove : MonoBehaviour
 {
+    public AudioSource sourceUp;
+    public AudioSource sourceDown;
+
     public float scaleFactor = 5f;
     public Vector3 originalScale;
     private Vector3 pos;
@@ -107,6 +111,7 @@ public class PaperMove : MonoBehaviour
             {
                 if (hit.collider.gameObject == gameObject || hit.collider.gameObject.CompareTag("StampCheck") && hit.collider.gameObject == isStampedObj)
                 {
+                    sourceUp.Play();
                     hand.SetActive(true);
                     paperpickedupinstance.instance.paperpickedup = true;
                     isRightMouseDown = true;
@@ -136,6 +141,7 @@ public class PaperMove : MonoBehaviour
             {
                 if (hit.collider.gameObject == gameObject || hit.collider.gameObject.CompareTag("StampCheck") && hit.collider.gameObject == isStampedObj)
                 {
+                    sourceDown.Play();
                     hand.SetActive(false);
                     paperpickedupinstance.instance.paperpickedup = false;
                     slowToStop = true;
