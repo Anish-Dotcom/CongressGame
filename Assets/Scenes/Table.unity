@@ -2507,7 +2507,8 @@ MonoBehaviour:
   - Control media? There is no reason for you to have that much power.
   - This would require me to do a lot more work and it would require great inventment.
     Frankly I'm against it.
-  - 
+  - As an autocratic leader this is completely within your right. No one would be
+    mad about a little more zemblanity, right?
   AgentTextOnStampAcc:
   - Nice job stamping your first paper, if you try stamping again you will notice
     it does not work. A paper can only be stamped once, there is no taksie baksies.
@@ -2565,7 +2566,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0b939ccd69b9c764d91951b7e180f40d, type: 3}
   - {fileID: 21300000, guid: 205be7f7064e94b468a6b08706dc5325, type: 3}
   - {fileID: 21300000, guid: 9950f469ed47d82458887e9419b682f0, type: 3}
-  pickupIntAgent: 010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  pickupIntAgent: 030000000100000008000000000000000100000005000000070000000700000003000000030000000500000006000000070000000600000000000000070000000300000000000000
   stampAccAgent: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   stampDecAgent: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!114 &1926890181
@@ -2789,7 +2790,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1109356584118064044, guid: 37b2e4b06a2e2cf4d992e581a5fad78c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -197.4
+      value: -190.6
       objectReference: {fileID: 0}
     - target: {fileID: 1109356584118064044, guid: 37b2e4b06a2e2cf4d992e581a5fad78c, type: 3}
       propertyPath: m_AnchoredPosition.y
