@@ -117,11 +117,13 @@ public class PaperMove : MonoBehaviour
                     if (hit.collider.gameObject.CompareTag("StampCheck")) 
                     {
                         DayController.DayConObj.GetComponent<DayController>().preFullText = DayController.DayConObj.GetComponent<DayController>().AgentTextOnPickup[hit.collider.gameObject.GetComponent<isStamped>().paperControllerObject.GetComponent<PaperMove>().paperNumber];
+                        DayController.Agent.sprite = DayController.DayConObj.GetComponent<DayController>().Agents[DayController.DayConObj.GetComponent<DayController>().pickupIntAgent[hit.collider.gameObject.GetComponent<isStamped>().paperControllerObject.GetComponent<PaperMove>().paperNumber]];
                         DayController.DayConObj.GetComponent<DayController>().showTextCall();
                     }
                     else 
                     {
                         DayController.DayConObj.GetComponent<DayController>().preFullText = DayController.DayConObj.GetComponent<DayController>().AgentTextOnPickup[hit.collider.gameObject.GetComponent<PaperMove>().paperNumber];
+                        DayController.Agent.sprite = DayController.DayConObj.GetComponent<DayController>().Agents[DayController.DayConObj.GetComponent<DayController>().pickupIntAgent[hit.collider.gameObject.GetComponent<PaperMove>().paperNumber]];
                         DayController.DayConObj.GetComponent<DayController>().showTextCall();
                     }
                 }

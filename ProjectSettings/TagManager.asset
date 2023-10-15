@@ -9,6 +9,7 @@ TagManager:
   - PaperController
   - DayCon
   - AgentText
+  - Agent
   layers:
   - Default
   - TransparentFX

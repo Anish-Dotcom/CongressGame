@@ -40,8 +40,15 @@ public class DayController : MonoBehaviour
     public static bool textWasInterupted = false;
     public static TMP_Text AgentText;
 
+    public static SpriteRenderer Agent;
+    public Sprite[] Agents;
+    public int[] pickupIntAgent;
+    public int[] stampAccAgent;
+    public int[] stampDecAgent;
+
     void Start()
     {
+        Agent = GameObject.FindGameObjectWithTag("Agent").GetComponent<SpriteRenderer>();
         AgentText = GameObject.FindGameObjectWithTag("AgentText").GetComponent<TMP_Text>();
         DayConObj = GameObject.FindGameObjectWithTag("DayCon");
         staticPaperPrefab = paperPrefab;
@@ -249,7 +256,6 @@ public class DayController : MonoBehaviour
             textWasInterupted = false;
             for (int i = 0; i < fullText.Length + 1; i++)
             {
-
                 currentText = fullText.Substring(0, i);
                 AgentText.text = currentText;
                 yield return new WaitForSeconds(speed);
