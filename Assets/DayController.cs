@@ -157,6 +157,11 @@ public class DayController : MonoBehaviour
                         isUsedPaper[numberOfRandomPaper] = true;
                         GameObject Paper = Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
                         Paper.GetComponent<PaperMove>().paperNumber = numberOfRandomPaper;
+                        if (numberOfRandomPaper == 6 || numberOfRandomPaper == 7)
+                        {
+                            isUsedPaper[6] = true;
+                            isUsedPaper[7] = true;
+                        }
                     }
                     else
                     {
@@ -173,7 +178,13 @@ public class DayController : MonoBehaviour
                     {
                         paperObjectsForNext[i] = staticAllPaperObjects[numberOfRandomPaper];
                         isUsedPaper[numberOfRandomPaper] = true;
-                        Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+                        GameObject Paper = Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+                        Paper.GetComponent<PaperMove>().paperNumber = numberOfRandomPaper;
+                        if (numberOfRandomPaper == 6 || numberOfRandomPaper == 7) 
+                        {
+                            isUsedPaper[6] = true;
+                            isUsedPaper[7] = true;
+                        }
                     }
                     else
                     {
