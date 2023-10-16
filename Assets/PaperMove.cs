@@ -199,7 +199,7 @@ public class PaperMove : MonoBehaviour
         for (int i = 0; i < prevPapers.Length; i++) 
         {
             colorInt = 0.95f - (0.08f / prevPapers.Length) / (currentSortingOrder[i] + 1);
-            UnityEngine.Debug.Log(colorInt);
+            
             prevPapers[i].GetComponent<SpriteRenderer>().color = new Color(colorInt+ (0.025f / prevPapers.Length) * (currentSortingOrder[i] + 1), colorInt, colorInt + (0.025f / prevPapers.Length) / (currentSortingOrder[i] + 1), 1f);
         }
     }

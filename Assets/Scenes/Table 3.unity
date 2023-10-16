@@ -2319,14 +2319,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 108c7e4ebf30edb449a4d816f8300656, type: 3}
   demographicChangeAcc:
     gridSize: {x: 3, y: 3}
-    cellSize: {x: 0, y: 0}
+    cellSize: {x: 32, y: 16}
     cells:
     - row: 000000000000000000000000
     - row: 000000000000000000000000
     - row: 000000000000000000000000
   demographicChangeDec:
     gridSize: {x: 3, y: 3}
-    cellSize: {x: 0, y: 0}
+    cellSize: {x: 32, y: 16}
     cells:
     - row: 000000000000000000000000
     - row: 000000000000000000000000
@@ -2339,6 +2339,14 @@ MonoBehaviour:
   AgentTextOnPickup: []
   AgentTextOnStampAcc: []
   AgentTextOnStampDec: []
+  speed: 1
+  preFullText: 
+  fullText: 
+  startText: 1
+  Agents: []
+  pickupIntAgent: 
+  stampAccAgent: 
+  stampDecAgent: 
 --- !u!1 &1938244162
 GameObject:
   m_ObjectHideFlags: 0
