@@ -6,6 +6,7 @@ using UnityEngine.Audio;
 public class mainMenuMusic : MonoBehaviour
 {
     public AudioSource source;
+    public bool happened;
     // Start is called before the first frame update
     void Awake()
     {
@@ -13,19 +14,26 @@ public class mainMenuMusic : MonoBehaviour
         source.loop = true;
     }
 
+    private void Start()
+    {
+        if(happened == false)
+        {
+            musicController.effects = true;
+            musicController.music = true;
+            happened = true;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (musicController.instance != null)
+        if (musicController.music)
         {
-            if (musicController.instance.music)
-            {
-                source.Play();
-            }
-            else
-            {
-                source.Stop();
-            }
+            source.mute = false;
+        }
+        else
+        {
+            source.mute = true;
         }
     }
 }

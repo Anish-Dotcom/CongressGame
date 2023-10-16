@@ -5,23 +5,20 @@ using UnityEngine.UI;
 
 public class musicController : MonoBehaviour
 {
-    public float masterVolume;
-    public bool music;
-    public bool effects;
-    public Slider masterVolumeSlider;
-
-    public static musicController instance;
+    public static float masterVolume;
+    public static bool music;
+    public static bool effects;
+    public  Slider masterVolumeSlider;
     // Start is called before the first frame update
     void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        
+    }
+
+    private void Start()
+    {
+        music = true;
+        effects = true;
     }
 
     public void musicToggle(bool musicTog)
