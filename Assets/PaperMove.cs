@@ -105,7 +105,10 @@ public class PaperMove : MonoBehaviour
             {
                 if (hit.collider.gameObject == gameObject || hit.collider.gameObject.CompareTag("StampCheck") && hit.collider.gameObject == isStampedObj)
                 {
-                    sourceUp.Play();
+                    if (musicController.instance.effects == true)
+                    {
+                        sourceUp.Play();
+                    }
                     hand.SetActive(true);
                     paperpickedupinstance.instance.paperpickedup = true;
                     isRightMouseDown = true;
@@ -137,7 +140,10 @@ public class PaperMove : MonoBehaviour
             {
                 if (hit.collider.gameObject == gameObject || hit.collider.gameObject.CompareTag("StampCheck") && hit.collider.gameObject == isStampedObj)
                 {
-                    sourceDown.Play();
+                    if (musicController.instance.effects == true)
+                    {
+                        sourceDown.Play();
+                    }
                     hand.SetActive(false);
                     paperpickedupinstance.instance.paperpickedup = false;
                     slowToStop = true;
