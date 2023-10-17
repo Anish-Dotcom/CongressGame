@@ -26,6 +26,8 @@ public class mainMenuMusic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        source.volume = musicController.masterVolume;
+
         if (musicController.music)
         {
             source.mute = false;

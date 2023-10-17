@@ -78,6 +78,9 @@ public class PaperMove : MonoBehaviour
     }
     void Update()
     {
+        sourceUp.volume = musicController.masterVolume;
+        sourceDown.volume = musicController.masterVolume;
+
         if (transform.position.x < -11f || transform.position.x > 11f || transform.position.y < -8f || transform.position.y > 8f)
         {
             transform.position = new Vector3(0f, 0f, 0f);
