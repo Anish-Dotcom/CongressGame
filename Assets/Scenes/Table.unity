@@ -2938,7 +2938,8 @@ MonoBehaviour:
   - Nice waste of money! I can't wait for our country to be destroyed by nuclear
     radiation.
   - You, how dare you tax the rich. Taxing is only for the working class!
-  - Glad you accepted this! Now our country will be fine on power for years to come.
+  - Glad you accepted this! Now our country will be fine on electricity for years
+    to come.
   - My profits! How dare you, this will destroy the economy!
   - Why would you do this! Guns are for anyone who can pay for them.
   - Interesting decision, it seems unnecessary to me.
@@ -2959,22 +2960,24 @@ MonoBehaviour:
     it does not work. A paper can only be stamped once, there is no taksie baksies.
     Ring the bell whenever you are ready to move on.
   - 'Ugh, your so troublesome. '
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Good decisions! Lets make sure to use this towards something useful.
+  - Your such a great ruler!
+  - Okay... I can't wait for our infrastructure to fall apart.
+  - Thank goodness my profits are safe.
+  - Let the people have all the guns they want.
+  - I thought it was a decent Idea so your decision is fine.
+  - Next time come back with proof this helps people.
+  - Thank goodness. I don't think I could have survived without it.
+  - Great, we need to keep a firm hand on our people so they don't act up.
+  - I was joking about mustard gas but I'm glad you agree that we need to use money
+    on other things.
+  - Many people will die because of this. I hope your okay with that.
+  - Huh, so you want history to repeat itself.
+  - Good decision, why would that be illegal?
+  - Your such a great ruler! Keep the media able to speak freely.
+  - I'm glad I don't have to do much more work. But I'm not sure the people will
+    be okay with this.
+  - So you want to be a good ruler? Even if it leads to your death? So be it.
   speed: 0.1
   preFullText: 
   fullText: 
@@ -2990,8 +2993,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 205be7f7064e94b468a6b08706dc5325, type: 3}
   - {fileID: 21300000, guid: 9950f469ed47d82458887e9419b682f0, type: 3}
   pickupIntAgent: 030000000100000008000000000000000100000005000000070000000700000003000000030000000500000006000000070000000600000000000000070000000300000000000000
-  stampAccAgent: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  stampDecAgent: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  stampAccAgent: 010000000100000002000000000000000700000006000000080000000300000006000000050000000700000008000000010000000200000000000000080000000300000005000000
+  stampDecAgent: 010000000000000001000000050000000600000005000000020000000100000007000000050000000700000007000000000000000400000002000000060000000500000008000000
 --- !u!114 &1926890181
 MonoBehaviour:
   m_ObjectHideFlags: 0
