@@ -6,12 +6,16 @@ using UnityEngine.Audio;
 public class mainMenuMusic : MonoBehaviour
 {
     public AudioSource source;
+    public AudioSource source2;
+
     public static bool happened;
     // Start is called before the first frame update
     void Awake()
     {
         source.playOnAwake = true;
         source.loop = true;
+        source2.playOnAwake = true;
+        source2.loop = true;
     }
 
     private void Start()
@@ -31,10 +35,14 @@ public class mainMenuMusic : MonoBehaviour
         if (musicController.music)
         {
             source.mute = false;
+            source2.mute = false;
+
         }
         else
         {
             source.mute = true;
+            source2.mute = false;
+
         }
     }
 }
