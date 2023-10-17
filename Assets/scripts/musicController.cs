@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class musicController : MonoBehaviour
 {
-    public static bool music;
-    public static bool effects;
+    public static float masterVolume = 1f;
+    public static bool music = true;
+    public static bool effects = true;
     public Slider masterVolumeSlider;
     public Toggle musicToggleInspector;
     public Toggle effectsToggleInspector;
@@ -20,11 +21,6 @@ public class musicController : MonoBehaviour
 
     private void Start()
     {
-        if (!SliderManager.masterVolume.Equals(0))
-        {
-            // Set the slider value from the SliderManager
-            masterVolumeSlider.value = SliderManager.masterVolume;
-        }
         if (happened == false)
         {
             music = true;
@@ -44,10 +40,15 @@ public class musicController : MonoBehaviour
         effects = effectsTog;
     }
 
+    public void UpdateSliderValue(float value)
+    {
+        masterVolume = value;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        masterVolumeSlider.value = SliderManager.masterVolume;
+        masterVolumeSlider.value = masterVolume;
         musicToggleInspector.isOn = music;
         effectsToggleInspector.isOn = effects;
     }
