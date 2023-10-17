@@ -290,11 +290,6 @@ Transform:
   m_Father: {fileID: 278138946}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &130096967 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1109356584118064047, guid: 37b2e4b06a2e2cf4d992e581a5fad78c, type: 3}
-  m_PrefabInstance: {fileID: 1109356585771099594}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &197932116
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,7 +718,7 @@ MonoBehaviour:
   transition: 0
   transition1: 0
   transitionback: 0
-  agent: {fileID: 130096967}
+  agent: {fileID: 278138944}
   transitionback1: 0
   decayspeed: 0.0025
   Mainlight: {fileID: 1667092796}
@@ -3213,7 +3208,7 @@ MonoBehaviour:
   - So you want to be a good ruler? Even if it leads to your death? So be it.
   - So you want to be a good ruler? Even if it leads to your death? So be it.
   - So you want to be a good ruler? Even if it leads to your death? So be it.
-  speed: 0.1
+  speed: 0.03
   preFullText: 
   fullText: 
   startText: 1
