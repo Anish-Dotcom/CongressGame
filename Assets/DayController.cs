@@ -46,6 +46,8 @@ public class DayController : MonoBehaviour
     public int[] stampAccAgent;
     public int[] stampDecAgent;
 
+    public static bool stampedAll = false;
+
     public string daynumstring = "Day";
 
     void Start()
@@ -217,15 +219,32 @@ public class DayController : MonoBehaviour
     {
         if (bellInt == 0)
         {
-            InBetweenDay();
-            bellInt = 1;
+            GameObject[] paperConObj = GameObject.FindGameObjectsWithTag("PaperController");
+            stampedAll = true;
+            for (int i = 0; i < paperConObj.Length; i++)
+            {
+                UnityEngine.Debug.Log(i);
+                if (paperConObj[i].GetComponent<PaperMove>().stampedType == 0)
+                {
+                    DayConObj.GetComponent<DayController>().preFullText = "You haven't stamped all papers.";
+                    Agent.sprite = DayConObj.GetComponent<DayController>().Agents[3];
+                    DayConObj.GetComponent<DayController>().showTextCall();
+                    stampedAll = false;
+                }
+            }
+            if (stampedAll)
+            {
+                InBetweenDay();
+                bellInt = 1;
+                RemoveText();
+            }
         }
         else if (bellInt == 1)
         {
             PapersForNext();
             bellInt = 0;
+            RemoveText();
         }
-        RemoveText();
     }
     IEnumerator PushBell()
     {
