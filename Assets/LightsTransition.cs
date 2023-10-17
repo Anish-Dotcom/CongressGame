@@ -81,7 +81,7 @@ public class LightsTransition : MonoBehaviour
     {
 
         
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 30; i++)
         {
             if (light.intensity < 0.3) {
                 light.intensity = light.intensity + decayspeed;
@@ -90,21 +90,20 @@ public class LightsTransition : MonoBehaviour
             }
         }
 
-        
+
+        transitionback = false;
         Mainlight.SetActive(true);
         Offlight.SetActive(false);
 
         
-        transitionback = false;
     }
     IEnumerator BringLightup1()
     {
 
-        Mainlight.SetActive(false);
-        Offlight.SetActive(true);
-        for (int i = 0; i < 20; i++)
+        
+        for (int i = 0; i < 30; i++)
         {
-            if (light.intensity < 0.3)
+            if (light.intensity < 1)
             {
                 light.intensity = light.intensity + decayspeed;
 
@@ -113,9 +112,10 @@ public class LightsTransition : MonoBehaviour
         }
 
 
+        transitionback1 = false;
+
         Mainlight.SetActive(true);
         Offlight.SetActive(false);
 
-        transitionback1 = false;
     }
 }
