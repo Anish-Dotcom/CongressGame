@@ -62,6 +62,8 @@ public class LightsTransition : MonoBehaviour
         
         Mainlight.SetActive(false);
         Offlight.SetActive(true);
+
+
         for (int i = 0; i < 10;i++)
         {
             light.intensity = light.intensity - decayspeed;
@@ -79,6 +81,9 @@ public class LightsTransition : MonoBehaviour
         agent.SetActive(false);
         Mainlight.SetActive(false);
         Offlight.SetActive(true);
+
+        light.intensity = 1;
+
         for (int i = 0; i < 10; i++)
         {
             light.intensity = light.intensity - decayspeed;
@@ -105,7 +110,7 @@ public class LightsTransition : MonoBehaviour
         transitionback = false;
         Mainlight.SetActive(true);
         Offlight.SetActive(false);
-
+        
         agent.SetActive(true);
 
     }
