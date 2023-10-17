@@ -273,6 +273,7 @@ public class DayController : MonoBehaviour
         }
         else if (bellInt == 1)
         {
+            GameObject[] PrevPapers = GameObject.FindGameObjectsWithTag("PaperController");
             for (int i = 0; i < PrevPapers.Length; i++)
             {
                 if (PrevPapers[i] != null)
