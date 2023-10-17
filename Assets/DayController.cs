@@ -77,17 +77,7 @@ public class DayController : MonoBehaviour
     void Update()
     {
         daynum1 = dayNum;
-        if (bellIsPushed == true)
-        {
-            StartCoroutine(PushBell());
-            if (dayNum > 1)
-            {
-
-                lt1.transition1 = true;
-                lt.transition = true;
-                UnityEngine.Debug.Log("start");
-            }
-        }
+        
         
     }
     public static void NewDay()
@@ -223,6 +213,11 @@ public class DayController : MonoBehaviour
     {
         if (bellInt == 0)
         {
+            
+                DayConObj.GetComponent<DayController>().lt1.transition1 = true;
+                DayConObj.GetComponent<DayController>().lt.transition = true;
+                UnityEngine.Debug.Log("start");
+            
             GameObject[] paperConObj = GameObject.FindGameObjectsWithTag("PaperController");
             stampedAll = true;
             for (int i = 0; i < paperConObj.Length; i++)
@@ -293,7 +288,7 @@ public class DayController : MonoBehaviour
         }
         else
         {
-            fullText = currentText + "—";
+            fullText = currentText + "ï¿½";
         }
         startText = false;
         if (!textWriting)

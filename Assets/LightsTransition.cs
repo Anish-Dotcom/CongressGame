@@ -77,12 +77,11 @@ public class LightsTransition : MonoBehaviour
     }
     IEnumerator SlowLightDown1()
     {
-
+        
         agent.SetActive(false);
         Mainlight.SetActive(false);
         Offlight.SetActive(true);
 
-        light.intensity = 1;
 
         for (int i = 0; i < 10; i++)
         {
@@ -97,7 +96,7 @@ public class LightsTransition : MonoBehaviour
     {
 
         
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 30; i++)
         {
             if (light.intensity < 0.3) {
                 light.intensity = light.intensity + decayspeed;
@@ -108,8 +107,6 @@ public class LightsTransition : MonoBehaviour
 
 
         transitionback = false;
-        Mainlight.SetActive(true);
-        Offlight.SetActive(false);
         
         agent.SetActive(true);
 
@@ -117,16 +114,11 @@ public class LightsTransition : MonoBehaviour
     IEnumerator BringLightup1()
     {
 
-
-        UnityEngine.Debug.Log("fsdaf");
-
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 30; i++)
         {
             if (light.intensity < 1)
             {
-                light.intensity = light.intensity + decayspeed+0.1f;
-
-                UnityEngine.Debug.Log("rewrw");
+                light.intensity = light.intensity + decayspeed*500;
                 yield return new WaitForSeconds(0.05f);
             }
 
@@ -134,7 +126,6 @@ public class LightsTransition : MonoBehaviour
         }
 
 
-        UnityEngine.Debug.Log("vxcvsf");
         Mainlight.SetActive(true);
         Offlight.SetActive(false);
 

@@ -21,7 +21,7 @@ public class SlowTypeEffect : MonoBehaviour
     }
     void Update()
     {
-        dayNumreal = DayController.daynum1 - 1;
+        dayNumreal = DayController.daynum1;
         
         fullText = "Day" + " "+ dayNumreal + " ";
         
