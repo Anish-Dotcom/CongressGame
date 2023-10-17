@@ -8,7 +8,12 @@ public class musicController : MonoBehaviour
     public static float masterVolume;
     public static bool music;
     public static bool effects;
-    public  Slider masterVolumeSlider;
+    public Slider masterVolumeSlider;
+
+    public Toggle musicToggleInspector;
+    public Toggle effectsToggleInspector;
+
+    public static bool happened;
     // Start is called before the first frame update
     void Awake()
     {
@@ -17,8 +22,12 @@ public class musicController : MonoBehaviour
 
     private void Start()
     {
-        music = true;
-        effects = true;
+        if (happened == false)
+        {
+            music = true;
+            effects = true;
+            happened = true;
+        }
     }
 
     public void musicToggle(bool musicTog)
@@ -36,5 +45,7 @@ public class musicController : MonoBehaviour
     void Update()
     {
         masterVolume = masterVolumeSlider.value;
+        musicToggleInspector.isOn = music;
+        effectsToggleInspector.isOn = effects;
     }
 }
