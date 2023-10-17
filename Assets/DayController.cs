@@ -163,50 +163,24 @@ public class DayController : MonoBehaviour
                 Paper.GetComponent<PaperMove>().paperNumber = 17;
             }
             int numberOfPapers = UnityEngine.Random.Range(2, 4);
-            if (dayNum >= 3)
+            for (int i = 0; i < numberOfPapers; i++)
             {
-                for (int i = 0; i < numberOfPapers; i++)
+                int numberOfRandomPaper = UnityEngine.Random.Range(1, 15);
+                if (!isUsedPaper[numberOfRandomPaper])
                 {
-                    int numberOfRandomPaper = UnityEngine.Random.Range(1, 15);
-                    if (!isUsedPaper[numberOfRandomPaper])
+                    paperObjectsForNext[i + 1] = staticAllPaperObjects[numberOfRandomPaper];
+                    isUsedPaper[numberOfRandomPaper] = true;
+                    GameObject Paper = Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+                    Paper.GetComponent<PaperMove>().paperNumber = numberOfRandomPaper;
+                    if (numberOfRandomPaper == 6 || numberOfRandomPaper == 7)
                     {
-                        paperObjectsForNext[i + 1] = staticAllPaperObjects[numberOfRandomPaper];
-                        isUsedPaper[numberOfRandomPaper] = true;
-                        GameObject Paper = Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
-                        Paper.GetComponent<PaperMove>().paperNumber = numberOfRandomPaper;
-                        if (numberOfRandomPaper == 6 || numberOfRandomPaper == 7)
-                        {
-                            isUsedPaper[6] = true;
-                            isUsedPaper[7] = true;
-                        }
-                    }
-                    else
-                    {
-                        i = i - 1;
+                        isUsedPaper[6] = true;
+                        isUsedPaper[7] = true;
                     }
                 }
-            }
-            else
-            {
-                for (int i = 0; i < numberOfPapers; i++)
+                else
                 {
-                    int numberOfRandomPaper = UnityEngine.Random.Range(1, 15);
-                    if (!isUsedPaper[numberOfRandomPaper])
-                    {
-                        paperObjectsForNext[i] = staticAllPaperObjects[numberOfRandomPaper];
-                        isUsedPaper[numberOfRandomPaper] = true;
-                        GameObject Paper = Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
-                        Paper.GetComponent<PaperMove>().paperNumber = numberOfRandomPaper;
-                        if (numberOfRandomPaper == 6 || numberOfRandomPaper == 7) 
-                        {
-                            isUsedPaper[6] = true;
-                            isUsedPaper[7] = true;
-                        }
-                    }
-                    else
-                    {
-                        i = i - 1;
-                    }
+                    i = i - 1;
                 }
             }
             NewDay();
@@ -216,7 +190,6 @@ public class DayController : MonoBehaviour
     {
         bellIsPushed = true;
         int newspaperInt;
-        UnityEngine.Debug.Log(citizensCanProposeLaws);
         if (citizensCanProposeLaws) 
         {
             newspaperInt = dayNum + 18;
@@ -228,7 +201,7 @@ public class DayController : MonoBehaviour
         GameObject Paper = Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
         Paper.GetComponent<PaperMove>().paperNumber = newspaperInt;
         Paper.GetComponent<Transform>().localScale = Paper.GetComponent<Transform>().localScale * 1.3f;
-        Paper.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = DayConObj.GetComponent<DayController>().allPaperObjects[newspaperInt];
+        Paper.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = staticAllPaperObjects[newspaperInt];
     }
     public static void InBetweenDay() //remove all papers and then summon news paper and madlibs politcal campain
     {
