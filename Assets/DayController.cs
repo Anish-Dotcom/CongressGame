@@ -137,13 +137,13 @@ public class DayController : MonoBehaviour
                 }
             }
         }
-        bellIsPushed = true;
         if (dayNum == 0)
         {
             NewDay();
         }
         else
         {
+            bellIsPushed = true;
             if (dayNum == 3)
             {
                 paperObjectsForNext[0] = staticAllPaperObjects[15];
