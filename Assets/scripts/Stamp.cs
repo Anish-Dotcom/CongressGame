@@ -3,9 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Stamp : MonoBehaviour
 {
+    public AudioSource source;
+
     public float scaleFactor = 5f;
     public Vector3 originalScale;
     private Vector3 pos;
@@ -44,6 +47,7 @@ public class Stamp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        source.volume = musicController.masterVolume;
         if (transform.position.x < -9.5f || transform.position.x > 9.5f || transform.position.y < -5.5f || transform.position.y > 5.5f)
         {
             transform.position = new Vector3(0f, 0f, 0f);
@@ -100,6 +104,10 @@ public class Stamp : MonoBehaviour
         {
             if (OverPaper && !PaperObject.GetComponent<isStamped>().objIsStamped && Stamppicked)
             {
+                if (musicController.effects == true)
+                {
+                    source.Play();
+                }
                 GameObject Stamp = Instantiate(Stampdown, new Vector3(transform.position.x, transform.position.y - 0.5f, 1f), Quaternion.identity, PaperObject.transform);
                 Stamp.transform.localScale = new Vector3(1f, 1f, 1f);
                 Stamp.GetComponent<Renderer>().sortingOrder = ParentRender.sortingOrder + 1;
