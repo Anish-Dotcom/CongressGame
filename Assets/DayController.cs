@@ -153,24 +153,51 @@ public class DayController : MonoBehaviour
                 Paper.GetComponent<PaperMove>().paperNumber = 17;
             }
             int numberOfPapers = UnityEngine.Random.Range(2, 4);
-            for (int i = 0; i < numberOfPapers; i++)
+            
+            if (dayNum >= 3) 
             {
-                int numberOfRandomPaper = UnityEngine.Random.Range(1, 15);
-                if (!isUsedPaper[numberOfRandomPaper])
+                for (int i = 0; i < numberOfPapers; i++)
                 {
-                    paperObjectsForNext[i + 1] = staticAllPaperObjects[numberOfRandomPaper];
-                    isUsedPaper[numberOfRandomPaper] = true;
-                    GameObject Paper = Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
-                    Paper.GetComponent<PaperMove>().paperNumber = numberOfRandomPaper;
-                    if (numberOfRandomPaper == 6 || numberOfRandomPaper == 7)
+                    int numberOfRandomPaper = UnityEngine.Random.Range(1, 15);
+                    if (!isUsedPaper[numberOfRandomPaper])
                     {
-                        isUsedPaper[6] = true;
-                        isUsedPaper[7] = true;
+                        paperObjectsForNext[i + 2] = staticAllPaperObjects[numberOfRandomPaper];
+                        isUsedPaper[numberOfRandomPaper] = true;
+                        GameObject Paper = Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+                        Paper.GetComponent<PaperMove>().paperNumber = numberOfRandomPaper;
+                        if (numberOfRandomPaper == 6 || numberOfRandomPaper == 7)
+                        {
+                            isUsedPaper[6] = true;
+                            isUsedPaper[7] = true;
+                        }
+                    }
+                    else
+                    {
+                        i = i - 1;
                     }
                 }
-                else
+            }
+            else 
+            {
+                for (int i = 0; i < numberOfPapers; i++)
                 {
-                    i = i - 1;
+                    int numberOfRandomPaper = UnityEngine.Random.Range(1, 15);
+                    if (!isUsedPaper[numberOfRandomPaper])
+                    {
+                        paperObjectsForNext[i + 1] = staticAllPaperObjects[numberOfRandomPaper];
+                        isUsedPaper[numberOfRandomPaper] = true;
+                        GameObject Paper = Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+                        Paper.GetComponent<PaperMove>().paperNumber = numberOfRandomPaper;
+                        if (numberOfRandomPaper == 6 || numberOfRandomPaper == 7)
+                        {
+                            isUsedPaper[6] = true;
+                            isUsedPaper[7] = true;
+                        }
+                    }
+                    else
+                    {
+                        i = i - 1;
+                    }
                 }
             }
             NewDay();
