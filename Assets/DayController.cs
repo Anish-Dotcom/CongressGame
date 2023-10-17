@@ -46,6 +46,8 @@ public class DayController : MonoBehaviour
     public int[] stampAccAgent;
     public int[] stampDecAgent;
 
+    public string daynumstring = "Day";
+
     void Start()
     {
         Agent = GameObject.FindGameObjectWithTag("Agent").GetComponent<SpriteRenderer>();
@@ -78,6 +80,7 @@ public class DayController : MonoBehaviour
                 lt1.transition1 = true;
                 lt.transition = true;
             }
+            
         }
         
     }

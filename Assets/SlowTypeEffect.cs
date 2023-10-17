@@ -12,6 +12,8 @@ public class SlowTypeEffect : MonoBehaviour
     public bool startText = false;
     public LightsTransition lta;
     public LightsTransition ltb;
+    public DayController DayController;
+    public int dayNumreal ;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +21,9 @@ public class SlowTypeEffect : MonoBehaviour
     }
     void Update()
     {
-
+        dayNumreal = DayController.daynum1 - 1;
+        fullText = "Day" + DayController.daynum1 + " ";
+        
         if (startText)
         {
             StopAllCoroutines();
