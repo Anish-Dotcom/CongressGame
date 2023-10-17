@@ -212,25 +212,19 @@ public class DayController : MonoBehaviour
     public static void NewsPaperForBetween() 
     {
         int newspaperInt;
+        UnityEngine.Debug.Log(citizensCanProposeLaws);
         if (citizensCanProposeLaws) 
-        {
-            newspaperInt = dayNum + 19;
-        }
-        else 
         {
             newspaperInt = dayNum + 18;
         }
+        else 
+        {
+            newspaperInt = dayNum + 17;
+        }
         GameObject Paper = Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
         Paper.GetComponent<PaperMove>().paperNumber = newspaperInt;
-        PaperMove.prevPapers = GameObject.FindGameObjectsWithTag("Paper");
-        paperObjectsForNext[0] = DayConObj.GetComponent<DayController>().allPaperObjects[newspaperInt];
-        for (int i = 0; i < paperObjectsForNext.Length; i++)
-        {
-            if (paperObjectsForNext[i] != null)
-            {
-                PaperMove.prevPapers[i].GetComponent<SpriteRenderer>().sprite = paperObjectsForNext[i];
-            }
-        }
+        Paper.GetComponent<Transform>().localScale = Paper.GetComponent<Transform>().localScale * 1.3f;
+        Paper.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = DayConObj.GetComponent<DayController>().allPaperObjects[newspaperInt];
     }
     public static void InBetweenDay() //remove all papers and then summon news paper and madlibs politcal campain
     {
@@ -280,10 +274,6 @@ public class DayController : MonoBehaviour
                 {
                     Destroy(PrevPapers[i]);
                 }
-            }
-            for (int i = 0; i < paperObjectsForNext.Length; i++)
-            {
-                paperObjectsForNext[i] = null;
             }
             PapersForNext();
             bellInt = 0;
