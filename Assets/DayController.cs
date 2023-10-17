@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Array2DEditor;
+using UnityEngine.Audio;
 
 public class DayController : MonoBehaviour
 {
+    public AudioSource source;
+
     public static int dayNum = 0;
     public int daynum1 = 0;
     public static Sprite[] paperObjectsForNext;
@@ -211,6 +214,7 @@ public class DayController : MonoBehaviour
     }
     public static void NewsPaperForBetween() 
     {
+        bellIsPushed = true;
         int newspaperInt;
         UnityEngine.Debug.Log(citizensCanProposeLaws);
         if (citizensCanProposeLaws) 
@@ -285,6 +289,7 @@ public class DayController : MonoBehaviour
         bellIsPushed = false;
         bellunpushed.SetActive(false);
         bellpushed.SetActive(true);
+        source.Play();
         yield return new WaitForSeconds(0.15f);
         bellunpushed.SetActive(true);
         bellpushed.SetActive(false);
