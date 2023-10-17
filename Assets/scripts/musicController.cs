@@ -31,12 +31,10 @@ public class musicController : MonoBehaviour
 
     public void musicToggle(bool musicTog)
     {
-        Debug.Log(musicTog);
         music = musicTog;
     }
     public void effectsToggle(bool effectsTog)
     {
-        Debug.Log(effectsTog);
         effects = effectsTog;
     }
 
