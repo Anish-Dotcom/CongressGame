@@ -49,6 +49,7 @@ public class DayController : MonoBehaviour
     public static bool stampedAll = false;
 
     public string daynumstring = "Day";
+    public static bool citizensCanProposeLaws = false;
 
     void Start()
     {
@@ -59,7 +60,7 @@ public class DayController : MonoBehaviour
         isUsedPaper = new bool[allPaperObjects.Length];
         staticAllPaperObjects = new Sprite[allPaperObjects.Length];
         paperObjectsForNext = new Sprite[allPaperObjects.Length];
-        for (int i = 0; i < isUsedPaper.Length; i++)
+        for (int i = 0; i < staticAllPaperObjects.Length; i++)
         {
             isUsedPaper[i] = false;
             staticAllPaperObjects[i] = allPaperObjects[i];
@@ -95,6 +96,10 @@ public class DayController : MonoBehaviour
             {
                 approvalPercentageDemographics[i] = 100;
             }
+            if (approvalPercentageDemographics[i] < 0)
+            {
+                approvalPercentageDemographics[i] = 0;
+            }
         }
         for (int i = 0; i < paperObjectsForNext.Length; i++)
         {
@@ -122,6 +127,10 @@ public class DayController : MonoBehaviour
                 for (int b = 0; b < 7; b++)
                 {
                     approvalPercentageDemographics[b] += DayConObj.GetComponent<DayController>().demographicChangeAcc.GetCell(b, paperConObj[i].GetComponent<PaperMove>().paperNumber);
+                    if (dayNum == 4 && paperConObj[i].GetComponent<PaperMove>().paperNumber == 16) 
+                    {
+                        citizensCanProposeLaws = true;
+                    }
                 }
             }
         }
@@ -200,6 +209,22 @@ public class DayController : MonoBehaviour
             NewDay();
         }
     }
+    public static void NewsPaperForBetween() 
+    {
+        int newspaperInt;
+        if (citizensCanProposeLaws) 
+        {
+            newspaperInt = dayNum + 19;
+        }
+        else 
+        {
+            newspaperInt = dayNum + 18;
+        }
+        GameObject Paper = Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+        Paper.GetComponent<PaperMove>().paperNumber = newspaperInt;
+        PaperMove.prevPapers = GameObject.FindGameObjectsWithTag("Paper");
+        PaperMove.prevPapers[0].GetComponent<SpriteRenderer>().sprite = staticAllPaperObjects[newspaperInt];
+    }
     public static void InBetweenDay() //remove all papers and then summon news paper and madlibs politcal campain
     {
         GameObject[] PrevPapers = GameObject.FindGameObjectsWithTag("PaperController");
@@ -214,6 +239,7 @@ public class DayController : MonoBehaviour
         {
             paperObjectsForNext[i] = null;
         }
+        NewsPaperForBetween();
     }
     public static void BellPush()
     {
@@ -223,7 +249,6 @@ public class DayController : MonoBehaviour
             stampedAll = true;
             for (int i = 0; i < paperConObj.Length; i++)
             {
-                UnityEngine.Debug.Log(i);
                 if (paperConObj[i].GetComponent<PaperMove>().stampedType == 0)
                 {
                     DayConObj.GetComponent<DayController>().preFullText = "You haven't stamped all papers.";

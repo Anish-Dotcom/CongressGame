@@ -178,6 +178,7 @@ public class PaperMove : MonoBehaviour
             rot = transform.rotation;
             for (int i = 0; i < prevPapers.Length; i++)
             {
+                prevPapers = GameObject.FindGameObjectsWithTag("Paper");
                 if (firstChange[i]) 
                 {
                     if (prevPapers[i] == Paper)

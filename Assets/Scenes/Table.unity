@@ -2856,6 +2856,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 53ad0ef66f31868458e2760ee2e9039e, type: 3}
   - {fileID: 21300000, guid: 457e2d10660b1f140907c144c566212d, type: 3}
   - {fileID: 21300000, guid: 108c7e4ebf30edb449a4d816f8300656, type: 3}
+  - {fileID: 21300000, guid: 5c74655f9162b8947801c43b64c5d679, type: 3}
+  - {fileID: 21300000, guid: 18d18ce13d3023841ac8022fdb8e4fad, type: 3}
+  - {fileID: 21300000, guid: 2c003733eb4aa024785a1510db3a19aa, type: 3}
+  - {fileID: 21300000, guid: cd37eb6db44fd9049a6fe684a6276e31, type: 3}
+  - {fileID: 21300000, guid: 7e4127436aae64e4f93970c4a3df8010, type: 3}
+  - {fileID: 21300000, guid: 1b74ffd8d9aab1745884f7f021f0dd78, type: 3}
   demographicChangeAcc:
     gridSize: {x: 7, y: 18}
     cellSize: {x: 32, y: 16}
@@ -2938,6 +2944,18 @@ MonoBehaviour:
     Frankly I'm against it.
   - As an autocratic leader this is completely within your right. No one would be
     mad about a little more zemblanity, right?
+  - As an autocratic leader this is completely within your right. No one would be
+    mad about a little more zemblanity, right?
+  - As an autocratic leader this is completely within your right. No one would be
+    mad about a little more zemblanity, right?
+  - As an autocratic leader this is completely within your right. No one would be
+    mad about a little more zemblanity, right?
+  - As an autocratic leader this is completely within your right. No one would be
+    mad about a little more zemblanity, right?
+  - As an autocratic leader this is completely within your right. No one would be
+    mad about a little more zemblanity, right?
+  - As an autocratic leader this is completely within your right. No one would be
+    mad about a little more zemblanity, right?
   AgentTextOnStampAcc:
   - Nice job stamping your first paper, if you try stamping again you will notice
     it does not work. A paper can only be stamped once, there is no taksie baksies.
@@ -2964,6 +2982,12 @@ MonoBehaviour:
   - So your taking this away from me? I mean, from the people?
   - So, you really want to make we work that badly. Cool
   - To zemblanity and beyond!
+  - To zemblanity and beyond!
+  - To zemblanity and beyond!
+  - To zemblanity and beyond!
+  - To zemblanity and beyond!
+  - To zemblanity and beyond!
+  - To zemblanity and beyond!
   AgentTextOnStampDec:
   - Nice job stamping your first paper, if you try stamping again you will notice
     it does not work. A paper can only be stamped once, there is no taksie baksies.
@@ -2987,6 +3011,12 @@ MonoBehaviour:
   - I'm glad I don't have to do much more work. But I'm not sure the people will
     be okay with this.
   - So you want to be a good ruler? Even if it leads to your death? So be it.
+  - So you want to be a good ruler? Even if it leads to your death? So be it.
+  - So you want to be a good ruler? Even if it leads to your death? So be it.
+  - So you want to be a good ruler? Even if it leads to your death? So be it.
+  - So you want to be a good ruler? Even if it leads to your death? So be it.
+  - So you want to be a good ruler? Even if it leads to your death? So be it.
+  - So you want to be a good ruler? Even if it leads to your death? So be it.
   speed: 0.1
   preFullText: 
   fullText: 
@@ -3001,9 +3031,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0b939ccd69b9c764d91951b7e180f40d, type: 3}
   - {fileID: 21300000, guid: 205be7f7064e94b468a6b08706dc5325, type: 3}
   - {fileID: 21300000, guid: 9950f469ed47d82458887e9419b682f0, type: 3}
-  pickupIntAgent: 030000000100000008000000000000000100000005000000070000000700000003000000030000000500000006000000070000000600000000000000070000000300000000000000
-  stampAccAgent: 010000000100000002000000000000000700000006000000080000000300000006000000050000000700000008000000010000000200000000000000080000000300000005000000
-  stampDecAgent: 010000000000000001000000050000000600000005000000020000000100000007000000050000000700000007000000000000000400000002000000060000000500000008000000
+  pickupIntAgent: 030000000100000008000000000000000100000005000000070000000700000003000000030000000500000006000000070000000600000000000000070000000300000000000000000000000000000000000000000000000000000000000000
+  stampAccAgent: 010000000100000002000000000000000700000006000000080000000300000006000000050000000700000008000000010000000200000000000000080000000300000005000000050000000500000005000000050000000500000005000000
+  stampDecAgent: 010000000000000001000000050000000600000005000000020000000100000007000000050000000700000007000000000000000400000002000000060000000500000008000000080000000800000008000000080000000800000008000000
   daynumstring: Day
 --- !u!114 &1926890181
 MonoBehaviour:
