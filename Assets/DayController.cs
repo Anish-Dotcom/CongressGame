@@ -134,11 +134,15 @@ public class DayController : MonoBehaviour
         else
         {
             bellIsPushed = true;
+            DayConObj.GetComponent<DayController>().lt1.transition1 = true;
+                DayConObj.GetComponent<DayController>().lt.transition = true;
+                UnityEngine.Debug.Log("start");
             if (dayNum == 3)
             {
                 paperObjectsForNext[0] = staticAllPaperObjects[15];
                 GameObject Paper = Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
                 Paper.GetComponent<PaperMove>().paperNumber = 15;
+                
             }
             if (dayNum == 4)
             {
@@ -205,6 +209,7 @@ public class DayController : MonoBehaviour
     }
     public static void NewsPaperForBetween() 
     {
+        
         bellIsPushed = true;
         int newspaperInt;
         if (citizensCanProposeLaws) 
@@ -241,9 +246,7 @@ public class DayController : MonoBehaviour
         if (bellInt == 0)
         {
             
-                DayConObj.GetComponent<DayController>().lt1.transition1 = true;
-                DayConObj.GetComponent<DayController>().lt.transition = true;
-                UnityEngine.Debug.Log("start");
+                
             
             GameObject[] paperConObj = GameObject.FindGameObjectsWithTag("PaperController");
             stampedAll = true;
@@ -259,6 +262,7 @@ public class DayController : MonoBehaviour
             }
             if (stampedAll)
             {
+                
                 InBetweenDay();
                 bellInt = 1;
                 RemoveText();
