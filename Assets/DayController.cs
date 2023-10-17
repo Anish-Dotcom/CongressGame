@@ -79,8 +79,8 @@ public class DayController : MonoBehaviour
 
                 lt1.transition1 = true;
                 lt.transition = true;
+                UnityEngine.Debug.Log("start");
             }
-            
         }
         
     }
@@ -229,12 +229,13 @@ public class DayController : MonoBehaviour
     }
     IEnumerator PushBell()
     {
+        bellIsPushed = false;
         bellunpushed.SetActive(false);
         bellpushed.SetActive(true);
         yield return new WaitForSeconds(0.15f);
         bellunpushed.SetActive(true);
         bellpushed.SetActive(false);
-        bellIsPushed = false;
+        
     }
     IEnumerator transition()
     {

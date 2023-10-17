@@ -22,7 +22,8 @@ public class SlowTypeEffect : MonoBehaviour
     void Update()
     {
         dayNumreal = DayController.daynum1 - 1;
-        fullText = "Day" + DayController.daynum1 + " ";
+        
+        fullText = "Day" + " "+ dayNumreal + " ";
         
         if (startText)
         {
@@ -44,7 +45,7 @@ public class SlowTypeEffect : MonoBehaviour
         yield return new WaitForSeconds(1);
         this.GetComponent<TMP_Text>().text = "";
         lta.transitionback= true;
-        lta.transitionback = true;
+        ltb.transitionback1 = true;
     }
 }
 
