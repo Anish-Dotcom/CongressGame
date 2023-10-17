@@ -281,6 +281,10 @@ public class DayController : MonoBehaviour
                     Destroy(PrevPapers[i]);
                 }
             }
+            for (int i = 0; i < paperObjectsForNext.Length; i++)
+            {
+                paperObjectsForNext[i] = null;
+            }
             PapersForNext();
             bellInt = 0;
             RemoveText();
