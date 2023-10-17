@@ -46,6 +46,7 @@ public class SlowTypeEffect : MonoBehaviour
         this.GetComponent<TMP_Text>().text = "";
         lta.transitionback= true;
         ltb.transitionback1 = true;
+        
     }
 }
 

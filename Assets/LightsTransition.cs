@@ -11,6 +11,10 @@ public class LightsTransition : MonoBehaviour
     public bool transition1;
     public bool transitionback;
 
+    public GameObject agent;
+
+    
+
     public bool transitionback1;
     public float decayspeed = 1f;
     public GameObject Mainlight;
@@ -28,7 +32,7 @@ public class LightsTransition : MonoBehaviour
 
     void Update()
     {
-
+        
         if (transition)
         {
             StartCoroutine(SlowLightDown());
@@ -44,15 +48,21 @@ public class LightsTransition : MonoBehaviour
         if (transitionback1)
         {
             StartCoroutine(BringLightup1());
+
+
+            transitionback1 = false;
+            UnityEngine.Debug.Log("zsdfafs");
         }
     }
 
     IEnumerator  SlowLightDown()
     {
+
+        agent.SetActive(false);
         
         Mainlight.SetActive(false);
         Offlight.SetActive(true);
-        for (int i = 0; i < 15;i++)
+        for (int i = 0; i < 10;i++)
         {
             light.intensity = light.intensity - decayspeed;
             
@@ -65,10 +75,11 @@ public class LightsTransition : MonoBehaviour
     }
     IEnumerator SlowLightDown1()
     {
-        
+
+        agent.SetActive(false);
         Mainlight.SetActive(false);
         Offlight.SetActive(true);
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < 10; i++)
         {
             light.intensity = light.intensity - decayspeed;
 
@@ -81,7 +92,7 @@ public class LightsTransition : MonoBehaviour
     {
 
         
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i < 20; i++)
         {
             if (light.intensity < 0.3) {
                 light.intensity = light.intensity + decayspeed;
@@ -95,27 +106,33 @@ public class LightsTransition : MonoBehaviour
         Mainlight.SetActive(true);
         Offlight.SetActive(false);
 
-        
+        agent.SetActive(true);
+
     }
     IEnumerator BringLightup1()
     {
 
-        
-        for (int i = 0; i < 30; i++)
+
+        UnityEngine.Debug.Log("fsdaf");
+
+        for (int i = 0; i < 20; i++)
         {
             if (light.intensity < 1)
             {
-                light.intensity = light.intensity + decayspeed;
+                light.intensity = light.intensity + decayspeed+0.1f;
 
+                UnityEngine.Debug.Log("rewrw");
                 yield return new WaitForSeconds(0.05f);
             }
+
+            
         }
 
 
-        transitionback1 = false;
-
+        UnityEngine.Debug.Log("vxcvsf");
         Mainlight.SetActive(true);
         Offlight.SetActive(false);
 
+        agent.SetActive(true);
     }
 }
