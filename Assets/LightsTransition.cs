@@ -105,7 +105,7 @@ public class LightsTransition : MonoBehaviour
         transitionback = false;
         Mainlight.SetActive(true);
         Offlight.SetActive(false);
-
+        
         agent.SetActive(true);
 
     }
