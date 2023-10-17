@@ -1109,10 +1109,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bea6234ce36dbe4a9dc9acabbf1a2f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  masterVolume: 1
-  music: 1
-  effects: 1
   masterVolumeSlider: {fileID: 262122955}
+  musicToggleInspector: {fileID: 2003835109}
+  effectsToggleInspector: {fileID: 700712249}
 --- !u!114 &1184015885
 MonoBehaviour:
   m_ObjectHideFlags: 0
