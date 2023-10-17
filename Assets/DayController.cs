@@ -223,7 +223,14 @@ public class DayController : MonoBehaviour
         GameObject Paper = Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
         Paper.GetComponent<PaperMove>().paperNumber = newspaperInt;
         PaperMove.prevPapers = GameObject.FindGameObjectsWithTag("Paper");
-        PaperMove.prevPapers[0].GetComponent<SpriteRenderer>().sprite = staticAllPaperObjects[newspaperInt];
+        paperObjectsForNext[0] = DayConObj.GetComponent<DayController>().allPaperObjects[newspaperInt];
+        for (int i = 0; i < paperObjectsForNext.Length; i++)
+        {
+            if (paperObjectsForNext[i] != null)
+            {
+                PaperMove.prevPapers[i].GetComponent<SpriteRenderer>().sprite = paperObjectsForNext[i];
+            }
+        }
     }
     public static void InBetweenDay() //remove all papers and then summon news paper and madlibs politcal campain
     {
@@ -266,6 +273,13 @@ public class DayController : MonoBehaviour
         }
         else if (bellInt == 1)
         {
+            for (int i = 0; i < PrevPapers.Length; i++)
+            {
+                if (PrevPapers[i] != null)
+                {
+                    Destroy(PrevPapers[i]);
+                }
+            }
             PapersForNext();
             bellInt = 0;
             RemoveText();
