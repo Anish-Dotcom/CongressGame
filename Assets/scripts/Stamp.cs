@@ -102,7 +102,7 @@ public class Stamp : MonoBehaviour
         }
         if(Input.GetMouseButtonDown(1) && Stamppicked)
         {
-            if (OverPaper && !PaperObject.GetComponent<isStamped>().objIsStamped && Stamppicked)
+            if (OverPaper && !PaperObject.GetComponent<isStamped>().objIsStamped && controllerOfPaperObj.GetComponent<PaperMove>().paperNumber <= 17)
             {
                 if (musicController.effects == true)
                 {
