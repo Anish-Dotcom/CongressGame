@@ -12,6 +12,13 @@ public class mainMenuMusic : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        GameObject[] musicObj = GameObject.FindGameObjectsWithTag("Music");
+        if (musicObj.Length > 1)
+        {
+            Destroy(this.gameObject);
+        }
+        DontDestroyOnLoad(this.gameObject);
+
         source.playOnAwake = true;
         source.loop = true;
         source2.playOnAwake = true;
