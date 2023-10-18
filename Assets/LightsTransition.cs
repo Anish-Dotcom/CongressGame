@@ -12,7 +12,7 @@ public class LightsTransition : MonoBehaviour
     public bool transitionback;
 
     public GameObject agent;
-
+    public GameObject agentText;
     
 
     public bool transitionback1;
@@ -59,7 +59,7 @@ public class LightsTransition : MonoBehaviour
     {
 
         agent.SetActive(false);
-        
+        agentText.SetActive(false);
         Mainlight.SetActive(false);
         Offlight.SetActive(true);
 
@@ -79,6 +79,7 @@ public class LightsTransition : MonoBehaviour
     {
         
         agent.SetActive(false);
+        agentText.SetActive(false);
         Mainlight.SetActive(false);
         Offlight.SetActive(true);
 
@@ -130,5 +131,6 @@ public class LightsTransition : MonoBehaviour
         Offlight.SetActive(false);
 
         agent.SetActive(true);
+        agentText.SetActive(true);
     }
 }
