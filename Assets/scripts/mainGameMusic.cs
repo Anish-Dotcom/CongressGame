@@ -26,6 +26,7 @@ public class mainGameMusic : MonoBehaviour
     void Update()
     {
         source.volume = musicController.masterVolume;
+        source2.volume = musicController.masterVolume;
 
         if (musicController.music)
         {
@@ -36,7 +37,7 @@ public class mainGameMusic : MonoBehaviour
         else
         {
             source.mute = true;
-            source2.mute = false;
+            source2.mute = true;
 
         }
     }
