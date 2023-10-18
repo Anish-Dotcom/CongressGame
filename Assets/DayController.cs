@@ -56,6 +56,9 @@ public class DayController : MonoBehaviour
 
     void Start()
     {
+        bellIsPushed = true;
+        lt1.transition1 = true;
+        lt.transition = true;
         Agent = GameObject.FindGameObjectWithTag("Agent").GetComponent<SpriteRenderer>();
         AgentText = GameObject.FindGameObjectWithTag("AgentText").GetComponent<TMP_Text>();
         DayConObj = GameObject.FindGameObjectWithTag("DayCon");
@@ -76,9 +79,7 @@ public class DayController : MonoBehaviour
     }
     void Update()
     {
-        daynum1 = dayNum;
-        
-        
+        daynum1 = dayNum - 1;
     }
     public static void NewDay()
     {
@@ -139,20 +140,20 @@ public class DayController : MonoBehaviour
                 UnityEngine.Debug.Log("start");
             if (dayNum == 3)
             {
-                paperObjectsForNext[0] = staticAllPaperObjects[15];
+                paperObjectsForNext[1] = staticAllPaperObjects[15];
                 GameObject Paper = Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
                 Paper.GetComponent<PaperMove>().paperNumber = 15;
                 
             }
             if (dayNum == 4)
             {
-                paperObjectsForNext[0] = staticAllPaperObjects[16];
+                paperObjectsForNext[1] = staticAllPaperObjects[16];
                 GameObject Paper = Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
                 Paper.GetComponent<PaperMove>().paperNumber = 16;
             }
             if (dayNum == 5)
             {
-                paperObjectsForNext[0] = staticAllPaperObjects[17];
+                paperObjectsForNext[1] = staticAllPaperObjects[17];
                 GameObject Paper = Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
                 Paper.GetComponent<PaperMove>().paperNumber = 17;
             }
@@ -245,9 +246,6 @@ public class DayController : MonoBehaviour
     {
         if (bellInt == 0)
         {
-            
-                
-            
             GameObject[] paperConObj = GameObject.FindGameObjectsWithTag("PaperController");
             stampedAll = true;
             for (int i = 0; i < paperConObj.Length; i++)
@@ -262,7 +260,6 @@ public class DayController : MonoBehaviour
             }
             if (stampedAll)
             {
-                
                 InBetweenDay();
                 bellInt = 1;
                 RemoveText();
@@ -292,7 +289,6 @@ public class DayController : MonoBehaviour
         yield return new WaitForSeconds(0.15f);
         bellunpushed.SetActive(true);
         bellpushed.SetActive(false);
-        
     }
     IEnumerator transition()
     {
