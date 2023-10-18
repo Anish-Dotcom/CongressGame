@@ -157,7 +157,7 @@ public class PaperMove : MonoBehaviour
                     {
                         firstChange[i] = true;
                     }
-                    for (int i = 0; i < prevPapers.Length; i++)
+                    for (int i = 0; i < stampObjects.Length; i++)
                     {
                         if (stampObjects[i] != null)
                         {
@@ -185,7 +185,7 @@ public class PaperMove : MonoBehaviour
                     {
                         currentTop = i;
                         currentSortingOrder[i] = prevPapers.Length - 1;
-                        prevPapers[i].GetComponent<Renderer>().sortingOrder = currentSortingOrder[i] * 2;// * 2 so we have spaces for the stamp layer
+                        prevPapers[i].GetComponent<Renderer>().sortingOrder = currentSortingOrder[i] * 2;
                         changeStampLayer();
                         changePaperColor();
                     }
@@ -215,7 +215,7 @@ public class PaperMove : MonoBehaviour
     }
     private void changeStampLayer() 
     {
-        for (int i = 0; i < prevPapers.Length; i++)
+        for (int i = 0; i < stampObjects.Length; i++)
         {
             if (stampObjects[i] != null && i == currentTop)
             {

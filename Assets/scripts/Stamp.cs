@@ -125,11 +125,23 @@ public class Stamp : MonoBehaviour
                     DayController.Agent.sprite = DayController.DayConObj.GetComponent<DayController>().Agents[DayController.DayConObj.GetComponent<DayController>().stampAccAgent[controllerOfPaperObj.GetComponent<PaperMove>().paperNumber]];
                     DayController.DayConObj.GetComponent<DayController>().showTextCall();
                 }
-                for (int i = 0; i < PaperMove.prevPapers.Length; i++) 
+                for (int i = 0; i < PaperMove.prevPapers.Length; i++)
                 {
-                    if (PaperMove.paperControllerObjects[i] == PaperObject.GetComponent<isStamped>().paperControllerObject)
+                    if (PaperMove.paperControllerObjects[i] == PaperObject.GetComponent<isStamped>().paperControllerObject && controllerOfPaperObj == PaperMove.paperControllerObjects[i])
                     {
-                        PaperMove.stampObjects[i] = Stamp;
+                        if (DayController.dayNum == 0) 
+                        {
+                            PaperMove.stampObjects[i] = Stamp;
+                        }
+                        else if (DayController.dayNum < 3 && DayController.dayNum != 1) 
+                        {
+                            UnityEngine.Debug.Log(DayController.dayNum);
+                            PaperMove.stampObjects[i + 1] = Stamp;
+                        }
+                        else if (DayController.dayNum !< 3 && DayController.dayNum != 1)
+                        {
+                            PaperMove.stampObjects[i + 2] = Stamp;
+                        }
                     }
                 }
                 transform.localScale = originalScale;
