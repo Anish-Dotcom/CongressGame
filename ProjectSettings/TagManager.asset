@@ -10,6 +10,7 @@ TagManager:
   - DayCon
   - AgentText
   - Agent
+  - Stamp
   layers:
   - Default
   - TransparentFX
