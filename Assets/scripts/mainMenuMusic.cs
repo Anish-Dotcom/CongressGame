@@ -29,6 +29,7 @@ public class mainMenuMusic : MonoBehaviour
     {
         if(happened == false)
         {
+            EscapeMenu.isOpen = false;
             musicController.music = true;
             happened = true;
         }
@@ -51,6 +52,17 @@ public class mainMenuMusic : MonoBehaviour
             source.mute = true;
             source2.mute = true;
 
+        }
+
+        if (EscapeMenu.isOpen)
+        {
+            source.Pause();
+            source2.Pause();
+        }
+        else
+        {
+            source.UnPause();
+            source2.UnPause();
         }
     }
 }
