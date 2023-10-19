@@ -115,6 +115,7 @@ public class PaperMove : MonoBehaviour
                     hand.SetActive(true);
                     paperpickedupinstance.instance.paperpickedup = true;
                     isRightMouseDown = true;
+                    prevPapers = GameObject.FindGameObjectsWithTag("Paper");
                     transform.localScale = transform.localScale * 1.1f;
                     float randomRot = Random.Range(-3, 3);
                     transform.rotation = Quaternion.Euler(0f, 0f, randomRot);
@@ -157,6 +158,7 @@ public class PaperMove : MonoBehaviour
                     {
                         firstChange[i] = true;
                     }
+                    stampObjects = GameObject.FindGameObjectsWithTag("Stamp");
                     for (int i = 0; i < stampObjects.Length; i++)
                     {
                         if (stampObjects[i] != null)
@@ -178,7 +180,6 @@ public class PaperMove : MonoBehaviour
             rot = transform.rotation;
             for (int i = 0; i < prevPapers.Length; i++)
             {
-                prevPapers = GameObject.FindGameObjectsWithTag("Paper");
                 if (firstChange[i]) 
                 {
                     if (prevPapers[i] == Paper)
@@ -215,16 +216,17 @@ public class PaperMove : MonoBehaviour
     }
     private void changeStampLayer() 
     {
+        stampObjects = GameObject.FindGameObjectsWithTag("Stamp");
         for (int i = 0; i < stampObjects.Length; i++)
         {
             if (stampObjects[i] != null && i == currentTop)
             {
                 stampObjects[i].GetComponent<Renderer>().sortingLayerName = "StampUp";
-                stampObjects[i].GetComponent<Renderer>().sortingOrder = prevPapers[i].GetComponent<Renderer>().sortingOrder + 1;
+                stampObjects[i].GetComponent<Renderer>().sortingOrder = stampObjects[i].GetComponentInParent<isStamped>().paperControllerObject.GetComponent<PaperMove>().Paper.GetComponent<Renderer>().sortingOrder + 1;
             }
             else if (stampObjects[i] != null)
             {
-                stampObjects[i].GetComponent<Renderer>().sortingOrder = prevPapers[i].GetComponent<Renderer>().sortingOrder + 1;
+                stampObjects[i].GetComponent<Renderer>().sortingOrder = stampObjects[i].GetComponentInParent<isStamped>().paperControllerObject.GetComponent<PaperMove>().Paper.GetComponent<Renderer>().sortingOrder + 1;
             }
         }
     }
