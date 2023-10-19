@@ -35,6 +35,7 @@ public class PaperMove : MonoBehaviour
     public static GameObject[] stampObjects;
     public static GameObject[] paperControllerObjects;
     public static int[] currentSortingOrder;
+    public bool isCurrentTop;
     public static int currentTop;
     public static bool[] firstChange;
     public float subFromX;
@@ -163,8 +164,9 @@ public class PaperMove : MonoBehaviour
                     {
                         if (stampObjects[i] != null)
                         {
+                            prevPapers[i].GetComponentInParent<PaperMove>().isCurrentTop = false;
                             stampObjects[i].GetComponent<Renderer>().sortingLayerName = paperputdownsortinglayer;
-                            stampObjects[i].GetComponent<Renderer>().sortingOrder = prevPapers[i].GetComponent<Renderer>().sortingOrder + 1;
+                            stampObjects[i].GetComponent<Renderer>().sortingOrder = stampObjects[i].GetComponentInParent<isStamped>().paperControllerObject.GetComponent<PaperMove>().Paper.GetComponent<Renderer>().sortingOrder + 1;
                         }
                     }
                     
@@ -184,11 +186,16 @@ public class PaperMove : MonoBehaviour
                 {
                     if (prevPapers[i] == Paper)
                     {
+                        prevPapers[i].GetComponentInParent<PaperMove>().isCurrentTop = true;
                         currentTop = i;
                         currentSortingOrder[i] = prevPapers.Length - 1;
                         prevPapers[i].GetComponent<Renderer>().sortingOrder = currentSortingOrder[i] * 2;
                         changeStampLayer();
                         changePaperColor();
+                    }
+                    else 
+                    {
+                        prevPapers[i].GetComponentInParent<PaperMove>().isCurrentTop = false;
                     }
                     if (prevPapers[i] != Paper && currentSortingOrder[i] >= currentTop && currentSortingOrder[i] > 0)
                     {
@@ -219,7 +226,7 @@ public class PaperMove : MonoBehaviour
         stampObjects = GameObject.FindGameObjectsWithTag("Stamp");
         for (int i = 0; i < stampObjects.Length; i++)
         {
-            if (stampObjects[i] != null && i == currentTop)
+            if (stampObjects[i] != null && stampObjects[i].GetComponentInParent<isStamped>().paperControllerObject.GetComponent<PaperMove>().isCurrentTop)
             {
                 stampObjects[i].GetComponent<Renderer>().sortingLayerName = "StampUp";
                 stampObjects[i].GetComponent<Renderer>().sortingOrder = stampObjects[i].GetComponentInParent<isStamped>().paperControllerObject.GetComponent<PaperMove>().Paper.GetComponent<Renderer>().sortingOrder + 1;
