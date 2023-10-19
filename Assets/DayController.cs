@@ -137,7 +137,6 @@ public class DayController : MonoBehaviour
             bellIsPushed = true;
             DayConObj.GetComponent<DayController>().lt1.transition1 = true;
                 DayConObj.GetComponent<DayController>().lt.transition = true;
-                UnityEngine.Debug.Log("start");
             if (dayNum == 3)
             {
                 paperObjectsForNext[1] = staticAllPaperObjects[15];
@@ -246,11 +245,11 @@ public class DayController : MonoBehaviour
     {
         if (bellInt == 0)
         {
-            GameObject[] paperConObj = GameObject.FindGameObjectsWithTag("PaperController");
+            GameObject[] stampedCheckObj = GameObject.FindGameObjectsWithTag("StampCheck");
             stampedAll = true;
-            for (int i = 0; i < paperConObj.Length; i++)
+            for (int i = 0; i < stampedCheckObj.Length; i++)
             {
-                if (paperConObj[i].GetComponent<PaperMove>().stampedType == 0)
+                if (stampedCheckObj[i].GetComponent<isStamped>().objIsStamped == false)
                 {
                     DayConObj.GetComponent<DayController>().preFullText = "You haven't stamped all papers.";
                     Agent.sprite = DayConObj.GetComponent<DayController>().Agents[3];
