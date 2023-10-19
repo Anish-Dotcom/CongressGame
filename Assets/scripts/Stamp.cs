@@ -100,7 +100,7 @@ public class Stamp : MonoBehaviour
         {
             transform.position = Vector2.SmoothDamp(transform.position, mousePositionSlow, ref currentVelocity, smoothTime, maxPaperFollowSpeed);
         }
-        if(Input.GetMouseButtonDown(1) && Stamppicked)
+        if(Input.GetMouseButtonDown(1) && Stamppicked || Input.GetKeyDown(KeyCode.Space) && Stamppicked)
         {
             if (OverPaper && !PaperObject.GetComponent<isStamped>().objIsStamped && controllerOfPaperObj.GetComponent<PaperMove>().paperNumber <= 17)
             {
