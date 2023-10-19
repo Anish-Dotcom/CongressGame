@@ -301,7 +301,7 @@ public class DayController : MonoBehaviour
     }
     IEnumerator ShowText()
     {
-        if (currentText == fullText || textWasInterupted)
+        if (currentText == fullText && fullText != preFullText || textWasInterupted)
         {
             textWriting = false;
         }
@@ -313,9 +313,9 @@ public class DayController : MonoBehaviour
         {
             fullText = preFullText;
         }
-        else
+        else if (fullText != preFullText)
         {
-            fullText = currentText + "�";
+            fullText = currentText + "—";
         }
         startText = false;
         if (!textWriting)
