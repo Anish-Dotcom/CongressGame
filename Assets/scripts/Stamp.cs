@@ -113,15 +113,15 @@ public class Stamp : MonoBehaviour
                 Stamp.GetComponent<Renderer>().sortingOrder = ParentRender.sortingOrder + 1;
                 PaperObject.GetComponent<isStamped>().objIsStamped = true;
                 controllerOfPaperObj.GetComponent<PaperMove>().stampedType = stampType;
-                if (stampType == 1)
+                if (controllerOfPaperObj.GetComponent<PaperMove>().stampedType == 2)
                 {
-                    DayController.DayConObj.GetComponent<DayController>().preFullText = DayController.DayConObj.GetComponent<DayController>().AgentTextOnStampDec[controllerOfPaperObj.GetComponent<PaperMove>().paperNumber];
+                    DayController.DayConObj.GetComponent<DayController>().preFullText = DayController.DayConObj.GetComponent<DayController>().AgentTextOnStampAcc[controllerOfPaperObj.GetComponent<PaperMove>().paperNumber];
                     DayController.Agent.sprite = DayController.DayConObj.GetComponent<DayController>().Agents[DayController.DayConObj.GetComponent<DayController>().stampAccAgent[controllerOfPaperObj.GetComponent<PaperMove>().paperNumber]];
                     DayController.DayConObj.GetComponent<DayController>().showTextCall();
                 }
-                else if (stampType == 2)
+                else if (controllerOfPaperObj.GetComponent<PaperMove>().stampedType == 1)
                 {
-                    DayController.DayConObj.GetComponent<DayController>().preFullText = DayController.DayConObj.GetComponent<DayController>().AgentTextOnStampAcc[controllerOfPaperObj.GetComponent<PaperMove>().paperNumber];
+                    DayController.DayConObj.GetComponent<DayController>().preFullText = DayController.DayConObj.GetComponent<DayController>().AgentTextOnStampDec[controllerOfPaperObj.GetComponent<PaperMove>().paperNumber];
                     DayController.Agent.sprite = DayController.DayConObj.GetComponent<DayController>().Agents[DayController.DayConObj.GetComponent<DayController>().stampDecAgent[controllerOfPaperObj.GetComponent<PaperMove>().paperNumber]];
                     DayController.DayConObj.GetComponent<DayController>().showTextCall();
                 }
