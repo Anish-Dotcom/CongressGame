@@ -5,9 +5,9 @@
 ### will determine your fate.
 ### ︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶
 ## Authors:
-###   Brady Rozendaal (main programmer, writer, music/effects)
-###   Ayan Masud (artist, programmer, writer, effects)
-###   Anish Rao (programmer, writer)
+### Brady Rozendaal (main programmer, writer, music/effects)
+### Ayan Masud (artist, programmer, writer, effects)
+### Anish Rao (programmer, writer)
 ### ︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶
 ## Papers:
 ### There are two different types of papers. Papers with laws 

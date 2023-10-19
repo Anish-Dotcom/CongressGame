@@ -32,7 +32,6 @@ public class EscapeMenu : MonoBehaviour
 
     public void loadMainMenu()
     {
-        isOpen = false;
-        SceneManager.LoadScene("MainMenu");
+        Application.Quit();
     }
 }

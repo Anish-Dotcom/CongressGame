@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class handscript : MonoBehaviour
 {
+    public GameObject hands;
     public GameObject rightHandEmpty;
+    public GameObject leftHand;
+    public bool lightsOut;
 
     // Start is called before the first frame update
     void Start()
@@ -20,11 +23,16 @@ public class handscript : MonoBehaviour
             rightHandEmpty.SetActive(true);
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition = new Vector2(mousePosition.x, mousePosition.y);
-            rightHandEmpty.transform.position = mousePosition;
+            hands.transform.position = mousePosition;
         }
         else
         {
             rightHandEmpty.SetActive(false);
+        }
+
+        if (lightsOut)
+        {
+            leftHand.SetActive(true);
         }
     }
 }
