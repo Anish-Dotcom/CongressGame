@@ -13,16 +13,22 @@ public class splashScreenManager : MonoBehaviour
     public GameObject anim6;
     public GameObject anim7;
     public GameObject anim8;
+    public GameObject text;
+    public bool loading;
     // Start is called before the first frame update
     void Start()
     {
+        loading = true;
         StartCoroutine(beginAnim());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.anyKeyDown && loading == false)
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 
     IEnumerator beginAnim()
@@ -49,6 +55,7 @@ public class splashScreenManager : MonoBehaviour
         anim7.SetActive(false);
         anim8.SetActive(true);
         yield return new WaitForSeconds(0.2f);
-        SceneManager.LoadScene("MainMenu");
+        loading = false;
+        text.SetActive(true);
     }
 }
