@@ -122,6 +122,12 @@ public class PaperMove : MonoBehaviour
                     transform.rotation = Quaternion.Euler(0f, 0f, randomRot);
                     paperShadow.SetActive(true);
                     renderer.sortingLayerName = paperpickedupsortinglayer;
+                    if (DayController.nextDayPowerOut && paperNumber <= 17)
+                    {
+                        UnityEngine.Debug.Log(DayController.nextDayPowerOut);
+                        DayController.nextDayPowerOut = false;
+                        handscript.lightsOut = true;
+                    }
                     if (hit.collider.gameObject.CompareTag("StampCheck")) 
                     {
                         DayController.DayConObj.GetComponent<DayController>().preFullText = DayController.DayConObj.GetComponent<DayController>().AgentTextOnPickup[hit.collider.gameObject.GetComponent<isStamped>().paperControllerObject.GetComponent<PaperMove>().paperNumber];

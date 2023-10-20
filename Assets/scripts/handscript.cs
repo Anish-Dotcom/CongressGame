@@ -7,7 +7,7 @@ public class handscript : MonoBehaviour
     public GameObject hands;
     public GameObject rightHandEmpty;
     public GameObject leftHand;
-    public bool lightsOut;
+    public static bool lightsOut;
 
     // Start is called before the first frame update
     void Start()

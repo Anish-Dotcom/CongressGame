@@ -34,6 +34,7 @@ public class DayController : MonoBehaviour
     public string[] AgentTextOnStampAcc;
     public string[] AgentTextOnStampDec;
 
+    public static bool nextDayPowerOut;
     public float speed = 1f;
     public string preFullText;
     public string fullText;
@@ -106,28 +107,6 @@ public class DayController : MonoBehaviour
     }
     public static void PapersForNext()//call this after inbetween day
     {
-        GameObject[] paperConObj = GameObject.FindGameObjectsWithTag("PaperController");
-        for (int i = 0; i < paperConObj.Length; i++)
-        {
-            if (paperConObj[i].GetComponent<PaperMove>().stampedType == 1)//decclined -----------------------------------------------------------------------------------------------
-            {
-                for (int b = 0; b < 7; b++)
-                {
-                    approvalPercentageDemographics[b] += DayConObj.GetComponent<DayController>().demographicChangeDec.GetCell(b, paperConObj[i].GetComponent<PaperMove>().paperNumber);
-                }
-            }
-            if (paperConObj[i].GetComponent<PaperMove>().stampedType == 2) //accepted --------------------------------------------------------------------------------------------------
-            {
-                for (int b = 0; b < 7; b++)
-                {
-                    approvalPercentageDemographics[b] += DayConObj.GetComponent<DayController>().demographicChangeAcc.GetCell(b, paperConObj[i].GetComponent<PaperMove>().paperNumber);
-                    if (dayNum == 4 && paperConObj[i].GetComponent<PaperMove>().paperNumber == 16) 
-                    {
-                        citizensCanProposeLaws = true;
-                    }
-                }
-            }
-        }
         if (dayNum == 0)
         {
             NewDay();
@@ -174,6 +153,11 @@ public class DayController : MonoBehaviour
                             isUsedPaper[6] = true;
                             isUsedPaper[7] = true;
                         }
+                        if (numberOfRandomPaper == 2 || numberOfRandomPaper == 4)
+                        {
+                            isUsedPaper[2] = true;
+                            isUsedPaper[4] = true;
+                        }
                     }
                     else
                     {
@@ -196,6 +180,11 @@ public class DayController : MonoBehaviour
                         {
                             isUsedPaper[6] = true;
                             isUsedPaper[7] = true;
+                        }
+                        if (numberOfRandomPaper == 2 || numberOfRandomPaper == 4)
+                        {
+                            isUsedPaper[2] = true;
+                            isUsedPaper[4] = true;
                         }
                     }
                     else
@@ -222,11 +211,38 @@ public class DayController : MonoBehaviour
         }
         GameObject Paper = Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
         Paper.GetComponent<PaperMove>().paperNumber = newspaperInt;
-        Paper.GetComponent<Transform>().localScale = Paper.GetComponent<Transform>().localScale * 1.3f;
+        Paper.GetComponent<PaperMove>().Paper.GetComponent<Transform>().localScale = Paper.GetComponent<PaperMove>().Paper.GetComponent<Transform>().localScale * 1.3f;
+        Paper.GetComponent<PaperMove>().hand.transform.position = new Vector2(3.68f, Paper.GetComponent<PaperMove>().hand.transform.position.y);
         Paper.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = staticAllPaperObjects[newspaperInt];
     }
     public static void InBetweenDay() //remove all papers and then summon news paper and madlibs politcal campain
     {
+        GameObject[] paperConObj = GameObject.FindGameObjectsWithTag("PaperController");
+        for (int i = 0; i < paperConObj.Length; i++)
+        {
+            if (paperConObj[i].GetComponent<PaperMove>().stampedType == 1)//decclined -----------------------------------------------------------------------------------------------
+            {
+                for (int b = 0; b < 7; b++)
+                {
+                    approvalPercentageDemographics[b] += DayConObj.GetComponent<DayController>().demographicChangeDec.GetCell(b, paperConObj[i].GetComponent<PaperMove>().paperNumber);
+                    if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 2 || paperConObj[i].GetComponent<PaperMove>().paperNumber == 4)
+                    {
+                        nextDayPowerOut = true;
+                    }
+                }
+            }
+            if (paperConObj[i].GetComponent<PaperMove>().stampedType == 2) //accepted --------------------------------------------------------------------------------------------------
+            {
+                for (int b = 0; b < 7; b++)
+                {
+                    approvalPercentageDemographics[b] += DayConObj.GetComponent<DayController>().demographicChangeAcc.GetCell(b, paperConObj[i].GetComponent<PaperMove>().paperNumber);
+                    if (dayNum == 4 && paperConObj[i].GetComponent<PaperMove>().paperNumber == 16)
+                    {
+                        citizensCanProposeLaws = true;
+                    }
+                }
+            }
+        }
         GameObject[] PrevPapers = GameObject.FindGameObjectsWithTag("PaperController");
         for (int i = 0; i < PrevPapers.Length; i++)
         {
