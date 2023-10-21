@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using Array2DEditor;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class DayController : MonoBehaviour
 {
@@ -54,6 +55,8 @@ public class DayController : MonoBehaviour
 
     public string daynumstring = "Day";
     public static bool citizensCanProposeLaws = false;
+
+    public int requiredAvgAprovalPercent;
 
     void Start()
     {
@@ -135,10 +138,10 @@ public class DayController : MonoBehaviour
                 GameObject Paper = Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
                 Paper.GetComponent<PaperMove>().paperNumber = 17;
             }
-            int numberOfPapers = UnityEngine.Random.Range(2, 4);
             
-            if (dayNum >= 3) 
+            if (dayNum >= 3 && dayNum < 6)
             {
+                int numberOfPapers = UnityEngine.Random.Range(2, 3);
                 for (int i = 0; i < numberOfPapers; i++)
                 {
                     int numberOfRandomPaper = UnityEngine.Random.Range(1, 15);
@@ -165,8 +168,9 @@ public class DayController : MonoBehaviour
                     }
                 }
             }
-            else 
+            else if (dayNum < 3)
             {
+                int numberOfPapers = UnityEngine.Random.Range(2, 4);
                 for (int i = 0; i < numberOfPapers; i++)
                 {
                     int numberOfRandomPaper = UnityEngine.Random.Range(1, 15);
@@ -192,6 +196,10 @@ public class DayController : MonoBehaviour
                         i = i - 1;
                     }
                 }
+            }
+            else if (dayNum == 6)
+            { 
+                
             }
             NewDay();
         }
@@ -357,5 +365,21 @@ public class DayController : MonoBehaviour
     {
         DayController.DayConObj.GetComponent<DayController>().preFullText = " ";
         DayController.DayConObj.GetComponent<DayController>().showTextCall();
+    }
+    public static void calculateEnding()//this is called when you press the bell after grading day
+    {
+        int totalApproval = 0;
+        for (int i = 0; i < approvalPercentageDemographics.Length; i++)
+        {
+            totalApproval += approvalPercentageDemographics[i];
+        }
+        if (totalApproval / approvalPercentageDemographics.Length >= DayConObj.GetComponent<DayController>().requiredAvgAprovalPercent) //win
+        {
+            SceneManager.LoadScene("WinScene");
+        }
+        else //lose
+        {
+            SceneManager.LoadScene("DeathScene");
+        }
     }
 }
