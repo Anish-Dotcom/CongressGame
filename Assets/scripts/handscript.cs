@@ -7,6 +7,8 @@ public class handscript : MonoBehaviour
     public GameObject hands;
     public GameObject rightHandEmpty;
     public GameObject leftHand;
+    public GameObject lights;
+
     public static bool lightsOut;
 
     // Start is called before the first frame update
@@ -32,6 +34,7 @@ public class handscript : MonoBehaviour
 
         if (lightsOut)
         {
+            lights.SetActive(false);
             leftHand.SetActive(true);
         }
     }
