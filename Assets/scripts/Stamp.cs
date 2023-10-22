@@ -102,6 +102,7 @@ public class Stamp : MonoBehaviour
         }
         if(Input.GetMouseButtonDown(1) && Stamppicked || Input.GetKeyDown(KeyCode.Space) && Stamppicked)
         {
+            GameObject paperO = PaperObject;
             if (OverPaper && !PaperObject.GetComponent<isStamped>().objIsStamped && controllerOfPaperObj.GetComponent<PaperMove>().paperNumber <= 17)
             {
                 if (musicController.effects == true)
@@ -137,10 +138,7 @@ public class Stamp : MonoBehaviour
             PaperObject = col.gameObject;
             ParentRender = PaperObject.GetComponentInParent<Renderer>();
             OverPaper = true;
-        }
-        if (col.gameObject.CompareTag("PaperController")) 
-        {
-            controllerOfPaperObj = col.gameObject;
+            controllerOfPaperObj = col.transform.parent.gameObject.transform.parent.gameObject;
         }
     }
     public void OnTriggerExit2D(Collider2D col)

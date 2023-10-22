@@ -140,6 +140,16 @@ public class PaperMove : MonoBehaviour
                         DayController.Agent.sprite = DayController.DayConObj.GetComponent<DayController>().Agents[DayController.DayConObj.GetComponent<DayController>().pickupIntAgent[hit.collider.gameObject.GetComponent<PaperMove>().paperNumber]];
                         DayController.DayConObj.GetComponent<DayController>().showTextCall();
                     }
+                    stampObjects = GameObject.FindGameObjectsWithTag("Stamp");
+                    for (int i = 0; i < stampObjects.Length; i++)
+                    {
+                        if (stampObjects[i] != null)
+                        {
+                            prevPapers[i].GetComponentInParent<PaperMove>().isCurrentTop = false;
+                            stampObjects[i].GetComponent<Renderer>().sortingLayerName = paperputdownsortinglayer;
+                            stampObjects[i].GetComponent<Renderer>().sortingOrder = stampObjects[i].GetComponentInParent<isStamped>().paperControllerObject.GetComponent<PaperMove>().Paper.GetComponent<Renderer>().sortingOrder + 1;
+                        }
+                    }
                 }
             }
         }
