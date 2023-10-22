@@ -57,6 +57,7 @@ public class DayController : MonoBehaviour
     public static bool citizensCanProposeLaws = false;
 
     public int requiredAvgAprovalPercent;
+    public GameObject GradingPaper;
 
     void Start()
     {
@@ -197,9 +198,9 @@ public class DayController : MonoBehaviour
                     }
                 }
             }
-            else if (dayNum == 6)
-            { 
-                
+            else if (dayNum == 6)//summon grading paper
+            {
+                Instantiate(DayConObj.GetComponent<DayController>().GradingPaper, new Vector3(0f, 0f, 0f), Quaternion.identity);
             }
             NewDay();
         }
