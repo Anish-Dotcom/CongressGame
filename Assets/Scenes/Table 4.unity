@@ -189,7 +189,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fc43cb59f38e9c43bbef792bf55c2f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hands: {fileID: 0}
   rightHandEmpty: {fileID: 2090099020}
+  leftHand: {fileID: 0}
+  lightsOut: 0
 --- !u!4 &88711579
 Transform:
   m_ObjectHideFlags: 0
@@ -719,6 +722,7 @@ MonoBehaviour:
   transition1: 0
   transitionback: 0
   agent: {fileID: 278138944}
+  agentText: {fileID: 0}
   transitionback1: 0
   decayspeed: 0.001
   Mainlight: {fileID: 1667092796}
@@ -2521,6 +2525,7 @@ MonoBehaviour:
   transition1: 0
   transitionback: 0
   agent: {fileID: 278138944}
+  agentText: {fileID: 0}
   transitionback1: 0
   decayspeed: 0.0005
   Mainlight: {fileID: 1667092796}
