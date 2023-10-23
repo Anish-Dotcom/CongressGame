@@ -12,6 +12,9 @@ TagManager:
   - Agent
   - Stamp
   - Music
+  - Color
+  - Slogan
+  - Motif
   layers:
   - Default
   - TransparentFX

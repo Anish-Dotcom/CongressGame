@@ -59,9 +59,18 @@ public class DayController : MonoBehaviour
     public int requiredAvgAprovalPercent;
     public GameObject GradingPaper;
 
+    public static bool colorOn;
+    public static bool sloganOn;
+    public static bool motifOn;
+    public GameObject posterColor;
+    public GameObject posterSlogan;
+    public GameObject posterMotif;
+
     void Start()
     {
-        bellIsPushed = true;
+        colorOn = false;
+        sloganOn = false;
+        motifOn = false;
         lt1.transition1 = true;
         lt.transition = true;
         Agent = GameObject.FindGameObjectWithTag("Agent").GetComponent<SpriteRenderer>();
@@ -85,6 +94,37 @@ public class DayController : MonoBehaviour
     void Update()
     {
         daynum1 = dayNum - 1;
+        if (bellIsPushed == true)
+        {
+            StartCoroutine(PushBell());
+        }
+
+        if(colorOn == true)
+        {
+            posterColor.SetActive(true);
+        }
+        else
+        {
+            posterColor.SetActive(false);
+        }
+
+        if(sloganOn == true)
+        {
+            posterSlogan.SetActive(true);
+        }
+        else
+        {
+            posterSlogan.SetActive(false);
+        }
+
+        if(motifOn == true)
+        {
+            posterMotif.SetActive(true);
+        }
+        else
+        {
+            posterMotif.SetActive(false);
+        }
     }
     public static void NewDay()
     {
@@ -223,6 +263,18 @@ public class DayController : MonoBehaviour
         Paper.GetComponent<PaperMove>().Paper.GetComponent<Transform>().localScale = Paper.GetComponent<PaperMove>().Paper.GetComponent<Transform>().localScale * 1.3f;
         Paper.GetComponent<PaperMove>().hand.transform.position = new Vector2(3.68f, Paper.GetComponent<PaperMove>().hand.transform.position.y);
         Paper.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = staticAllPaperObjects[newspaperInt];
+        if(newspaperInt == 18)
+        {
+            colorOn = true;
+        }
+        if (newspaperInt == 19)
+        {
+            sloganOn = true;
+        }
+        if (newspaperInt == 20)
+        {
+            motifOn = true;
+        }
     }
     public static void InBetweenDay() //remove all papers and then summon news paper and madlibs politcal campain
     {
@@ -268,6 +320,9 @@ public class DayController : MonoBehaviour
     }
     public static void BellPush()
     {
+        colorOn = false;
+        sloganOn = false;
+        motifOn = false;
         if (bellInt == 0)
         {
             GameObject[] stampedCheckObj = GameObject.FindGameObjectsWithTag("StampCheck");
