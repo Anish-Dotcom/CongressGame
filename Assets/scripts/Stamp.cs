@@ -57,12 +57,12 @@ public class Stamp : MonoBehaviour
             slowToStop = false;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             hit = Physics2D.Raycast(ray.origin, ray.direction);
-            if (!paperpickedupinstance.instance.paperpickedup && hit.collider != null)
+            if (!paperpickedupinstance.paperpickedup && hit.collider != null)
             {
                 if (hit.collider.gameObject == gameObject)
                 {
                     hand.SetActive(true);
-                    paperpickedupinstance.instance.paperpickedup = true;
+                    paperpickedupinstance.paperpickedup = true;
                     Stamppicked = true;
                     isRightMouseDown = true;
                     transform.localScale = transform.localScale * 1.1f;
@@ -79,7 +79,7 @@ public class Stamp : MonoBehaviour
                 if (hit.collider.gameObject == gameObject)
                 {
                     hand.SetActive(false);
-                    paperpickedupinstance.instance.paperpickedup = false;
+                    paperpickedupinstance.paperpickedup = false;
                     Stamppicked = false;
                     transform.localScale = originalScale;
                     renderer.sortingLayerName = stampputdownsortinglayer;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class paperpickedupinstance : MonoBehaviour
 {
-    public bool paperpickedup;
+    public static bool paperpickedup;
     public static paperpickedupinstance instance;
     // Start is called before the first frame update
     void Awake()
