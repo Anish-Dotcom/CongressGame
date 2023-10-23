@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using Array2DEditor;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class DayController : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class DayController : MonoBehaviour
     public static Sprite[] staticAllPaperObjects;
     public static bool[] isUsedPaper;
     public static int[] approvalPercentageDemographics = new int[7];//The 1%, Middle class, Impoverished, Progressive, Conservative, Federalist, Anti-Federalist
+    public int[] approvalPercentageDemographicsTest = new int[7];
     [SerializeField]
     public Array2DInt demographicChangeAcc;
     [SerializeField]
@@ -34,6 +36,7 @@ public class DayController : MonoBehaviour
     public string[] AgentTextOnStampAcc;
     public string[] AgentTextOnStampDec;
 
+    public static bool nextDayPowerOut;
     public float speed = 1f;
     public string preFullText;
     public string fullText;
@@ -54,9 +57,21 @@ public class DayController : MonoBehaviour
     public string daynumstring = "Day";
     public static bool citizensCanProposeLaws = false;
 
+    public int requiredAvgAprovalPercent;
+    public GameObject GradingPaper;
+
+    public static bool colorOn;
+    public static bool sloganOn;
+    public static bool motifOn;
+    public GameObject posterColor;
+    public GameObject posterSlogan;
+    public GameObject posterMotif;
+
     void Start()
     {
-        bellIsPushed = true;
+        colorOn = false;
+        sloganOn = false;
+        motifOn = false;
         lt1.transition1 = true;
         lt.transition = true;
         Agent = GameObject.FindGameObjectWithTag("Agent").GetComponent<SpriteRenderer>();
@@ -73,6 +88,10 @@ public class DayController : MonoBehaviour
         }
         paperObjectsForNext[0] = allPaperObjects[0];//Tutorial doc
         GameObject Paper = Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+        for (int i = 0; i < approvalPercentageDemographics.Length; i++)
+        {
+            approvalPercentageDemographics[i] = approvalPercentageDemographicsTest[i];
+        }
         Paper.GetComponent<PaperMove>().paperNumber = 0;
         PaperMove.prevPapers = GameObject.FindGameObjectsWithTag("Paper");
         PapersForNext();
@@ -80,6 +99,37 @@ public class DayController : MonoBehaviour
     void Update()
     {
         daynum1 = dayNum - 1;
+        if (bellIsPushed == true)
+        {
+            StartCoroutine(PushBell());
+        }
+
+        if(colorOn == true)
+        {
+            posterColor.SetActive(true);
+        }
+        else
+        {
+            posterColor.SetActive(false);
+        }
+
+        if(sloganOn == true)
+        {
+            posterSlogan.SetActive(true);
+        }
+        else
+        {
+            posterSlogan.SetActive(false);
+        }
+
+        if(motifOn == true)
+        {
+            posterMotif.SetActive(true);
+        }
+        else
+        {
+            posterMotif.SetActive(false);
+        }
     }
     public static void NewDay()
     {
@@ -106,28 +156,6 @@ public class DayController : MonoBehaviour
     }
     public static void PapersForNext()//call this after inbetween day
     {
-        GameObject[] paperConObj = GameObject.FindGameObjectsWithTag("PaperController");
-        for (int i = 0; i < paperConObj.Length; i++)
-        {
-            if (paperConObj[i].GetComponent<PaperMove>().stampedType == 1)//decclined -----------------------------------------------------------------------------------------------
-            {
-                for (int b = 0; b < 7; b++)
-                {
-                    approvalPercentageDemographics[b] += DayConObj.GetComponent<DayController>().demographicChangeDec.GetCell(b, paperConObj[i].GetComponent<PaperMove>().paperNumber);
-                }
-            }
-            if (paperConObj[i].GetComponent<PaperMove>().stampedType == 2) //accepted --------------------------------------------------------------------------------------------------
-            {
-                for (int b = 0; b < 7; b++)
-                {
-                    approvalPercentageDemographics[b] += DayConObj.GetComponent<DayController>().demographicChangeAcc.GetCell(b, paperConObj[i].GetComponent<PaperMove>().paperNumber);
-                    if (dayNum == 4 && paperConObj[i].GetComponent<PaperMove>().paperNumber == 16) 
-                    {
-                        citizensCanProposeLaws = true;
-                    }
-                }
-            }
-        }
         if (dayNum == 0)
         {
             NewDay();
@@ -156,10 +184,10 @@ public class DayController : MonoBehaviour
                 GameObject Paper = Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
                 Paper.GetComponent<PaperMove>().paperNumber = 17;
             }
-            int numberOfPapers = UnityEngine.Random.Range(2, 4);
             
-            if (dayNum >= 3) 
+            if (dayNum >= 3 && dayNum < 6)
             {
+                int numberOfPapers = UnityEngine.Random.Range(2, 3);
                 for (int i = 0; i < numberOfPapers; i++)
                 {
                     int numberOfRandomPaper = UnityEngine.Random.Range(1, 15);
@@ -174,6 +202,11 @@ public class DayController : MonoBehaviour
                             isUsedPaper[6] = true;
                             isUsedPaper[7] = true;
                         }
+                        if (numberOfRandomPaper == 2 || numberOfRandomPaper == 4)
+                        {
+                            isUsedPaper[2] = true;
+                            isUsedPaper[4] = true;
+                        }
                     }
                     else
                     {
@@ -181,8 +214,9 @@ public class DayController : MonoBehaviour
                     }
                 }
             }
-            else 
+            else if (dayNum < 3)
             {
+                int numberOfPapers = UnityEngine.Random.Range(2, 4);
                 for (int i = 0; i < numberOfPapers; i++)
                 {
                     int numberOfRandomPaper = UnityEngine.Random.Range(1, 15);
@@ -197,6 +231,11 @@ public class DayController : MonoBehaviour
                             isUsedPaper[6] = true;
                             isUsedPaper[7] = true;
                         }
+                        if (numberOfRandomPaper == 2 || numberOfRandomPaper == 4)
+                        {
+                            isUsedPaper[2] = true;
+                            isUsedPaper[4] = true;
+                        }
                     }
                     else
                     {
@@ -204,29 +243,79 @@ public class DayController : MonoBehaviour
                     }
                 }
             }
+            else if (dayNum == 6)//summon grading paper
+            {
+                Instantiate(DayConObj.GetComponent<DayController>().GradingPaper, new Vector3(0f, 0f, 0f), Quaternion.identity);
+            }
             NewDay();
         }
     }
     public static void NewsPaperForBetween() 
     {
-        
-        bellIsPushed = true;
-        int newspaperInt;
-        if (citizensCanProposeLaws) 
+        if (dayNum != 6)
         {
-            newspaperInt = dayNum + 18;
+            bellIsPushed = true;
+            int newspaperInt;
+            if (citizensCanProposeLaws)
+            {
+                newspaperInt = dayNum + 18;
+            }
+            else
+            {
+                newspaperInt = dayNum + 17;
+            }
+            GameObject Paper = Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+            Paper.GetComponent<PaperMove>().paperNumber = newspaperInt;
+            Paper.GetComponent<PaperMove>().Paper.GetComponent<Transform>().localScale = Paper.GetComponent<PaperMove>().Paper.GetComponent<Transform>().localScale * 1.3f;
+            Paper.GetComponent<PaperMove>().hand.transform.position = new Vector2(3.68f, Paper.GetComponent<PaperMove>().hand.transform.position.y);
+            Paper.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = staticAllPaperObjects[newspaperInt];
+            if (newspaperInt == 18)
+            {
+                colorOn = true;
+            }
+            if (newspaperInt == 19)
+            {
+                sloganOn = true;
+            }
+            if (newspaperInt == 20)
+            {
+                motifOn = true;
+            }
         }
         else 
         {
-            newspaperInt = dayNum + 17;
+            
         }
-        GameObject Paper = Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
-        Paper.GetComponent<PaperMove>().paperNumber = newspaperInt;
-        Paper.GetComponent<Transform>().localScale = Paper.GetComponent<Transform>().localScale * 1.3f;
-        Paper.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = staticAllPaperObjects[newspaperInt];
     }
     public static void InBetweenDay() //remove all papers and then summon news paper and madlibs politcal campain
     {
+        GameObject[] paperConObj = GameObject.FindGameObjectsWithTag("PaperController");
+        nextDayPowerOut = false;
+        for (int i = 0; i < paperConObj.Length; i++)
+        {
+            if (paperConObj[i].GetComponent<PaperMove>().stampedType == 1)//decclined -----------------------------------------------------------------------------------------------
+            {
+                for (int b = 0; b < 7; b++)
+                {
+                    approvalPercentageDemographics[b] += DayConObj.GetComponent<DayController>().demographicChangeDec.GetCell(b, paperConObj[i].GetComponent<PaperMove>().paperNumber);
+                    if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 2 || paperConObj[i].GetComponent<PaperMove>().paperNumber == 4)
+                    {
+                        nextDayPowerOut = true;
+                    }
+                }
+            }
+            if (paperConObj[i].GetComponent<PaperMove>().stampedType == 2) //accepted --------------------------------------------------------------------------------------------------
+            {
+                for (int b = 0; b < 7; b++)
+                {
+                    approvalPercentageDemographics[b] += DayConObj.GetComponent<DayController>().demographicChangeAcc.GetCell(b, paperConObj[i].GetComponent<PaperMove>().paperNumber);
+                    if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 16)
+                    {
+                        citizensCanProposeLaws = true;
+                    }
+                }
+            }
+        }
         GameObject[] PrevPapers = GameObject.FindGameObjectsWithTag("PaperController");
         for (int i = 0; i < PrevPapers.Length; i++)
         {
@@ -243,6 +332,9 @@ public class DayController : MonoBehaviour
     }
     public static void BellPush()
     {
+        colorOn = false;
+        sloganOn = false;
+        motifOn = false;
         if (bellInt == 0)
         {
             GameObject[] stampedCheckObj = GameObject.FindGameObjectsWithTag("StampCheck");
@@ -341,5 +433,21 @@ public class DayController : MonoBehaviour
     {
         DayController.DayConObj.GetComponent<DayController>().preFullText = " ";
         DayController.DayConObj.GetComponent<DayController>().showTextCall();
+    }
+    public static void calculateEnding()//this is called when you press the bell after grading day
+    {
+        int totalApproval = 0;
+        for (int i = 0; i < approvalPercentageDemographics.Length; i++)
+        {
+            totalApproval += approvalPercentageDemographics[i];
+        }
+        if (totalApproval / approvalPercentageDemographics.Length >= DayConObj.GetComponent<DayController>().requiredAvgAprovalPercent) //win
+        {
+            SceneManager.LoadScene("WinScene");
+        }
+        else //lose
+        {
+            SceneManager.LoadScene("DeathScene");
+        }
     }
 }

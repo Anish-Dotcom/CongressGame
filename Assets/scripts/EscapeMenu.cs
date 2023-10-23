@@ -34,4 +34,10 @@ public class EscapeMenu : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void closeEscape()
+    {
+        isOpen = false;
+        EscapeObject.SetActive(false);
+    }
 }

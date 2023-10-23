@@ -29,6 +29,7 @@
 ## Controls:
 ### Pick up paper ➜ (left click)
 ### Pick up stamp ➜ (left click)
-### Stamp Paper ➜ (pick up paper + right click)
+### Stamp paper ➜ (pick up paper + right click)
+### Stamp paper (touchpad users) ➜ (pick up paper + space)
 ### Ring bell ➜ (left click)
 ### Escape ➜ (escape)

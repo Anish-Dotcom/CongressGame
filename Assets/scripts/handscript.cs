@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class handscript : MonoBehaviour
 {
+    public GameObject LightOn;
+    public GameObject LightOff;
+
     public GameObject hands;
     public GameObject rightHandEmpty;
     public GameObject leftHand;
-    public bool lightsOut;
+    public GameObject lights;
+
+    public static bool lightsOut;
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +37,10 @@ public class handscript : MonoBehaviour
 
         if (lightsOut)
         {
+            lights.SetActive(false);
             leftHand.SetActive(true);
+            LightOn.SetActive(false);
+            LightOff.SetActive(true);
         }
     }
 }
