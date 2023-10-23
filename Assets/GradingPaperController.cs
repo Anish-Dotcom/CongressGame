@@ -36,7 +36,7 @@ public class GradingPaperController : MonoBehaviour
     {
         thisPaper = GameObject.FindGameObjectWithTag("GradingCon"); ;
         originalScale = transform.localScale;
-        paperpickedupinstance.paperpickedup = false;
+        paperpickedupinstance.instance.paperpickedup = false;
 
         float randomRot = Random.Range(-90, 90);
         float randomPosx = Random.Range(-8, 8);
@@ -82,7 +82,7 @@ public class GradingPaperController : MonoBehaviour
             slowToStop = false;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             hit = Physics2D.Raycast(ray.origin, ray.direction);
-            if (!paperpickedupinstance.paperpickedup && hit.collider != null)
+            if (!paperpickedupinstance.instance.paperpickedup && hit.collider != null)
             {
                 if (hit.collider.gameObject == gameObject || hit.collider.gameObject.CompareTag("StampCheck") && hit.collider.gameObject == isStampedObj)
                 {
@@ -91,7 +91,7 @@ public class GradingPaperController : MonoBehaviour
                         sourceUp.Play();
                     }
                     hand.SetActive(true);
-                    paperpickedupinstance.paperpickedup = true;
+                    paperpickedupinstance.instance.paperpickedup = true;
                     isRightMouseDown = true;
                     transform.localScale = transform.localScale * 1.1f;
                     float randomRot = Random.Range(-3, 3);
@@ -111,7 +111,7 @@ public class GradingPaperController : MonoBehaviour
                     {
                         sourceDown.Play();
                     }
-                    paperpickedupinstance.paperpickedup = false;
+                    paperpickedupinstance.instance.paperpickedup = false;
                     hand.SetActive(false);
                     slowToStop = true;
                     transform.localScale = originalScale;
