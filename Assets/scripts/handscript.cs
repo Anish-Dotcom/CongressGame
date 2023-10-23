@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class handscript : MonoBehaviour
 {
+    public UnityEngine.Rendering.Universal.Light2D spotlight;
     public GameObject LightOn;
     public GameObject LightOff;
 
@@ -14,16 +15,19 @@ public class handscript : MonoBehaviour
 
     public static bool lightsOut;
 
+    public bool happened;
+    public int numberOfFlickers;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        happened = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (paperpickedupinstance.instance.paperpickedup == false)
+        if (paperpickedupinstance.paperpickedup == false)
         {
             rightHandEmpty.SetActive(true);
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -37,10 +41,43 @@ public class handscript : MonoBehaviour
 
         if (lightsOut)
         {
-            lights.SetActive(false);
-            leftHand.SetActive(true);
-            LightOn.SetActive(false);
-            LightOff.SetActive(true);
+            if (happened == false)
+            {
+                StartCoroutine(lightFlicker());
+                happened = true;
+            }
         }
     }
+
+    IEnumerator lightFlicker()
+    {
+        while (numberOfFlickers > 0)
+        {
+            lights.SetActive(false);
+            yield return new WaitForSeconds(0.08f);
+            spotlight.intensity = 0.75f;
+            lights.SetActive(true);
+            yield return new WaitForSeconds(0.12f);
+            lights.SetActive(false);
+            yield return new WaitForSeconds(0.24f);
+            spotlight.intensity = 0.5f;
+            lights.SetActive(true);
+            yield return new WaitForSeconds(0.08f);
+            lights.SetActive(false);
+            yield return new WaitForSeconds(0.22f);
+            spotlight.intensity = 0.25f;
+            lights.SetActive(true);
+            yield return new WaitForSeconds(0.14f);
+            spotlight.intensity = 0f;
+            numberOfFlickers = numberOfFlickers - 1;
+        }
+        lights.SetActive(false);
+        LightOn.SetActive(false);
+        LightOff.SetActive(true);
+        yield return new WaitForSeconds(1.2f);
+        DayController.DayConObj.GetComponent<DayController>().preFullText = "Seems like the power went out. Heres a candle for convienience.";
+        yield return new WaitForSeconds(0.2f);
+        leftHand.SetActive(true);
+    }
+
 }
