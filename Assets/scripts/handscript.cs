@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class handscript : MonoBehaviour
 {
+    public GameObject LightOn;
+    public GameObject LightOff;
+
     public GameObject hands;
     public GameObject rightHandEmpty;
     public GameObject leftHand;
@@ -36,6 +39,8 @@ public class handscript : MonoBehaviour
         {
             lights.SetActive(false);
             leftHand.SetActive(true);
+            LightOn.SetActive(false);
+            LightOff.SetActive(true);
         }
     }
 }
