@@ -47,7 +47,7 @@ public class PaperMove : MonoBehaviour
     void Start()
     {
         originalScale = transform.localScale;
-        paperpickedupinstance.paperpickedup = false;
+        paperpickedupinstance.instance.paperpickedup = false;
 
         float randomRot = Random.Range(-90, 90);
         float randomPosx = Random.Range(-8, 8);
@@ -105,7 +105,7 @@ public class PaperMove : MonoBehaviour
             slowToStop = false;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             hit = Physics2D.Raycast(ray.origin, ray.direction);
-            if (!paperpickedupinstance.paperpickedup && hit.collider != null)
+            if (!paperpickedupinstance.instance.paperpickedup && hit.collider != null)
             {
                 if (hit.collider.gameObject == gameObject || hit.collider.gameObject.CompareTag("StampCheck") && hit.collider.gameObject == isStampedObj)
                 {
@@ -114,7 +114,7 @@ public class PaperMove : MonoBehaviour
                         sourceUp.Play();
                     }
                     hand.SetActive(true);
-                    paperpickedupinstance.paperpickedup = true;
+                    paperpickedupinstance.instance.paperpickedup = true;
                     isRightMouseDown = true;
                     prevPapers = GameObject.FindGameObjectsWithTag("Paper");
                     transform.localScale = transform.localScale * 1.1f;
@@ -166,7 +166,7 @@ public class PaperMove : MonoBehaviour
                         sourceDown.Play();
                     }
                     hand.SetActive(false);
-                    paperpickedupinstance.paperpickedup = false;
+                    paperpickedupinstance.instance.paperpickedup = false;
                     slowToStop = true;
                     transform.localScale = originalScale;
                     paperShadow.SetActive(false);
