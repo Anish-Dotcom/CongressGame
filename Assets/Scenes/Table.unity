@@ -1891,7 +1891,7 @@ MonoBehaviour:
   leftHand: {fileID: 150761578}
   lights: {fileID: 1667092796}
   happened: 0
-  numberOfFlickers: 0
+  numberOfFlickers: 2
 --- !u!1 &874977469
 GameObject:
   m_ObjectHideFlags: 0
