@@ -1883,12 +1883,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fc43cb59f38e9c43bbef792bf55c2f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spotlight: {fileID: 1667092798}
   LightOn: {fileID: 1491559530}
   LightOff: {fileID: 1355559918}
   hands: {fileID: 1937935991}
   rightHandEmpty: {fileID: 351104439}
   leftHand: {fileID: 150761578}
   lights: {fileID: 1667092796}
+  happened: 0
+  numberOfFlickers: 2
 --- !u!1 &874977469
 GameObject:
   m_ObjectHideFlags: 0
