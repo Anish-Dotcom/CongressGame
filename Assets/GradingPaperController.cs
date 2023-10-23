@@ -29,8 +29,12 @@ public class GradingPaperController : MonoBehaviour
     public GameObject Paper;
     public GameObject hand;
 
+    public GameObject[] barsDemographic;
+
+    public static GameObject thisPaper;
     void Start()
     {
+        thisPaper = GameObject.FindGameObjectWithTag("GradingCon"); ;
         originalScale = transform.localScale;
         paperpickedupinstance.instance.paperpickedup = false;
 
@@ -49,6 +53,7 @@ public class GradingPaperController : MonoBehaviour
         shadowPosition = paperShadow.transform.position;
         shadowPosition.y = shadowY + 0.25f;
         paperShadow.transform.position = shadowPosition;
+        setDemoBarSize();
     }
     void Update()
     {
@@ -126,6 +131,19 @@ public class GradingPaperController : MonoBehaviour
         if (slowToStop)
         {
             transform.position = Vector2.SmoothDamp(transform.position, mousePositionSlow, ref currentVelocity, smoothTime, maxPaperFollowSpeed);
+        }
+    }
+    public static void setDemoBarSize() 
+    {
+        for (int i = 0; i < GradingPaperController.thisPaper.GetComponent<GradingPaperController>().barsDemographic.Length; i++)
+        {
+            Vector3 barController = GradingPaperController.thisPaper.GetComponent<GradingPaperController>().barsDemographic[i].transform.localScale;
+            barController.y = 0.072f * DayController.approvalPercentageDemographics[i];
+            GradingPaperController.thisPaper.GetComponent<GradingPaperController>().barsDemographic[i].transform.localScale = barController;
+
+            Vector3 barPos = GradingPaperController.thisPaper.GetComponent<GradingPaperController>().barsDemographic[i].transform.position;
+            barPos.y = (0.072f * DayController.approvalPercentageDemographics[i]) / 2f - 3.48f;
+            GradingPaperController.thisPaper.GetComponent<GradingPaperController>().barsDemographic[i].transform.position = barPos;
         }
     }
 }

@@ -15,6 +15,7 @@ TagManager:
   - Color
   - Slogan
   - Motif
+  - GradingCon
   layers:
   - Default
   - TransparentFX
