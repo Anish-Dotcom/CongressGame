@@ -92,7 +92,6 @@ public class DayController : MonoBehaviour
         {
             approvalPercentageDemographics[i] = approvalPercentageDemographicsTest[i];
         }
-        Instantiate(GradingPaper, new Vector3(0f, 0f, 0f), Quaternion.identity);
         Paper.GetComponent<PaperMove>().paperNumber = 0;
         PaperMove.prevPapers = GameObject.FindGameObjectsWithTag("Paper");
         PapersForNext();
