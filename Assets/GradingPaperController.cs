@@ -141,9 +141,9 @@ public class GradingPaperController : MonoBehaviour
             barController.y = 0.072f * DayController.approvalPercentageDemographics[i];
             GradingPaperController.thisPaper.GetComponent<GradingPaperController>().barsDemographic[i].transform.localScale = barController;
 
-            Vector3 barPos = GradingPaperController.thisPaper.GetComponent<GradingPaperController>().barsDemographic[i].transform.position;
+            Vector3 barPos = GradingPaperController.thisPaper.GetComponent<GradingPaperController>().barsDemographic[i].transform.localPosition;
             barPos.y = (0.072f * DayController.approvalPercentageDemographics[i]) / 2f - 3.48f;
-            GradingPaperController.thisPaper.GetComponent<GradingPaperController>().barsDemographic[i].transform.position = barPos;
+            GradingPaperController.thisPaper.GetComponent<GradingPaperController>().barsDemographic[i].transform.localPosition = barPos;
         }
     }
 }

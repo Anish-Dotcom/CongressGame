@@ -18,6 +18,7 @@ public class DayController : MonoBehaviour
     public static Sprite[] staticAllPaperObjects;
     public static bool[] isUsedPaper;
     public static int[] approvalPercentageDemographics = new int[7];//The 1%, Middle class, Impoverished, Progressive, Conservative, Federalist, Anti-Federalist
+    public int[] approvalPercentageDemographicsTest = new int[7];
     [SerializeField]
     public Array2DInt demographicChangeAcc;
     [SerializeField]
@@ -87,6 +88,11 @@ public class DayController : MonoBehaviour
         }
         paperObjectsForNext[0] = allPaperObjects[0];//Tutorial doc
         GameObject Paper = Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+        for (int i = 0; i < approvalPercentageDemographics.Length; i++)
+        {
+            approvalPercentageDemographics[i] = approvalPercentageDemographicsTest[i];
+        }
+        Instantiate(GradingPaper, new Vector3(0f, 0f, 0f), Quaternion.identity);
         Paper.GetComponent<PaperMove>().paperNumber = 0;
         PaperMove.prevPapers = GameObject.FindGameObjectsWithTag("Paper");
         PapersForNext();
