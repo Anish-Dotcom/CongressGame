@@ -252,38 +252,45 @@ public class DayController : MonoBehaviour
     }
     public static void NewsPaperForBetween() 
     {
-        
-        bellIsPushed = true;
-        int newspaperInt;
-        if (citizensCanProposeLaws) 
+        if (dayNum != 6)
         {
-            newspaperInt = dayNum + 18;
+            bellIsPushed = true;
+            int newspaperInt;
+            if (citizensCanProposeLaws)
+            {
+                newspaperInt = dayNum + 18;
+            }
+            else
+            {
+                newspaperInt = dayNum + 17;
+            }
+            GameObject Paper = Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+            Paper.GetComponent<PaperMove>().paperNumber = newspaperInt;
+            Paper.GetComponent<PaperMove>().Paper.GetComponent<Transform>().localScale = Paper.GetComponent<PaperMove>().Paper.GetComponent<Transform>().localScale * 1.3f;
+            Paper.GetComponent<PaperMove>().hand.transform.position = new Vector2(3.68f, Paper.GetComponent<PaperMove>().hand.transform.position.y);
+            Paper.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = staticAllPaperObjects[newspaperInt];
+            if (newspaperInt == 18)
+            {
+                colorOn = true;
+            }
+            if (newspaperInt == 19)
+            {
+                sloganOn = true;
+            }
+            if (newspaperInt == 20)
+            {
+                motifOn = true;
+            }
         }
         else 
         {
-            newspaperInt = dayNum + 17;
-        }
-        GameObject Paper = Instantiate(staticPaperPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
-        Paper.GetComponent<PaperMove>().paperNumber = newspaperInt;
-        Paper.GetComponent<PaperMove>().Paper.GetComponent<Transform>().localScale = Paper.GetComponent<PaperMove>().Paper.GetComponent<Transform>().localScale * 1.3f;
-        Paper.GetComponent<PaperMove>().hand.transform.position = new Vector2(3.68f, Paper.GetComponent<PaperMove>().hand.transform.position.y);
-        Paper.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = staticAllPaperObjects[newspaperInt];
-        if(newspaperInt == 18)
-        {
-            colorOn = true;
-        }
-        if (newspaperInt == 19)
-        {
-            sloganOn = true;
-        }
-        if (newspaperInt == 20)
-        {
-            motifOn = true;
+            
         }
     }
     public static void InBetweenDay() //remove all papers and then summon news paper and madlibs politcal campain
     {
         GameObject[] paperConObj = GameObject.FindGameObjectsWithTag("PaperController");
+        nextDayPowerOut = false;
         for (int i = 0; i < paperConObj.Length; i++)
         {
             if (paperConObj[i].GetComponent<PaperMove>().stampedType == 1)//decclined -----------------------------------------------------------------------------------------------
@@ -302,7 +309,7 @@ public class DayController : MonoBehaviour
                 for (int b = 0; b < 7; b++)
                 {
                     approvalPercentageDemographics[b] += DayConObj.GetComponent<DayController>().demographicChangeAcc.GetCell(b, paperConObj[i].GetComponent<PaperMove>().paperNumber);
-                    if (dayNum == 4 && paperConObj[i].GetComponent<PaperMove>().paperNumber == 16)
+                    if (paperConObj[i].GetComponent<PaperMove>().paperNumber == 16)
                     {
                         citizensCanProposeLaws = true;
                     }
