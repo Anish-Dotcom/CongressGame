@@ -37,6 +37,14 @@ public class Stamp : MonoBehaviour
 
     public GameObject hand;
     Vector2 currentVelocity;
+
+    public float shadowX;
+    public float shadowY;
+    public GameObject stampShadow;
+    public Vector2 shadowPosition;
+    public Quaternion shadowRotation;
+    public float subFromX;
+    public float subFromRot;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +56,27 @@ public class Stamp : MonoBehaviour
     void Update()
     {
         source.volume = musicController.masterVolume;
+        pos = transform.position;
+        rot = transform.rotation;
+
+        if (stampShadow != null)
+        {
+            shadowX = pos.x;
+            shadowY = pos.y;
+            shadowPosition = stampShadow.transform.position;
+            subFromX = (shadowX - 0) / 5;
+            shadowPosition.x = shadowX + subFromX;
+            shadowPosition.y = shadowY + 0.25f;
+            subFromRot = (shadowX * -7);
+            shadowRotation = Quaternion.Euler(0f, 0f, subFromRot);
+            stampShadow.transform.rotation = shadowRotation;
+            stampShadow.transform.position = shadowPosition;
+        }
+        else
+        {
+            Destroy(this);
+        }
+
         if (transform.position.x < -9.5f || transform.position.x > 9.5f || transform.position.y < -5.5f || transform.position.y > 5.5f)
         {
             transform.position = new Vector3(0f, 0f, 0f);
