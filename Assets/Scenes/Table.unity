@@ -1908,7 +1908,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &874977470
 Transform:
   m_ObjectHideFlags: 0
@@ -1916,14 +1916,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 874977469}
-  m_LocalRotation: {x: 0, y: 0, z: 0.03489949, w: 0.99939084}
-  m_LocalPosition: {x: -0.0909, y: 0.2, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1192462230}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 4}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &874977471
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2050,6 +2050,11 @@ MonoBehaviour:
   returnPosY: -3.7
   stampType: 1
   hand: {fileID: 1313896767}
+  shadowX: 0
+  shadowY: 0
+  stampShadow: {fileID: 1911527447}
+  shadowPosition: {x: 0, y: 0}
+  subFromX: 0
 --- !u!212 &888953739
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3565,6 +3570,11 @@ MonoBehaviour:
   returnPosY: -3.7
   stampType: 2
   hand: {fileID: 1268265934}
+  shadowX: 0
+  shadowY: 0
+  stampShadow: {fileID: 874977469}
+  shadowPosition: {x: 0, y: 0}
+  subFromX: 0
 --- !u!212 &1192462229
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10527,7 +10537,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1911527448
 Transform:
   m_ObjectHideFlags: 0
@@ -10535,14 +10545,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1911527447}
-  m_LocalRotation: {x: 0, y: 0, z: 0.03489949, w: 0.99939084}
-  m_LocalPosition: {x: -0.0909, y: 0.2, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 888953740}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 4}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1911527449
 SpriteRenderer:
   m_ObjectHideFlags: 0
