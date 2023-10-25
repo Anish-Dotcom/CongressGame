@@ -15,6 +15,7 @@ public class handscript : MonoBehaviour
 
     public static bool lightsOut;
 
+    public bool lightOutForLight;
     public bool happened;
     public int numberOfFlickers;
 
@@ -46,6 +47,19 @@ public class handscript : MonoBehaviour
                 StartCoroutine(lightFlicker());
                 happened = true;
             }
+            if (lightOutForLight == true)
+            {
+                spotlight.intensity = 0f;
+            }
+        }
+        else
+        {
+            lightOutForLight = false;
+            happened = false;
+            spotlight.intensity = 1;
+            LightOff.SetActive(false);
+            LightOn.SetActive(true);
+            leftHand.SetActive(false);
         }
     }
 
@@ -71,7 +85,8 @@ public class handscript : MonoBehaviour
             spotlight.intensity = 0f;
             numberOfFlickers = numberOfFlickers - 1;
         }
-        lights.SetActive(false);
+        lightOutForLight = true;
+        spotlight.intensity = 0;
         LightOn.SetActive(false);
         LightOff.SetActive(true);
         yield return new WaitForSeconds(1.2f);

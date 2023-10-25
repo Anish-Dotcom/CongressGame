@@ -1890,6 +1890,7 @@ MonoBehaviour:
   rightHandEmpty: {fileID: 351104439}
   leftHand: {fileID: 150761578}
   lights: {fileID: 1667092796}
+  lightOutForLight: 0
   happened: 0
   numberOfFlickers: 2
 --- !u!1 &874977469
@@ -2054,7 +2055,9 @@ MonoBehaviour:
   shadowY: 0
   stampShadow: {fileID: 1911527447}
   shadowPosition: {x: 0, y: 0}
+  shadowRotation: {x: 0, y: 0, z: 0, w: 0}
   subFromX: 0
+  subFromRot: 0
 --- !u!212 &888953739
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3574,7 +3577,9 @@ MonoBehaviour:
   shadowY: 0
   stampShadow: {fileID: 874977469}
   shadowPosition: {x: 0, y: 0}
+  shadowRotation: {x: 0, y: 0, z: 0, w: 0}
   subFromX: 0
+  subFromRot: 0
 --- !u!212 &1192462229
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4966,7 +4971,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1667092799}
   - component: {fileID: 1667092798}
-  - component: {fileID: 1667092797}
   m_Layer: 0
   m_Name: Light 2D
   m_TagString: Untagged
@@ -4974,33 +4978,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1667092797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1667092796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cd8b4c10fdbec84bad7dbe96c5ce677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  intensityChangeSpeed: 0.1
-  posChangeSpeed: 0.02
-  intensityamount: 1
-  maxintensity: 1.1
-  minintensity: 0.9
-  maxintensityused: 0
-  minintensityused: 0
-  uncertainty: 0
-  maxpos: 2.25
-  minpos: 0
-  pos: {x: 0, y: 0, z: 0}
-  xLocation: 2
-  yLocation: -7.5
-  zLocation: 90
-  spotlight: {fileID: 1667092798}
 --- !u!114 &1667092798
 MonoBehaviour:
   m_ObjectHideFlags: 0

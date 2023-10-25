@@ -302,6 +302,10 @@ public class DayController : MonoBehaviour
                     {
                         nextDayPowerOut = true;
                     }
+                    else
+                    {
+                        handscript.lightsOut = false;
+                    }
                 }
             }
             if (paperConObj[i].GetComponent<PaperMove>().stampedType == 2) //accepted --------------------------------------------------------------------------------------------------
