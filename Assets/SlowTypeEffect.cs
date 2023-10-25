@@ -23,7 +23,14 @@ public class SlowTypeEffect : MonoBehaviour
     {
         dayNumreal = DayController.daynum1;
         
-        fullText = "Day" + " "+ dayNumreal + " ";
+        if(dayNumreal == 0) {
+            fullText = "Tutorial Day ";
+        } else if( dayNumreal == 6) {
+            fullText = "Final Day ";
+        } else{ 
+            fullText = "Day" + " "+ dayNumreal + " ";
+        }
+
         
         if (startText)
         {
