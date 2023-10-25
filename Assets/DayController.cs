@@ -69,6 +69,8 @@ public class DayController : MonoBehaviour
     public static bool posterShow = false;
     public int numberOfTimesPressed = 0;
 
+    public GameObject posterCanvas;
+
     void Start()
     {
         colorOn = false;
@@ -101,6 +103,14 @@ public class DayController : MonoBehaviour
     void Update()
     {
         daynum1 = dayNum - 1;
+        if(numberOfTimesPressed == 12)
+        {
+            if(Input.GetMouseButton(0) || Input.GetMouseButton(0))
+            {
+                posterCanvas.SetActive(false);
+                PapersForNext();
+            }
+        }
         if (bellIsPushed == true)
         {
             StartCoroutine(PushBell());
@@ -386,7 +396,9 @@ public class DayController : MonoBehaviour
         source.Play();
         if (numberOfTimesPressed == 12)
         {
-            SceneManager.LoadScene("Poster");
+            DayConObj.GetComponent<DayController>().preFullText = "Seems like there were some budget cuts for the poster!";
+            Agent.sprite = Agents[2];
+            posterCanvas.SetActive(true);
         }
         yield return new WaitForSeconds(0.15f);
         bellunpushed.SetActive(true);
