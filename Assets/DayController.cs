@@ -66,6 +66,8 @@ public class DayController : MonoBehaviour
     public GameObject posterColor;
     public GameObject posterSlogan;
     public GameObject posterMotif;
+    public static bool posterShow = false;
+    public int numberOfTimesPressed = 0;
 
     void Start()
     {
@@ -156,13 +158,13 @@ public class DayController : MonoBehaviour
     }
     public static void PapersForNext()//call this after inbetween day
     {
+        bellIsPushed = true;
         if (dayNum == 0)
         {
             NewDay();
         }
         else
         {
-            bellIsPushed = true;
             DayConObj.GetComponent<DayController>().lt1.transition1 = true;
                 DayConObj.GetComponent<DayController>().lt.transition = true;
             if (dayNum == 3)
@@ -252,9 +254,9 @@ public class DayController : MonoBehaviour
     }
     public static void NewsPaperForBetween() 
     {
+        bellIsPushed = true;
         if (dayNum != 6)
         {
-            bellIsPushed = true;
             int newspaperInt;
             if (citizensCanProposeLaws)
             {
@@ -377,10 +379,15 @@ public class DayController : MonoBehaviour
     }
     IEnumerator PushBell()
     {
+        numberOfTimesPressed = numberOfTimesPressed + 1;
         bellIsPushed = false;
         bellunpushed.SetActive(false);
         bellpushed.SetActive(true);
         source.Play();
+        if (numberOfTimesPressed == 12)
+        {
+            SceneManager.LoadScene("Poster");
+        }
         yield return new WaitForSeconds(0.15f);
         bellunpushed.SetActive(true);
         bellpushed.SetActive(false);
