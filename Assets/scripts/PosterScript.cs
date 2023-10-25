@@ -16,6 +16,11 @@ public class PosterScript : MonoBehaviour
     public GameObject Slogan3;
     public GameObject Slogan4;
     public GameObject Slogan5;
+
+    public GameObject lion;
+    public GameObject lightningbolt;
+    public GameObject money;
+    public GameObject bear;
     // Start is called before the first frame update
     void Start()
     {
@@ -113,6 +118,38 @@ public class PosterScript : MonoBehaviour
         else
         {
             Slogan5.SetActive(false);
+        }
+        if (PosterManager.motifopt1 == true) // motif change
+        {
+            lion.SetActive(true);
+        }
+        else
+        {
+            lion.SetActive(false);
+        }
+        if (PosterManager.motifopt2 == true)
+        {
+            lightningbolt.SetActive(true);
+        }
+        else
+        {
+            lightningbolt.SetActive(false);
+        }
+        if (PosterManager.motifopt3 == true)
+        {
+            money.SetActive(true);
+        }
+        else
+        {
+            money.SetActive(false);
+        }
+        if (PosterManager.motifopt4 == true)
+        {
+            bear.SetActive(true);
+        }
+        else
+        {
+            bear.SetActive(false);
         }
     }
 }

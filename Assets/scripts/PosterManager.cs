@@ -17,6 +17,11 @@ public class PosterManager : MonoBehaviour
     public static bool sloganOpt4 = false;
     public static bool sloganOpt5 = false;
 
+    public static bool motifopt1 = false;
+    public static bool motifopt2 = false;
+    public static bool motifopt3 = false;
+    public static bool motifopt4 = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -88,7 +93,23 @@ public class PosterManager : MonoBehaviour
 
     public void Motif1() // motif unfinshed button
     {
-
+        RemoveAllMotifs();
+        motifopt1 = true;
+    }
+    public void Motif2()
+    {
+        RemoveAllMotifs();
+        motifopt2 = true;
+    }
+    public void Motif3()
+    {
+        RemoveAllMotifs();
+        motifopt3 = true;
+    }
+    public void Motif4()
+    {
+        RemoveAllMotifs();
+        motifopt4 = true;
     }
 
     public void RemoveAllColors() // reset colors
@@ -107,5 +128,13 @@ public class PosterManager : MonoBehaviour
         sloganOpt3 = false;
         sloganOpt4 = false;
         sloganOpt5 = false;
+    }
+
+    public void RemoveAllMotifs() //reset motifs
+    {
+        motifopt1 = false;
+        motifopt2 = false;
+        motifopt3 = false;
+        motifopt4 = false;
     }
 }
