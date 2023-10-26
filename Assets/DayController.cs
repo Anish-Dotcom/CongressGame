@@ -70,6 +70,11 @@ public class DayController : MonoBehaviour
     public int numberOfTimesPressed = 0;
 
     public GameObject posterCanvas;
+    public static int anotherPickedUp = 0;
+    public static bool agentTalking = false;
+    public static bool OnLastPressed = false;
+    public GameObject agentObject;
+    public GameObject agentObjectText;
 
     void Start()
     {
@@ -102,6 +107,19 @@ public class DayController : MonoBehaviour
     }
     void Update()
     {
+        if (agentTalking)
+        {
+            agentObject.SetActive(true);
+            agentObjectText.SetActive(true);
+            anotherPickedUp = anotherPickedUp + 1;
+            if (OnLastPressed == false)
+            {
+                OnLastPressed = true;
+                StartCoroutine(AgentDisappear());
+            }
+            agentTalking = false;
+        }
+
         daynum1 = dayNum - 1;
         if(numberOfTimesPressed == 12)
         {
@@ -362,6 +380,7 @@ public class DayController : MonoBehaviour
                     DayConObj.GetComponent<DayController>().preFullText = "You haven't stamped all papers.";
                     Agent.sprite = DayConObj.GetComponent<DayController>().Agents[3];
                     DayConObj.GetComponent<DayController>().showTextCall();
+                    agentTalking = true;
                     stampedAll = false;
                 }
             }
@@ -398,6 +417,8 @@ public class DayController : MonoBehaviour
         {
             DayConObj.GetComponent<DayController>().preFullText = "Seems like there were some budget cuts for the poster!";
             Agent.sprite = Agents[2];
+            StartCoroutine(AgentDisappear());
+            anotherPickedUp = anotherPickedUp + 1;
             posterCanvas.SetActive(true);
         }
         yield return new WaitForSeconds(0.15f);
@@ -466,11 +487,30 @@ public class DayController : MonoBehaviour
         }
         if (totalApproval / approvalPercentageDemographics.Length >= DayConObj.GetComponent<DayController>().requiredAvgAprovalPercent) //win
         {
-            SceneManager.LoadScene("WinScene");
+            SceneManager.LoadScene("SucceedScene");
         }
         else //lose
         {
             SceneManager.LoadScene("DeathScene");
+        }
+    }
+
+    IEnumerator AgentDisappear()
+    {
+        while (OnLastPressed)
+        {
+            yield return new WaitForSeconds(8f);
+            if (anotherPickedUp > 1)
+            {
+                anotherPickedUp = 0;
+                StartCoroutine(AgentDisappear());
+            }
+            else
+            {
+                agentObject.SetActive(false);
+                agentObjectText.SetActive(false);
+                OnLastPressed = false;
+            }
         }
     }
 }

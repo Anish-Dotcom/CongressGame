@@ -139,12 +139,14 @@ public class PaperMove : MonoBehaviour
                         DayController.DayConObj.GetComponent<DayController>().preFullText = DayController.DayConObj.GetComponent<DayController>().AgentTextOnPickup[hit.collider.gameObject.GetComponent<isStamped>().paperControllerObject.GetComponent<PaperMove>().paperNumber];
                         DayController.Agent.sprite = DayController.DayConObj.GetComponent<DayController>().Agents[DayController.DayConObj.GetComponent<DayController>().pickupIntAgent[hit.collider.gameObject.GetComponent<isStamped>().paperControllerObject.GetComponent<PaperMove>().paperNumber]];
                         DayController.DayConObj.GetComponent<DayController>().showTextCall();
+                        DayController.agentTalking = true;
                     }
                     else 
                     {
                         DayController.DayConObj.GetComponent<DayController>().preFullText = DayController.DayConObj.GetComponent<DayController>().AgentTextOnPickup[hit.collider.gameObject.GetComponent<PaperMove>().paperNumber];
                         DayController.Agent.sprite = DayController.DayConObj.GetComponent<DayController>().Agents[DayController.DayConObj.GetComponent<DayController>().pickupIntAgent[hit.collider.gameObject.GetComponent<PaperMove>().paperNumber]];
                         DayController.DayConObj.GetComponent<DayController>().showTextCall();
+                        DayController.agentTalking = true;
                     }
                 }
             }

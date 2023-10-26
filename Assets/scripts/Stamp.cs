@@ -148,12 +148,14 @@ public class Stamp : MonoBehaviour
                     DayController.DayConObj.GetComponent<DayController>().preFullText = DayController.DayConObj.GetComponent<DayController>().AgentTextOnStampAcc[controllerOfPaperObj.GetComponent<PaperMove>().paperNumber];
                     DayController.Agent.sprite = DayController.DayConObj.GetComponent<DayController>().Agents[DayController.DayConObj.GetComponent<DayController>().stampAccAgent[controllerOfPaperObj.GetComponent<PaperMove>().paperNumber]];
                     DayController.DayConObj.GetComponent<DayController>().showTextCall();
+                    DayController.agentTalking = true;
                 }
                 else if (controllerOfPaperObj.GetComponent<PaperMove>().stampedType == 1)
                 {
                     DayController.DayConObj.GetComponent<DayController>().preFullText = DayController.DayConObj.GetComponent<DayController>().AgentTextOnStampDec[controllerOfPaperObj.GetComponent<PaperMove>().paperNumber];
                     DayController.Agent.sprite = DayController.DayConObj.GetComponent<DayController>().Agents[DayController.DayConObj.GetComponent<DayController>().stampDecAgent[controllerOfPaperObj.GetComponent<PaperMove>().paperNumber]];
                     DayController.DayConObj.GetComponent<DayController>().showTextCall();
+                    DayController.agentTalking = true;
                 }
                 transform.localScale = originalScale;
                 StartCoroutine(pauseBetweenStampPutDownAndUp());
