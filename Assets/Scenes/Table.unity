@@ -13363,16 +13363,14 @@ MonoBehaviour:
     mad about a little more zemblanity, right?
   - This is inbetween days, you will get a newspaper each time you are here, this
     is not required to be read but its reccomended!
-  - As an autocratic leader this is completely within your right. No one would be
-    mad about a little more zemblanity, right?
-  - As an autocratic leader this is completely within your right. No one would be
-    mad about a little more zemblanity, right?
-  - As an autocratic leader this is completely within your right. No one would be
-    mad about a little more zemblanity, right?
-  - As an autocratic leader this is completely within your right. No one would be
-    mad about a little more zemblanity, right?
-  - As an autocratic leader this is completely within your right. No one would be
-    mad about a little more zemblanity, right?
+  - What they are saying about you is pretty mean. But really, do you have a brain?
+  - 'Allways remember, if the country is in disarray: blame it on the people.'
+  - OH NO! Bob Barlowe was assasinated!? Oh, millions are starving too, probably
+    should get to helping them.
+  - Citizens can propose laws, of course you would make me do more work having to
+    green light all of those laws so you can only have the best.
+  - Remember, war is never over. If we don't want the people to revolt. Keep iron
+    hand on them. That is the philosophy of zemblanity.
   AgentTextOnStampAcc:
   - Nice job stamping your first paper, if you try stamping again you will notice
     it does not work. A paper can only be stamped once, there is no taksie baksies.
@@ -13449,7 +13447,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 205be7f7064e94b468a6b08706dc5325, type: 3}
   - {fileID: 21300000, guid: 9950f469ed47d82458887e9419b682f0, type: 3}
   - {fileID: 21300000, guid: d5b56c2675b5bb1499b53fe383bf87b5, type: 3}
-  pickupIntAgent: 030000000100000008000000000000000100000005000000070000000700000003000000030000000500000006000000070000000600000000000000070000000300000000000000010000000000000000000000000000000000000000000000
+  pickupIntAgent: 030000000100000008000000000000000100000005000000070000000700000003000000030000000500000006000000070000000600000000000000070000000300000000000000010000000600000005000000080000000300000000000000
   stampAccAgent: 010000000100000002000000000000000700000006000000080000000300000006000000050000000700000008000000010000000200000000000000080000000300000005000000050000000500000005000000050000000500000005000000
   stampDecAgent: 010000000000000001000000050000000600000005000000020000000100000007000000050000000700000007000000000000000200000002000000060000000500000008000000080000000800000008000000080000000800000008000000
   daynumstring: Day
