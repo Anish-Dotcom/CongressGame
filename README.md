@@ -5,8 +5,8 @@
 ### will determine your fate.
 ### ︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶
 ## Authors:
-### Brady Rozendaal (main programmer, writer, music/effects)
-### Ayan Masud (artist, programmer, writer, effects)
+### Brady Rozendaal (main programmer, writer, music/effects, particles)
+### Ayan Masud (artist, programmer, writer, music/effects)
 ### Anish Rao (programmer, writer)
 ### ︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶
 ## Papers:

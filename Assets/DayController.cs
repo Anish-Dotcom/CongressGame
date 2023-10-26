@@ -412,7 +412,10 @@ public class DayController : MonoBehaviour
         bellIsPushed = false;
         bellunpushed.SetActive(false);
         bellpushed.SetActive(true);
-        source.Play();
+        if (musicController.effects == true)
+        {
+            source.Play();
+        }
         if (numberOfTimesPressed == 12)
         {
             DayConObj.GetComponent<DayController>().preFullText = "Seems like there were some budget cuts for the poster!";

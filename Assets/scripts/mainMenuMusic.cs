@@ -59,7 +59,7 @@ public class mainMenuMusic : MonoBehaviour
 
         }
 
-        if (EscapeMenu.isOpen)
+        if (EscapeMenu.isOpen || handscript.noElectricity)
         {
             allAudios[random].Pause();
             radioStatic.Pause();

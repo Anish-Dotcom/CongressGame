@@ -14,6 +14,7 @@ public class handscript : MonoBehaviour
     public GameObject lights;
 
     public static bool lightsOut;
+    public static bool noElectricity = false;
 
     public bool lightOutForLight;
     public bool happened;
@@ -54,6 +55,7 @@ public class handscript : MonoBehaviour
         }
         else
         {
+            noElectricity = false;
             lightOutForLight = false;
             happened = false;
             spotlight.intensity = 1;
@@ -71,18 +73,24 @@ public class handscript : MonoBehaviour
             yield return new WaitForSeconds(0.08f);
             spotlight.intensity = 0.75f;
             lights.SetActive(true);
+            noElectricity = false;
             yield return new WaitForSeconds(0.12f);
             lights.SetActive(false);
+            noElectricity = true;
             yield return new WaitForSeconds(0.24f);
             spotlight.intensity = 0.5f;
             lights.SetActive(true);
+            noElectricity = false;
             yield return new WaitForSeconds(0.08f);
             lights.SetActive(false);
+            noElectricity = true;
             yield return new WaitForSeconds(0.22f);
             spotlight.intensity = 0.25f;
             lights.SetActive(true);
+            noElectricity = false;
             yield return new WaitForSeconds(0.14f);
             spotlight.intensity = 0f;
+            noElectricity = true;
             numberOfFlickers = numberOfFlickers - 1;
         }
         lightOutForLight = true;
