@@ -10,6 +10,7 @@ public class splashScreenManager : MonoBehaviour
     public GameObject text;
     public int number;
     public bool loading;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +23,7 @@ public class splashScreenManager : MonoBehaviour
     {
         if (Input.anyKeyDown && loading == false)
         {
-            SceneManager.LoadScene("MainMenu");
+            transitionscript.runTransition = true;
         }
     }
 

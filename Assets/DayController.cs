@@ -107,6 +107,7 @@ public class DayController : MonoBehaviour
     }
     void Update()
     {
+        source.volume = musicController.masterVolume;
         if (agentTalking)
         {
             agentObject.SetActive(true);
