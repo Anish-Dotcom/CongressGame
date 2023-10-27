@@ -58,7 +58,6 @@ public class LightsTransition : MonoBehaviour
     IEnumerator  SlowLightDown()
     {
 
-        agent.SetActive(false);
         agentText.SetActive(false);
         Mainlight.SetActive(false);
         Offlight.SetActive(true);
@@ -78,7 +77,6 @@ public class LightsTransition : MonoBehaviour
     IEnumerator SlowLightDown1()
     {
         
-        agent.SetActive(false);
         agentText.SetActive(false);
         Mainlight.SetActive(false);
         Offlight.SetActive(true);
@@ -109,7 +107,6 @@ public class LightsTransition : MonoBehaviour
 
         transitionback = false;
         
-        agent.SetActive(true);
 
     }
     IEnumerator BringLightup1()
@@ -130,7 +127,6 @@ public class LightsTransition : MonoBehaviour
         Mainlight.SetActive(true);
         Offlight.SetActive(false);
 
-        agent.SetActive(true);
         agentText.SetActive(true);
     }
 }

@@ -75,6 +75,7 @@ public class DayController : MonoBehaviour
     public static bool OnLastPressed = false;
     public GameObject agentObject;
     public GameObject agentObjectText;
+    public static bool agentStartedTalking = false;
 
     void Start()
     {
@@ -110,22 +111,22 @@ public class DayController : MonoBehaviour
         source.volume = musicController.masterVolume;
         if (agentTalking)
         {
-            agentObject.SetActive(true);
-            agentObjectText.SetActive(true);
-            anotherPickedUp = anotherPickedUp + 1;
-            if (OnLastPressed == false)
-            {
-                OnLastPressed = true;
-                StartCoroutine(AgentDisappear());
-            }
+            agentObject.SetActive(false);
+            RemoveText();
             agentTalking = false;
+        }
+        if (agentStartedTalking)
+        {
+            agentObject.SetActive(true);
+            agentStartedTalking = false;
         }
 
         daynum1 = dayNum - 1;
         if(numberOfTimesPressed == 12)
         {
-            if(Input.GetMouseButton(0) || Input.GetMouseButton(0))
+            if(Input.GetMouseButton(0) || Input.GetMouseButton(1))
             {
+                DayController.agentTalking = true;
                 posterCanvas.SetActive(false);
                 PapersForNext();
             }
@@ -164,6 +165,7 @@ public class DayController : MonoBehaviour
     }
     public static void NewDay()
     {
+        
         PaperMove.prevPapers = GameObject.FindGameObjectsWithTag("Paper");
         for (int i = 0; i < approvalPercentageDemographics.Length; i++)
         {
@@ -381,7 +383,6 @@ public class DayController : MonoBehaviour
                     DayConObj.GetComponent<DayController>().preFullText = "You haven't stamped all papers.";
                     Agent.sprite = DayConObj.GetComponent<DayController>().Agents[3];
                     DayConObj.GetComponent<DayController>().showTextCall();
-                    agentTalking = true;
                     stampedAll = false;
                 }
             }
@@ -408,8 +409,10 @@ public class DayController : MonoBehaviour
         }
         
     }
+
     IEnumerator PushBell()
     {
+        agentTalking = true;
         numberOfTimesPressed = numberOfTimesPressed + 1;
         bellIsPushed = false;
         bellunpushed.SetActive(false);
@@ -420,9 +423,9 @@ public class DayController : MonoBehaviour
         }
         if (numberOfTimesPressed == 12)
         {
+            agentStartedTalking = true;
             DayConObj.GetComponent<DayController>().preFullText = "Seems like there were some budget cuts for the poster!";
             Agent.sprite = Agents[2];
-            StartCoroutine(AgentDisappear());
             anotherPickedUp = anotherPickedUp + 1;
             posterCanvas.SetActive(true);
         }
@@ -504,22 +507,4 @@ public class DayController : MonoBehaviour
         }
     }
 
-    IEnumerator AgentDisappear()
-    {
-        while (OnLastPressed)
-        {
-            yield return new WaitForSeconds(8f);
-            if (anotherPickedUp > 1)
-            {
-                anotherPickedUp = 0;
-                StartCoroutine(AgentDisappear());
-            }
-            else
-            {
-                agentObject.SetActive(false);
-                agentObjectText.SetActive(false);
-                OnLastPressed = false;
-            }
-        }
-    }
 }

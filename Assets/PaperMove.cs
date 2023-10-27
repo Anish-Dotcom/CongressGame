@@ -134,19 +134,19 @@ public class PaperMove : MonoBehaviour
                         DayController.nextDayPowerOut = false;
                         handscript.lightsOut = true;
                     }
-                    if (hit.collider.gameObject.CompareTag("StampCheck")) 
+                    if (hit.collider.gameObject.CompareTag("StampCheck"))
                     {
+                        DayController.agentStartedTalking = true;
                         DayController.DayConObj.GetComponent<DayController>().preFullText = DayController.DayConObj.GetComponent<DayController>().AgentTextOnPickup[hit.collider.gameObject.GetComponent<isStamped>().paperControllerObject.GetComponent<PaperMove>().paperNumber];
                         DayController.Agent.sprite = DayController.DayConObj.GetComponent<DayController>().Agents[DayController.DayConObj.GetComponent<DayController>().pickupIntAgent[hit.collider.gameObject.GetComponent<isStamped>().paperControllerObject.GetComponent<PaperMove>().paperNumber]];
                         DayController.DayConObj.GetComponent<DayController>().showTextCall();
-                        DayController.agentTalking = true;
                     }
                     else 
                     {
+                        DayController.agentStartedTalking = true;
                         DayController.DayConObj.GetComponent<DayController>().preFullText = DayController.DayConObj.GetComponent<DayController>().AgentTextOnPickup[hit.collider.gameObject.GetComponent<PaperMove>().paperNumber];
                         DayController.Agent.sprite = DayController.DayConObj.GetComponent<DayController>().Agents[DayController.DayConObj.GetComponent<DayController>().pickupIntAgent[hit.collider.gameObject.GetComponent<PaperMove>().paperNumber]];
                         DayController.DayConObj.GetComponent<DayController>().showTextCall();
-                        DayController.agentTalking = true;
                     }
                 }
             }

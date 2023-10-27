@@ -98,8 +98,8 @@ public class handscript : MonoBehaviour
         LightOn.SetActive(false);
         LightOff.SetActive(true);
         yield return new WaitForSeconds(1.2f);
+        DayController.agentStartedTalking = true;
         DayController.DayConObj.GetComponent<DayController>().preFullText = "Seems like the power went out. Heres a candle for convienience.";
-        DayController.agentTalking = true;
         yield return new WaitForSeconds(0.2f);
         leftHand.SetActive(true);
     }
