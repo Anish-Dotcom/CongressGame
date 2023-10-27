@@ -32,6 +32,9 @@ public class GradingPaperController : MonoBehaviour
     public GameObject[] barsDemographic;
 
     public static GameObject thisPaper;
+
+    public Sprite[] gradeStamps;
+    public GameObject gradeStampObj;
     void Start()
     {
         thisPaper = GameObject.FindGameObjectWithTag("GradingCon"); ;
@@ -133,17 +136,39 @@ public class GradingPaperController : MonoBehaviour
             transform.position = Vector2.SmoothDamp(transform.position, mousePositionSlow, ref currentVelocity, smoothTime, maxPaperFollowSpeed);
         }
     }
-    public static void setDemoBarSize() 
+    public void setDemoBarSize() 
     {
         for (int i = 0; i < GradingPaperController.thisPaper.GetComponent<GradingPaperController>().barsDemographic.Length; i++)
         {
             Vector3 barController = GradingPaperController.thisPaper.GetComponent<GradingPaperController>().barsDemographic[i].transform.localScale;
-            barController.y = 0.072f * DayController.approvalPercentageDemographics[i];
+            barController.y = 0.072f * (DayController.approvalPercentageDemographics[i] * 1.5f);
             GradingPaperController.thisPaper.GetComponent<GradingPaperController>().barsDemographic[i].transform.localScale = barController;
 
             Vector3 barPos = GradingPaperController.thisPaper.GetComponent<GradingPaperController>().barsDemographic[i].transform.localPosition;
-            barPos.y = (0.072f * DayController.approvalPercentageDemographics[i]) / 2f - 3.48f;
+            barPos.y = (0.072f * (1.5f * DayController.approvalPercentageDemographics[i])) / 2f - 3.48f;
             GradingPaperController.thisPaper.GetComponent<GradingPaperController>().barsDemographic[i].transform.localPosition = barPos;
+        }
+        int totalApproval = 0;
+        for (int i = 0; i < DayController.approvalPercentageDemographics.Length; i++)
+        {
+            totalApproval += DayController.approvalPercentageDemographics[i];
+        }
+        int avgApproval = 2 * (totalApproval/ DayController.approvalPercentageDemographics.Length);
+        if (avgApproval >= 60)
+        {
+            gradeStampObj.GetComponent<SpriteRenderer>().sprite = gradeStamps[0];
+        }
+        else if (avgApproval >= 40) 
+        {
+            gradeStampObj.GetComponent<SpriteRenderer>().sprite = gradeStamps[1];
+        }
+        else if (avgApproval >= 20) 
+        {
+            gradeStampObj.GetComponent<SpriteRenderer>().sprite = gradeStamps[2];
+        }
+        else if (avgApproval >= 0) 
+        {
+            gradeStampObj.GetComponent<SpriteRenderer>().sprite = gradeStamps[3];
         }
     }
 }

@@ -406,6 +406,7 @@ public class DayController : MonoBehaviour
             bellInt = 0;
             RemoveText();
         }
+        
     }
     IEnumerator PushBell()
     {
@@ -424,6 +425,10 @@ public class DayController : MonoBehaviour
             StartCoroutine(AgentDisappear());
             anotherPickedUp = anotherPickedUp + 1;
             posterCanvas.SetActive(true);
+        }
+        else if (numberOfTimesPressed == 13) 
+        {
+            calculateEnding();
         }
         yield return new WaitForSeconds(0.15f);
         bellunpushed.SetActive(true);
