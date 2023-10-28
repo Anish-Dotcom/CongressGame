@@ -429,7 +429,7 @@ public class DayController : MonoBehaviour
             anotherPickedUp = anotherPickedUp + 1;
             posterCanvas.SetActive(true);
         }
-        else if (numberOfTimesPressed == 13) 
+        else if (numberOfTimesPressed == 14) 
         {
             calculateEnding();
         }
