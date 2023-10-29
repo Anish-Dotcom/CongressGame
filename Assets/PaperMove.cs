@@ -50,7 +50,7 @@ public class PaperMove : MonoBehaviour
         paperpickedupinstance.paperpickedup = false;
 
         float randomRot = Random.Range(-90, 90);
-        float randomPosx = Random.Range(-8, 8);
+        float randomPosx = Random.Range(-8, 1.1f);
         float randomPosy = Random.Range(-4, 4);
 
         Vector3 randomPos = new Vector3(randomPosx, randomPosy, 0f);

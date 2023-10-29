@@ -424,7 +424,7 @@ public class DayController : MonoBehaviour
         if (numberOfTimesPressed == 12)
         {
             agentStartedTalking = true;
-            DayConObj.GetComponent<DayController>().preFullText = "Seems like there were some budget cuts for the poster!";
+            // DayConObj.GetComponent<DayController>().preFullText = "Seems like there were some budget cuts for the poster!";
             Agent.sprite = Agents[2];
             anotherPickedUp = anotherPickedUp + 1;
             posterCanvas.SetActive(true);
