@@ -7,20 +7,10 @@ public class creditscode : MonoBehaviour
 {
     public GameObject buttons;
     public float alpha = 0;
-    public static bool wasOnOriginally = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        if(musicController.music == true)
-        {
-            wasOnOriginally = true;
-            musicController.music = false;
-        }
-        else
-        {
-            wasOnOriginally = false;
-        }
         StartCoroutine(waitThenGo());
     }
 
@@ -45,10 +35,6 @@ public class creditscode : MonoBehaviour
 
     public void playAgain()
     {
-        if (wasOnOriginally == true)
-        {
-            musicController.music = true;
-        }
         SceneManager.LoadScene("MainMenu");
     }
 
