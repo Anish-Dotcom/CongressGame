@@ -20,6 +20,6 @@ public class deathScript : MonoBehaviour
     IEnumerator beginAnim()
     {
         yield return new WaitForSeconds(3f);
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Credits");
     }
 }
