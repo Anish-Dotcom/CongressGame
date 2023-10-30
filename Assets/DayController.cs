@@ -495,8 +495,11 @@ public class DayController : MonoBehaviour
         int totalApproval = 0;
         for (int i = 0; i < approvalPercentageDemographics.Length; i++)
         {
+            UnityEngine.Debug.Log("App Demo[i]: " + approvalPercentageDemographics[i]);
             totalApproval += approvalPercentageDemographics[i];
         }
+        UnityEngine.Debug.Log("Total App: " + totalApproval);
+        UnityEngine.Debug.Log("Req App: " + DayConObj.GetComponent<DayController>().requiredAvgAprovalPercent);
         if (totalApproval / approvalPercentageDemographics.Length >= DayConObj.GetComponent<DayController>().requiredAvgAprovalPercent) //win
         {
             SceneManager.LoadScene("SucceedScene");
