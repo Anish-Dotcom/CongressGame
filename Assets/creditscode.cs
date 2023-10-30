@@ -7,6 +7,7 @@ public class creditscode : MonoBehaviour
 {
     public GameObject buttons;
     public float alpha = 0;
+    public bool raycast = true;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,7 @@ public class creditscode : MonoBehaviour
     {
         CanvasGroup canvasGroup = buttons.GetComponent<CanvasGroup>();
         canvasGroup.alpha = alpha;
+        canvasGroup.blocksRaycasts = raycast;
     }
 
     IEnumerator waitThenGo()
@@ -31,6 +33,7 @@ public class creditscode : MonoBehaviour
         alpha = 0.75f;
         yield return new WaitForSeconds(0.1f);
         alpha = 1f;
+        raycast = false;
     }
 
     public void playAgain()

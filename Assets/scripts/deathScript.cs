@@ -8,6 +8,7 @@ public class deathScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        musicController.music = false;
         StartCoroutine(beginAnim());
     }
 
