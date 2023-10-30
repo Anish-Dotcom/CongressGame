@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class creditscode : MonoBehaviour
 {
+    public GameObject agent;
+    public GameObject agenttext;
+    public GameObject playagainbutton;
     public GameObject buttons;
     public float alpha = 0;
     public bool raycast = true;
@@ -38,7 +41,9 @@ public class creditscode : MonoBehaviour
 
     public void playAgain()
     {
-        SceneManager.LoadScene("MainMenu");
+        agent.SetActive(true);
+        agenttext.SetActive(true);
+        playagainbutton.SetActive(false);
     }
 
     public void Quit()
