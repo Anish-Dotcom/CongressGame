@@ -825,8 +825,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Thank you for playing\nWeekday Ruler!\n\n\n\n\nProgrammers\r\n-----\nBrady
     Rozendaal\r\nAyan Masud\r\nAnish Rao\r\n\r\n\nPaper Writers\r\n-----\nBrady Rozendaal\r\nAyan
-    Masud\r\nAnish Rao\r\n\r\n\nSounds\r\n-----\nBrady Rozendaal\r\nAyan Masud\r\n\r\n\nParticles\r\n-----\nBrady
-    Rozendaal\r\n\r\n\nArt\r\n-----\nAyan Masud\r"
+    Masud\r\nAnish Rao\r\n\r\n\nSounds\r\n-----\nBrady Rozendaal\r\nAyan Masud\r\n\r\n\nArt\r\n-----\nAyan
+    Masud\r"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8babfa2af7052954e9c08df1479f6839, type: 2}
   m_sharedMaterial: {fileID: 6528137604474656246, guid: 8babfa2af7052954e9c08df1479f6839, type: 2}
