@@ -1,4 +1,5 @@
 # Weekday Ruler
+### https://ayanmasud.github.io/Weekday-Ruler/
 ### Built in Unity & written in C#
 ### This app is a game where you are ruler for 5 week days and 
 ### you stamp papers with an accept or a deny. Your judgements 
